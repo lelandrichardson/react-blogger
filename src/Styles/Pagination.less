@@ -1,0 +1,62 @@
+/*
+  NOTE:
+  This CSS is somewhat of an abomination with all of these nested
+  selectors. This was done to stay compatible with bootstrap's
+  class names, which are used by default for the Pager component. :(
+*/
+
+@background: #ffffff;
+@backgroundHover: #f3f3f3;
+@borderColor: #dedede;
+@borderRadius: 3px;
+@activeColor: #777;
+@disabledColor: #ccc;
+
+.pagination {
+  margin-bottom: 12px;
+
+  & > li {
+    display: inline-block;
+
+    & > a {
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: #ffffff;
+      border: 1px solid @borderColor;
+      border-left: none;
+
+      &:hover {
+        background-color: @backgroundHover;
+      }
+    }
+
+    &.active {
+      & > a {
+        color: @activeColor;
+        font-weight: bold;
+        background-color: @backgroundHover;
+        cursor: default;
+      }
+    }
+    &.disabled {
+      & > a {
+        color: @disabledColor;
+        cursor: default;
+        background-color: @backgroundHover;
+      }
+    }
+    &.btn-first-page {
+      & > a {
+        border-left: 1px solid @borderColor;
+        border-bottom-left-radius: @borderRadius;
+        border-top-left-radius: @borderRadius;
+      }
+    }
+    &.btn-last-page {
+      & > a {
+        border-bottom-right-radius: @borderRadius;
+        border-top-right-radius: @borderRadius;
+      }
+    }
+  }
+}
