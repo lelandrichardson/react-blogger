@@ -1,23 +1,15 @@
 var React = require('react');
-var connectToStores = require('alt/utils/connectToStores');
+var Container = require('../Mixins/Container');
 var { RouteHandler, Link } = require('react-router');
 
 var BlogStore = require('../Stores/BlogStore');
 
 var Markdown = require('../Components/Markdown');
 var DocumentTitle = require('react-document-title');
+var Loading = require('../Components/Loading');
 
 require('../Styles/Blog.less');
-@connectToStores
 class Blog extends React.Component {
-    static getStores() { return [BlogStore]; }
-
-    static getPropsFromStores(props) {
-        return {
-            blog: BlogStore.getFromSlug(props.params.slug)
-        };
-    }
-
     render() {
         const blog = this.props.blog;
         return (
@@ -31,4 +23,11 @@ class Blog extends React.Component {
     }
 }
 
-module.exports = Blog;
+module.exports = Container.create(Blog, [BlogStore], {
+    getComponentProps(props) {
+        return {
+            blog: BlogStore.getFromSlug(props.params.slug)
+        }
+    },
+    loadingComponent: <Loading />
+});

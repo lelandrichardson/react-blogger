@@ -6,7 +6,8 @@ module.exports = {
     debug: true,
     devtool: 'source-map',
     entry: {
-        App: './src/App'
+        Client: './src/Client',
+        Admin: './src/Admin'
     },
     devServer: {
         contentBase: './build'
