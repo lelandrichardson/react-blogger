@@ -1,76 +1,30 @@
-var owner = "rails";
-var repo = "rails";
-var baseUrl = "https://api.github.com";
 var urlAppend = require('url-append');
-var headerUtils = require('./headerUtils');
-var normalizr = require('normalizr'),
-    normalize = normalizr.normalize,
-    Schema = normalizr.Schema,
-    arrayOf = normalizr.arrayOf;
 
-function GET ( url, shape, data ) {
-    return new Promise(( resolve, reject ) => {
-        var fullUrl = urlAppend(`${baseUrl}/repos/${owner}/${repo}/${url}`, data);
-
-        function handleResponse ( r ) {
-            var linkHeaders = r.headers.get("Link");
-            var pages;
-            if (linkHeaders) {
-                // in this case we want to also parse the "Link" headers
-                // from the GH api so that we know how many pages there are
-                pages = headerUtils.getPages(linkHeaders);
-            }
-
-            r.json()
-                .then(json => {
-                    var normalized = normalize(json, shape);
-
-                    return Object.assign(normalized, {
-                        pages,
-                        data,
-                        url: fullUrl,
-                        headers: r.headers
-
-                    });
-                })
-                .then(resolve);
-        }
-
-        fetch(fullUrl, {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(
-            handleResponse,
-            reject
-        );
-    });
-}
-
-var issue = new Schema('issues', { idAttribute: 'number' }),
-    user = new Schema('users'),
-    label = new Schema('labels'),
-    comment = new Schema('comment');
-
-issue.define({
-    user: user,
-    labels: arrayOf(label),
-    assignee: user,
-    closed_by: user
+var GET = ( url, data ) => new Promise(( resolve, reject ) => {
+    var fullUrl = urlAppend(`/api/${url}`, data);
+    fetch(fullUrl, { headers: { "Content-Type": "application/json" } })
+        .then(r => r.json())
+        .then(resolve, reject);
 });
-
-comment.define({
-    user: user
+var AJAX = ( method, url, data, query ) => new Promise(( resolve, reject ) => {
+    var fullUrl = urlAppend(`/api/${url}`, query);
+    fetch(fullUrl, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    })
+        .then(r => r.json())
+        .then(resolve, reject);
 });
+var POST = (url, data, query ) => AJAX('POST', url, data, query);
+var PUT = (url, data, query ) => AJAX('PUT', url, data, query);
 
-/**
- * Our publicly exposed GitHub API. Nice and clean!
- */
 var Api = {
-    issues: {
-        list: page => GET(`issues`, arrayOf(issue), { page }),
-        get: number => GET(`issues/${number}`, issue),
-        comments: number => GET(`issues/${number}/comments`, arrayOf(comment))
+    blog: {
+        get: id => GET(`blog/${id}`),
+        getFromSlug: slug => GET(`blog/from-slug/${slug}`),
+        create: model => PUT(`blog`, model),
+        update: model => POST(`blog/${model.id}`, model)
     }
 };
 

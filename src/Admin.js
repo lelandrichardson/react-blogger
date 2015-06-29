@@ -12,23 +12,27 @@ require('./Styles/Pagination.less');
 var React = require('react');
 var Router = require('react-router');
 var {
+    Route,
+    Routes,
     DefaultRoute,
-    Route
-} = Router;
+    HistoryLocation
+    } = Router;
 
 // Views
-var Layout = require('./Views/Layout');
-var Home = require('./Views/Home');
-var Blog = require('./Views/Blog');
+var Dashboard = require('./Views/Dashboard');
+var BlogList = require('./Views/BlogList');
+var Editor = require('./Views/Editor');
 
 var routes = (
-    <Route name="home" handler={Layout} path="/">
-        <DefaultRoute handler={Home} />
-        <Route name="detail" path="/:slug" handler={Blog} />
+    <Route path="/admin" name="dashboard" handler={Dashboard}>
+        <DefaultRoute handler={BlogList} />
+        <Route name="new" path="create" handler={Editor} />
+        <Route name="edit" path="edit/:id" handler={Editor} />
     </Route>
 );
 
 // Mount the app
-Router.run(routes, function (Handler, state) {
+Router.run(routes, HistoryLocation, function (Handler, state) {
     React.render(<Handler {...state} />, document.getElementById("mount"));
 });
+

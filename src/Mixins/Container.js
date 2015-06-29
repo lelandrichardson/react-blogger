@@ -1,3 +1,4 @@
+var React = require('react');
 var FluxyMixin = require('alt/mixins/FluxyMixin');
 
 var Container = {

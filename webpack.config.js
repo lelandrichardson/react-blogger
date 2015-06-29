@@ -13,7 +13,7 @@ module.exports = {
         contentBase: './build'
     },
     output: {
-        path: path.join(__dirname, 'build'),
+        path: path.join(__dirname, 'build', 'client'),
         publicPath: 'build',
         filename: '[name].js',
         chunkFilename: '[chunkhash].js',

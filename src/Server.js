@@ -14,10 +14,22 @@ var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var helmet = require('helmet');
 var passport = require('passport');
-var sequelize = require('sequelize');
+var LocalStrategy = require('passport-local').Strategy;
+var Sequelize = require('sequelize');
+var bcrypt = require('bcrypt');
+
 var chalk = require('chalk');
 var config = require('../config');
 var path = require('path');
+
+// database stuff
+var db = require('./Server/sequelize');
+var User = require('./Server/User');
+var Blog = require('./Server/Blog');
+var Version = require('./Server/Version');
+
+db.sync();
+
 
 /**
  * Main application entry file.
@@ -64,8 +76,65 @@ app.use(methodOverride());
 app.use(cookieParser());
 
 // use passport session
+app.use(session({
+    secret: 'my-secret-key',
+    saveUninitialized: true,
+    resave: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+
+// Serialize sessions
+passport.serializeUser((user, done) => done(null, user.id));
+
+passport.deserializeUser((id, done) => {
+    User.find({ where: { id: id }})
+        .then(user => done(null, user), err => done(err, null));
+});
+
+// Use local strategy to create user account
+passport.use('login', new LocalStrategy(function(username, password, done) {
+    User.find({
+        where: { username: username }
+    }).then(function(user) {
+        if (!user) {
+            console.log("Unknown user!");
+            done(null, false, { message: 'Unknown user' });
+        } else if (!bcrypt.compareSync(password, user.password)) {
+            console.log("Invalid password");
+            done(null, false, { message: 'Invalid password'});
+        } else {
+            console.log("Logged in!!");
+            done(null, user);
+        }
+    }, done);
+}));
+
+passport.use('register', new LocalStrategy({
+    passReqToCallback: true
+}, function(req, username, password, done) {
+    User.findOrCreate({
+        where: { username: username },
+        defaults: {
+            username: username,
+            password: password,
+            name: req.body.name
+        }
+    }).spread(function (user, created) {
+        if (created) {
+            console.log("User created!");
+            done(null, user);
+        } else {
+            console.log("User already existed!");
+            done(null, false, { message: 'User Already Exists'});
+        }
+    });
+}));
+
+
+
 
 // Use helmet to secure Express headers
 app.use(helmet.xframe());
@@ -75,14 +144,38 @@ app.use(helmet.ienoopen());
 app.disable('x-powered-by');
 
 // Setting the app router and static folder
-app.use('/assets', express.static(path.resolve('./build')));
-
-var AUTHENTICATE = passport.authenticate('local', { failureRedirect: '/login' })
+app.use('/assets', express.static(path.resolve('./build/client')));
 
 // TODO: handle routes
-//app.use('/api', require('./Api'));
+app.use('/api', require('./Server/Api'));
 
-app.use('/admin/*', /* AUTHENTICATE,*/ function (req, res) {
+app.get('/admin/login', /* AUTHENTICATE,*/ function (req, res) {
+    res.render('Login');
+});
+
+app.post('/admin/login', passport.authenticate('login', {
+    successRedirect: '/admin/success',
+    failureRedirect: '/admin/login'
+}));
+
+app.get('/admin/register', /* AUTHENTICATE,*/ function (req, res) {
+    res.render('Register');
+});
+
+app.post('/admin/register', passport.authenticate('register', {
+    successRedirect: '/admin/success',
+    failureRedirect: '/admin/register'
+}));
+
+var AUTHENTICATE = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        res.redirect('/admin/login');
+    }
+};
+
+app.use('/admin/*', AUTHENTICATE, function (req, res) {
     res.render('Admin');
 });
 
