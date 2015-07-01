@@ -1,36 +1,45 @@
 // polyfills
-require('es5-shim');
-require('es5-shim/es5-sham');
-require('es6-promise');
+import 'es5-shim'
+import 'es5-shim/es5-sham'
+import 'es6-promise'
 
 // global styles
-require('./Styles/Reset.less');
-require('./Styles/Utility.less');
-require('./Styles/Base.less');
-require('./Styles/Pagination.less');
+import './Styles/Reset.less'
+import './Styles/Utility.less'
+import './Styles/Base.less'
+import './Styles/Pagination.less'
 
-var React = require('react');
-var Router = require('react-router');
-var {
-    Route,
-    DefaultRoute,
-    HistoryLocation
-    } = Router;
+import * as redux from './redux'
+
+import React from 'react'
+import BrowserHistory from 'react-router/lib/BrowserHistory'
+
+import { Redirect, Router, Route, DefaultRoute } from 'react-router'
 
 // Views
 var Layout = require('./Views/Layout');
 var Home = require('./Views/Home');
 var Blog = require('./Views/Blog');
 
-var routes = (
-    <Route name="home" handler={Layout} path="/">
-        <DefaultRoute handler={Home} />
-        <Route name="detail" path="/:slug" handler={Blog} />
-    </Route>
-);
+class App extends React.Component {
+    constructor(props){
+        super(props);
+        this.history = new BrowserHistory();
+    }
+    render() {
+        return (
+            <Provider redux={redux}>
+                <Router history={this.history}>
+                    <Route name="home" handler={Layout} path="/">
+                        <DefaultRoute handler={Home} />
+                        <Route name="detail" path="/:slug" handler={Blog} />
+                    </Route>
+                </Router>
+            </Provider>
+        );
+    }
+}
 
 // Mount the app
-Router.run(routes, HistoryLocation, function (Handler, state) {
-    React.render(<Handler {...state} />, document.getElementById("mount"));
-});
+React.render(<App />, document.getElementById("mount"));
 

@@ -1,21 +1,12 @@
 var urlAppend = require('url-append');
 
-var GET = ( url, data ) => new Promise(( resolve, reject ) => {
-    var fullUrl = urlAppend(`/api/${url}`, data);
-    fetch(fullUrl, { headers: { "Content-Type": "application/json" } })
-        .then(r => r.json())
-        .then(resolve, reject);
-});
-var AJAX = ( method, url, data, query ) => new Promise(( resolve, reject ) => {
-    var fullUrl = urlAppend(`/api/${url}`, query);
-    fetch(fullUrl, {
+var AJAX = ( method, url, data, query ) => fetch(urlAppend(`/api/${url}`, query), {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-    })
-        .then(r => r.json())
-        .then(resolve, reject);
-});
+        credentials: 'include',
+        body: data ? JSON.stringify(data) : undefined
+    }).then(r => r.json());
+var GET = ( url, data ) => AJAX('GET', url, null, data);
 var POST = (url, data, query ) => AJAX('POST', url, data, query);
 var PUT = (url, data, query ) => AJAX('PUT', url, data, query);
 

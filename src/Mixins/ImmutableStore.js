@@ -15,9 +15,10 @@ class ImmutableStore {
     }
 
     changed() {
-        if (this.getInstance()) {
-            this.getInstance().emitChange();
-        }
+        this.emitChange();
+        //if (this.getInstance()) {
+        //    this.getInstance().emitChange();
+        //}
     }
 
     set ( prop, value ) {

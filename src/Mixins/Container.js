@@ -17,13 +17,15 @@ var Container = {
 
             getState(props) {
                 var $props = this.getComponentProps(props);
+                var $prop;
 
                 var $loaded = true;
                 if (this.isLoading) {
                     $loaded = this.isLoading();
                 } else {
                     for (var prop in $props) {
-                        if ($props[prop] === null || $props[prop] === undefined) {
+                        $prop = $props[prop];
+                        if ($prop === null || $prop === undefined || typeof $prop.then === "function") {
                             $loaded = false;
                         }
                     }

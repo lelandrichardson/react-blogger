@@ -17,6 +17,9 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var Sequelize = require('sequelize');
 var bcrypt = require('bcrypt');
+var urlAppend = require('url-append');
+var pg = require('pg');
+var pgSession = require('connect-pg-simple')(session);
 
 var chalk = require('chalk');
 var config = require('../config');
@@ -27,6 +30,7 @@ var db = require('./Server/sequelize');
 var User = require('./Server/User');
 var Blog = require('./Server/Blog');
 var Version = require('./Server/Version');
+var Session = require('./Server/Session');
 
 db.sync();
 
@@ -76,11 +80,24 @@ app.use(methodOverride());
 app.use(cookieParser());
 
 // use passport session
+//app.use(session({
+//    secret: 'my-secret-key',
+//    saveUninitialized: true,
+//    resave: true
+//}));
+
+// use postgres for passport session
 app.use(session({
-    secret: 'my-secret-key',
+    resave: true,
     saveUninitialized: true,
-    resave: true
+    store: new pgSession({
+        pg : pg,
+        conString : config.database.url
+    }),
+    secret: config.authCookieSecret,
+    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -90,7 +107,7 @@ app.use(passport.session());
 passport.serializeUser((user, done) => done(null, user.id));
 
 passport.deserializeUser((id, done) => {
-    User.find({ where: { id: id }})
+    User.findById(id, { raw: true })
         .then(user => done(null, user), err => done(err, null));
 });
 
@@ -146,36 +163,52 @@ app.disable('x-powered-by');
 // Setting the app router and static folder
 app.use('/assets', express.static(path.resolve('./build/client')));
 
-// TODO: handle routes
-app.use('/api', require('./Server/Api'));
+
 
 app.get('/admin/login', /* AUTHENTICATE,*/ function (req, res) {
     res.render('Login');
 });
 
 app.post('/admin/login', passport.authenticate('login', {
-    successRedirect: '/admin/success',
     failureRedirect: '/admin/login'
-}));
+}), function (req, res) {
+    if (req.query.returnUrl) {
+        res.redirect(req.query.returnUrl);
+    } else {
+        res.redirect('/admin');
+    }
+});
 
 app.get('/admin/register', /* AUTHENTICATE,*/ function (req, res) {
     res.render('Register');
 });
 
 app.post('/admin/register', passport.authenticate('register', {
-    successRedirect: '/admin/success',
     failureRedirect: '/admin/register'
-}));
+}), function (req, res) {
+    if (req.query.returnUrl) {
+        res.redirect(req.query.returnUrl);
+    } else {
+        res.redirect('/admin');
+    }
+});
+
+app.use('/admin/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
+});
 
 var AUTHENTICATE = function (req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     } else {
-        res.redirect('/admin/login');
+        res.redirect(urlAppend('/admin/login', { returnUrl: req.originalUrl }));
     }
 };
 
-app.use('/admin/*', AUTHENTICATE, function (req, res) {
+app.use('/api', AUTHENTICATE, require('./Server/Api'));
+
+app.use(['/admin','/admin/*'], AUTHENTICATE, function (req, res) {
     res.render('Admin');
 });
 
@@ -212,9 +245,6 @@ app.use('/*', function (req, res) {
 //    });
 //});
 
-
-// Bootstrap passport config
-//require('./config/passport')();
 
 // Start the app by listening on <port>
 app.listen(config.port);
