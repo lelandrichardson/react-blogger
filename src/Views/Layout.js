@@ -1,5 +1,4 @@
 var React = require('react');
-var { RouteHandler } = require('react-router');
 var DocumentTitle = require('react-document-title');
 
 var Header = require('../Components/Header');
@@ -13,7 +12,7 @@ class Layout extends React.Component {
                 <div>
                     <Header />
                     <div className="container">
-                        <RouteHandler {...this.props} />
+                        {this.props.children}
                     </div>
                     <Footer />
                 </div>

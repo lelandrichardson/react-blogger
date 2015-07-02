@@ -55,7 +55,7 @@ class BlogStore extends EntityStore {
 
     handleBlog(blog) {
         //debugger;
-        this.slugToId = this.slugToId.set(blog.slug, blog.id);
+        this.getInstance().slugToId = this.slugToId.set(blog.slug, blog.id);
         this.set(blog.id, blog);
     }
 
@@ -67,23 +67,5 @@ class BlogStore extends EntityStore {
 BlogStore.config = {
     getState() { return this; }
 };
-
-//
-//import {
-//    BLOG_GET_FROM_ID_SUCCESS,
-//    BLOG_GET_FROM_SLUG_SUCCESS,
-//    BLOG_GET_UPDATE_SUCCESS
-//    } from '../Constants.js'
-//
-//export default function BlogStore(state = Map(), { type = null, data = null }) {
-//    switch (type) {
-//    case BLOG_GET_FROM_ID_SUCCESS:
-//    case BLOG_GET_FROM_SLUG_SUCCESS:
-//    case BLOG_GET_UPDATE_SUCCESS:
-//        return state.set(data.id, fromJS(data));
-//    default:
-//        return state;
-//    }
-//}
 
 module.exports = alt.createStore(BlogStore, 'BlogStore');

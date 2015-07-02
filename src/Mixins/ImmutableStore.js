@@ -22,49 +22,49 @@ class ImmutableStore {
     }
 
     set ( prop, value ) {
-        this.state = this.state.set(prop, fromJS(value));
+        this.state = this.getInstance().state.set(prop, fromJS(value));
         this.changed();
     }
 
     setIn ( path, value ) {
-        this.state = this.state.setIn(path, fromJS(value));
+        this.state = this.getInstance().state.setIn(path, fromJS(value));
         this.changed();
     }
 
     update ( a, b, c ) {
-        this.state = this.state.update(a, b, c);
+        this.state = this.getInstance().state.update(a, b, c);
         this.changed();
     }
 
     updateIn ( a, b, c ) {
-        this.state = this.state.updateIn(a, b, c);
+        this.state = this.getInstance().state.updateIn(a, b, c);
         this.changed();
     }
 
     merge ( obj ) {
-        this.state = this.state.merge(obj);
+        this.state = this.getInstance().state.merge(obj);
         this.changed();
     }
 
     mergeIn ( path, obj ) {
-        this.state = this.state.mergeIn(path, obj);
+        this.state = this.getInstance().state.mergeIn(path, obj);
         this.changed();
     }
 
     get ( prop ) {
-        return this.getState().state.get(prop);
+        return this.state.get(prop);
     }
 
     getIn ( path ) {
-        return this.getState().state.getIn(path);
+        return this.state.getIn(path);
     }
 
     has ( prop ) {
-        return this.getState().state.has(prop);
+        return this.state.has(prop);
     }
 
     hasIn ( path ) {
-        return this.getState().state.hasIn(path);
+        return this.state.hasIn(path);
     }
 }
 

@@ -1,20 +1,21 @@
 // polyfills
-import 'es5-shim'
-import 'es5-shim/es5-sham'
-import 'es6-promise'
+require('es5-shim');
+require('es5-shim/es5-sham');
+require('es6-promise');
 
 // global styles
-import './Styles/Reset.less'
-import './Styles/Utility.less'
-import './Styles/Base.less'
-import './Styles/Pagination.less'
+require('./Styles/Reset.less');
+require('./Styles/Utility.less');
+require('./Styles/Base.less');
+require('./Styles/Pagination.less');
 
-import * as redux from './redux'
-
-import React from 'react'
-import BrowserHistory from 'react-router/lib/BrowserHistory'
-
-import { Redirect, Router, Route, DefaultRoute } from 'react-router'
+var React = require('react');
+var {
+    Router,
+    Route,
+    DefaultRoute,
+    BrowserHistory
+    } = require('react-router');
 
 // Views
 var Layout = require('./Views/Layout');
@@ -28,14 +29,12 @@ class App extends React.Component {
     }
     render() {
         return (
-            <Provider redux={redux}>
-                <Router history={this.history}>
-                    <Route name="home" handler={Layout} path="/">
-                        <DefaultRoute handler={Home} />
-                        <Route name="detail" path="/:slug" handler={Blog} />
-                    </Route>
-                </Router>
-            </Provider>
+            <Router history={this.history}>
+                <Route name="home" handler={Layout} path="/">
+                    <DefaultRoute handler={Home} />
+                    <Route name="detail" path="/:slug" handler={Blog} />
+                </Route>
+            </Router>
         );
     }
 }

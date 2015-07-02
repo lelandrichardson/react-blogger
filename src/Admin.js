@@ -10,29 +10,41 @@ require('./Styles/Base.less');
 require('./Styles/Pagination.less');
 
 var React = require('react');
-var Router = require('react-router');
-var {
-    Route,
-    Routes,
-    DefaultRoute,
-    HistoryLocation
-    } = Router;
+var { Router, Route } = require('react-router');
+var { BrowserHistory } = require('react-router/lib/BrowserHistory');
+
+
 
 // Views
 var Dashboard = require('./Views/Dashboard');
 var BlogList = require('./Views/BlogList');
 var Editor = require('./Views/Editor');
 
+//class App extends React.Component {
+//    constructor(props){
+//        super(props);
+//    }
+//    render() {
+//        return (
+//            <Router history={history}>
+//                <Route path="/admin" name="dashboard" handler={Dashboard}>
+//                    <DefaultRoute handler={BlogList} />
+//                    <Route name="new" path="create" handler={Editor} />
+//                    <Route name="edit" path="edit/:id" handler={Editor} />
+//                </Route>
+//            </Router>
+//        );
+//    }
+//}
+
 var routes = (
-    <Route path="/admin" name="dashboard" handler={Dashboard}>
-        <DefaultRoute handler={BlogList} />
-        <Route name="new" path="create" handler={Editor} />
-        <Route name="edit" path="edit/:id" handler={Editor} />
-    </Route>
+    <Router history={new BrowserHistory()}>
+        <Route path="/admin"  component={Dashboard}>
+            <Route path="create"  component={Editor} />
+            <Route path="edit/:id" component={Editor} />
+        </Route>
+    </Router>
 );
 
 // Mount the app
-Router.run(routes, HistoryLocation, function (Handler, state) {
-    React.render(<Handler {...state} />, document.getElementById("mount"));
-});
-
+React.render(routes, document.getElementById("mount"));
