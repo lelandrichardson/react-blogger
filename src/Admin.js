@@ -16,7 +16,6 @@ var { BrowserHistory } = require('react-router/lib/BrowserHistory');
 // Views
 var BlogList = require('./Views/BlogList');
 var Editor = require('./Views/Editor');
-var CreateBlog = require('./Views/CreateBlog');
 var Login = require('./Views/Login');
 
 // Non-Component-Subscribable Stores
@@ -27,7 +26,6 @@ var alt = require('./alt');
 var routes = (
     <Route path="/admin">
         <Route path="login" component={Login} />
-        <Route path="create" component={CreateBlog} />
         <Route path="edit/:id" component={Editor} />
         <Route path="blogs/:scope" component={BlogList} />
     </Route>
@@ -37,7 +35,10 @@ var history = new BrowserHistory();
 
 class App extends React.Component {
     componentDidMount() {
-        //console.log(this.refs.router);
+        // HACK:
+        // This is a hack-ish way to get access to the router.transitionTo(...) methods
+        // from inside dispatch/action handlers. Would love to see a way to get rid of
+        // this.
         alt.router = this.refs.router;
     }
     render() {
@@ -48,12 +49,5 @@ class App extends React.Component {
         );
     }
 }
-
-
-
-//history.addChangeListener(location => {
-//    React.render(<Router location={location} history={history} />, document.getElementById("mount"));
-//});
-
 // Mount the app
 React.render(<App history={history} children={routes} />, document.getElementById("mount"));

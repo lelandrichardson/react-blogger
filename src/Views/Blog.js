@@ -1,6 +1,6 @@
 var React = require('react');
 var Container = require('../Mixins/Container');
-var { RouteHandler, Link } = require('react-router');
+var { Link } = require('react-router');
 
 var BlogStore = require('../Stores/BlogStore');
 
@@ -12,11 +12,12 @@ require('../Styles/Blog.less');
 class Blog extends React.Component {
     render() {
         const blog = this.props.blog;
+        const body = blog.getIn(['publishedVersion', 'body']);
         return (
             <DocumentTitle title={blog.get('title')}>
                 <div className="blog">
                     <h1 className="blog-title">{blog.get('title')}</h1>
-                    <Markdown text={blog.get('body')} />
+                    <Markdown text={body} />
                 </div>
             </DocumentTitle>
         );

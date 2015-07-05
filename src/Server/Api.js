@@ -132,6 +132,15 @@ var Api = {
     }
 };
 
+var AUTHENTICATE = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        res.status(401).json({
+            message: "You are not authorized to see this resource"
+        });
+    }
+};
 
 var router = express.Router();
 
@@ -139,41 +148,52 @@ var router = express.Router();
 // a promise. When the promise is resolved, it will spit it out to the client as json.
 function ApiRequest(fn) {
     return (req, res) => {
-        fn(req, res).then(x => res.json(x), err => res.status(500).json({
-            message: err.message,
-            stack: err.stack
-        }));
+        var result = fn(req, res);
+        if (result && (typeof result.then) === 'function') {
+            result.then(x => res.json(x), err => res.status(500).json({
+                message: err.message,
+                stack: err.stack
+            }));
+        } else {
+            return result;
+        }
     };
 }
 
 router.get('/blog/list', ApiRequest(function(req, res) {
     var { scope, offset } = req.query;
+    if (scope !== "published" && !req.isAuthenticated()) {
+        //TODO: not authorized
+        return res.status(401).json({
+            message: "You are not authorized to see this resource"
+        });
+    }
     return Api.blog.list(scope, +offset);
 }));
-router.get('/blog/from-slug', ApiRequest((req, res) => Api.blog.getFromSlug(req.query.slug)));
-router.get('/blog/:id', ApiRequest((req, res) => Api.blog.get(+req.params.id)));
-router.put('/blog/', ApiRequest(function (req, res) {
+router.get('/blog/from-slug/:slug', ApiRequest((req, res) => Api.blog.getFromSlug(req.params.slug)));
+router.get('/blog/:id', AUTHENTICATE, ApiRequest((req, res) => Api.blog.get(+req.params.id)));
+router.put('/blog/', AUTHENTICATE, ApiRequest(function (req, res) {
     var model = Object.assign({}, req.body, { authorId: req.user.id });
     return Api.blog.create(model);
 }));
 
-router.post('/blog/:id/body', ApiRequest(function (req, res) {
+router.post('/blog/:id/body', AUTHENTICATE, AUTHENTICATE, ApiRequest(function (req, res) {
     return Api.blog.updateBody(+req.params.id, req.body.body);
 }));
 
-router.post('/blog/:id', ApiRequest(function (req, res) {
+router.post('/blog/:id', AUTHENTICATE, ApiRequest(function (req, res) {
     return Api.blog.update(+req.params.id, req.body);
 }));
 
-router.post('/blog/:id/publish', ApiRequest(function (req, res) {
+router.post('/blog/:id/publish', AUTHENTICATE, ApiRequest(function (req, res) {
     return Api.blog.publish(+req.params.id);
 }));
 
-router.post('/blog/:id/unpublish', ApiRequest(function (req, res) {
+router.post('/blog/:id/unpublish', AUTHENTICATE, ApiRequest(function (req, res) {
     return Api.blog.unpublish(+req.params.id);
 }));
 
-router.post('/blog/:id/remove', ApiRequest(function (req, res) {
+router.post('/blog/:id/remove', AUTHENTICATE, ApiRequest(function (req, res) {
     return Api.blog.remove(+req.params.id);
 }));
 

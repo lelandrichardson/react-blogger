@@ -22,7 +22,7 @@ class Home extends React.Component {
 module.exports = Container.create(Home, [SummaryStore], {
     getComponentProps() {
         return {
-            blogs: SummaryStore.getAll()
+            blogs: SummaryStore.listAll({ scope: 'published' })
         };
     },
     loadingComponent: <Loading />

@@ -3,6 +3,7 @@ var DocumentTitle = require('react-document-title');
 
 var Header = require('../Components/Header');
 var Footer = require('../Components/Footer');
+var Home = require('../Views/Home');
 
 require('../Styles/Layout.less');
 class Layout extends React.Component {
@@ -12,7 +13,7 @@ class Layout extends React.Component {
                 <div>
                     <Header />
                     <div className="container">
-                        {this.props.children}
+                        {this.props.children || <Home />}
                     </div>
                     <Footer />
                 </div>
