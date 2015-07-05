@@ -1,0 +1,36 @@
+@toolbarHeight: 54px;
+
+.editor {
+  position: absolute;
+  top: @toolbarHeight;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &-title-box {
+    height: @toolbarHeight;
+    padding: 0 20px;
+    position: relative;
+    z-index:100;
+  }
+
+  &-title-input {
+    width: 100%;
+    height: @toolbarHeight;
+    border: 0;
+    margin: 0;
+    padding-bottom: 0;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    background: 0 0;
+    color: #1e1e1e;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

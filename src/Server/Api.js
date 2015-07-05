@@ -2,16 +2,20 @@ var db = require('./sequelize');
 var Blog = require('./Blog');
 var Version = require('./Version');
 var User = require('./User');
+var shortid = require('shortid');
 
 var express = require('express');
 
 var FOR_PUBLIC = {
-    raw: true,
     include: [
         {
             model: User,
             as: 'author',
-            required: false
+            required: false,
+            attributes: [
+                'id',
+                'name'
+            ]
         },
         {
             model: Version,
@@ -22,12 +26,15 @@ var FOR_PUBLIC = {
 };
 
 var FOR_EDITING = {
-    raw: false,
     include: [
         {
             model: User,
             as: 'author',
-            required: false
+            required: false,
+            attributes: [
+                'id',
+                'name'
+            ]
         },
         {
             model: Version,
@@ -42,22 +49,57 @@ var FOR_EDITING = {
     ]
 };
 
+var FOR_SUMMARY = {
+    include: []
+};
+
 
 var Api = {
     blog: {
-        get: id => Blog.findById(id, FOR_EDITING).then(x => x.toJSON()),
-        getFromSlug: slug => Blog.find(Object.assign({ where: { slug }}, FOR_PUBLIC)),
+
+        list(scope, offset = 0) {
+            const filter = Object.assign(
+                { where: {}, offset },
+                { limit: 10, order: [['datePublished','DESC'],['createdAt','DESC']] },
+                FOR_SUMMARY
+            );
+            return Blog
+                .scope(scope)
+                .findAndCountAll(filter)
+                .then(({ count, rows }) => ({
+                    count,
+                    rows: rows.map(blog => blog.toJSON())
+                }));
+        },
+
+        get(id) {
+            return Blog
+                .findById(id, FOR_EDITING)
+                .then(x => x.toJSON());
+        },
+
+        getFromSlug(slug) {
+            return Blog
+                .find(Object.assign({ where: { slug }}, FOR_PUBLIC))
+                .then(x => x.toJSON());
+        },
 
         create(model) {
+            const { body = "" } = model;
+
+            model = Object.assign({}, { slug: shortid.generate() }, model);
+
             return Blog
                 .create(model)
-                .then(() => Api.blog.get(blogId));
+                .then(blog => blog.createEditingVersion({ blogId: blog.id, body }))
+                .then(blog => Api.blog.get(blog.id));
         },
 
         update(id, model) {
+            const { blogId, body } = model.editingVersion;
             return Blog
                 .update(model, { where: { id } })
-                .then(() => Api.blog.get(id));
+                .then(() => Api.blog.updateBody(blogId, body));
         },
 
         updateBody(blogId, body) {
@@ -67,10 +109,25 @@ var Api = {
                 .then(() => Api.blog.get(blogId));
         },
 
-        publish(id, versionId) {
+        publish(id) {
             return Blog
                 .findById(id)
-                .then(blog => blog.setPublishedVersion(versionId))
+                .then(blog => blog.setPublishedVersion(blog.editingVersionId))
+                .then(() => Blog.update({ datePublished: new Date() }, { where: { id }})
+                .then(() => Api.blog.get(id))
+            );
+        },
+
+        unpublish(id) {
+            return Blog
+                .update({ datePublished: null, publishedVersionId: null }, { where: { id }})
+                .then(() => Api.blog.get(id));
+        },
+
+        remove(id) {
+            return Blog
+                .destroy({ where: { id }})
+                .then(() => ({ id }));
         }
     }
 };
@@ -89,10 +146,14 @@ function ApiRequest(fn) {
     };
 }
 
+router.get('/blog/list', ApiRequest(function(req, res) {
+    var { scope, offset } = req.query;
+    return Api.blog.list(scope, +offset);
+}));
 router.get('/blog/from-slug', ApiRequest((req, res) => Api.blog.getFromSlug(req.query.slug)));
 router.get('/blog/:id', ApiRequest((req, res) => Api.blog.get(+req.params.id)));
 router.put('/blog/', ApiRequest(function (req, res) {
-    var model = Object.assign({}, req.body, { authorId: req.user });
+    var model = Object.assign({}, req.body, { authorId: req.user.id });
     return Api.blog.create(model);
 }));
 
@@ -102,6 +163,18 @@ router.post('/blog/:id/body', ApiRequest(function (req, res) {
 
 router.post('/blog/:id', ApiRequest(function (req, res) {
     return Api.blog.update(+req.params.id, req.body);
+}));
+
+router.post('/blog/:id/publish', ApiRequest(function (req, res) {
+    return Api.blog.publish(+req.params.id);
+}));
+
+router.post('/blog/:id/unpublish', ApiRequest(function (req, res) {
+    return Api.blog.unpublish(+req.params.id);
+}));
+
+router.post('/blog/:id/remove', ApiRequest(function (req, res) {
+    return Api.blog.remove(+req.params.id);
 }));
 
 module.exports = router;

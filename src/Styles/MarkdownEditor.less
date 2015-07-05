@@ -1,0 +1,89 @@
+@toolbarHeight: 54px;
+
+.md-editor {
+  position: absolute;
+  top: @toolbarHeight;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &-body,
+  &-preview {
+    width: 50%;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    border-top: #edece4 1px solid;
+    background: #fff;
+  }
+
+  &-body {
+    left: 0;
+    background-color: #f5f5f5;
+
+  }
+
+  &-preview {
+    right: 0;
+    padding: 15px;
+    border-left: #edece4 1px solid;
+
+    &-content {
+      font-size: 1.8rem;
+      line-height: 1.5em;
+      font-weight: 200;
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: @toolbarHeight 40px 37px;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      word-break: break-word;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      -ms-hyphens: auto;
+      hyphens: auto;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: default;
+    }
+  }
+
+  &-floating-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 400;
+    height: 40px;
+    padding: 10px 20px;
+    color: #bbb;
+    font-size: 12px;
+    text-transform: uppercase;
+    background: -webkit-linear-gradient(top, #fff 0, #fff 25%, rgba(255,255,255,.9) 100%);
+    background: linear-gradient(to bottom,#fff 0,#fff 25%,rgba(255,255,255,.9) 100%);
+  }
+
+}
+
+.ReactCodeMirror,
+.CodeMirror-scroll,
+.CodeMirror-wrap {
+  height: 100% !important;
+}
+
+.CodeMirror-scroll {
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.CodeMirror-lines {
+  padding: 15px 0;
+}

@@ -3,6 +3,7 @@ var EntityStore = require('../Mixins/EntityStore');
 var alt = require('../alt');
 var Api = require('../Lib/Api');
 var BlogActions = require('../Actions/BlogActions');
+var { store, handles } = require('../Mixins/alt-decorators');
 
 // ALTJS:
 // it would make sense for the concept of a "data source" to
@@ -16,7 +17,7 @@ const BlogDataSource = alt => ({
             return Api.blog.get(id);
         },
         local(store, id) {
-            return store.state && store.state.get(id);
+            return store._state.get(id);
         },
         loading: BlogActions.getFromId,
         success: BlogActions.getFromIdSuccess,
@@ -27,8 +28,8 @@ const BlogDataSource = alt => ({
             return Api.blog.getFromSlug(slug);
         },
         local(store, slug) {
-            var id = store.slugToId.get(slug);
-            return store.state.get(id);
+            var id = store._slugToId.get(slug);
+            return store._state.get(id);
         },
         loading: BlogActions.getFromSlug,
         success: BlogActions.getFromSlugSuccess,
@@ -36,36 +37,33 @@ const BlogDataSource = alt => ({
     }
 });
 
-class BlogStore extends EntityStore {
-    constructor() {
+@store(alt)
+export default class BlogStore extends EntityStore {
+    constructor(listeners) {
         super();
         // TODO:
         // make entity store handle multiple keys (ie, "id" and "slug")
         // and correspondingly make a smarter `this.addEntity()` method...
-        this.slugToId = Map(); // slug => id
+        this._slugToId = Map(); // slug => id
         this.registerDataSource(BlogDataSource);
-        this.bindListeners({
-            handleBlog: [
-                BlogActions.GET_FROM_ID_SUCCESS,
-                BlogActions.GET_FROM_SLUG_SUCCESS,
-                BlogActions.UPDATE_SUCCESS
-            ]
-        });
+        this.bindListeners(listeners);
     }
 
-    handleBlog(blog) {
-        //debugger;
-        this.getInstance().slugToId = this.slugToId.set(blog.slug, blog.id);
+    @handles(BlogActions.GET_FROM_ID_SUCCESS)
+    @handles(BlogActions.GET_FROM_SLUG_SUCCESS)
+    @handles(BlogActions.UPDATE_SUCCESS)
+    @handles(BlogActions.UPDATE_BODY_SUCCESS)
+    @handles(BlogActions.PUBLISH_SUCCESS)
+    @handles(BlogActions.UNPUBLISH_SUCCESS)
+    @handles(BlogActions.CREATE_SUCCESS)
+    onReceiveBlog(blog) {
+        this._slugToId = this._slugToId.set(blog.slug, blog.id);
         this.set(blog.id, blog);
     }
 
-    static getNew() {
-        return Map();
+    @handles(BlogActions.REMOVE_SUCCESS)
+    onRemoveBlog({ id }) {
+        this._slugToId = this._slugToId.delete(id);
+        this.delete(id);
     }
 }
-
-BlogStore.config = {
-    getState() { return this; }
-};
-
-module.exports = alt.createStore(BlogStore, 'BlogStore');

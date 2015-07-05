@@ -166,7 +166,7 @@ app.use('/assets', express.static(path.resolve('./build/client')));
 
 
 app.get('/admin/login', /* AUTHENTICATE,*/ function (req, res) {
-    res.render('Login');
+    res.render('Admin');
 });
 
 app.post('/admin/login', passport.authenticate('login', {

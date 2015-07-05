@@ -28,13 +28,19 @@ module.exports = {
                 query: {
                     optional: [
                         'runtime',
+                        'es7.decorators',
+                        'es7.classProperties',
+                        'es7.objectRestSpread',
+                        'es7.comprehensions',
+                        'es7.functionBind',
+                        'utility.inlineEnvironmentVariables',
                         'minification.propertyLiterals',
-                        'es7.decorators'
+                        'minification.deadCodeElimination'
                     ]
                 }
             },
             {
-                test: /\.less$/,
+                test: /\.(less|css|scss)$/,
                 loader: "style!css!less"
             },
             {

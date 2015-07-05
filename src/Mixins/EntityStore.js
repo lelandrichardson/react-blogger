@@ -4,7 +4,7 @@ var ImmutableStore = require('./ImmutableStore');
 class EntityStore extends ImmutableStore {
     constructor() {
         super();
-        this.state = Map();
+        this._state = Map();
     }
 }
 

@@ -1,49 +1,47 @@
 var { Map, List, fromJS } = require('immutable');
-var ListStore = require('../Mixins/ListStore');
+var FilteredListStore = require('../Mixins/FilteredListStore');
 var alt = require('../alt');
+var Api = require('../Lib/Api');
+var BlogActions = require('../Actions/BlogActions');
+var { store, handles } = require('../Mixins/alt-decorators');
 
-class SummaryStore extends ListStore {
-    constructor() {
+const BlogListDataSource = alt => ({
+    listAll: {
+        remote(store, filter, page) {
+            return Api.blog
+                .list({ ...filter, offset: page * 10 })
+                .then(result => ({ ...result, page, filter }));
+        },
+        local(store, filter, page) {
+            var key = FilteredListStore.prototype.key(filter);
+            return store._state.getIn([key, 'pages', page]);
+        },
+        loading: BlogActions.listAll,
+        success: BlogActions.listAllSuccess,
+        error: BlogActions.listAllError
+    }
+});
+
+@store(alt)
+export default class SummaryStore extends FilteredListStore {
+    constructor(listeners) {
         super();
-        this.on('init', () => this.init());
+        this.registerDataSource(BlogListDataSource);
+        this.bindListeners(listeners);
     }
 
-    init() {
-        this.push({
-            title: "This is Blog1",
-            slug: "blog1",
-            summary: `
-This is a paragraph
-
-- here
-- is a list
-- of some items
-
-    this should be some code
-
-> this should be a quote
-
-        `});
-        this.push({
-            title: "This is Blog2",
-            slug: "blog2",
-            summary: `
-This is a paragraph
-
-- here
-- is a list
-- of some items
-
-    this should be some code
-
-> this should be a quote
-
-        `});
+    @handles(BlogActions.LIST_ALL_SUCCESS)
+    onReceiveResult({ filter, count, page, rows }) {
+        this.setPage(filter, page, rows, count);
     }
 
-    static getAll() {
-        return this.getState().state;
+    @handles(BlogActions.UPDATE_SUCCESS)
+    @handles(BlogActions.PUBLISH_SUCCESS)
+    @handles(BlogActions.UNPUBLISH_SUCCESS)
+    @handles(BlogActions.REMOVE_SUCCESS)
+    @handles(BlogActions.CREATE_SUCCESS)
+    clearAll() {
+        this._state = Map();
+        this.changed();
     }
 }
-
-module.exports = alt.createStore(SummaryStore, 'SummaryStore');

@@ -42,6 +42,10 @@ var Container = {
                 return this.getState(this.props);
             },
 
+            componentWillReceiveProps(nextProps) {
+                this.setState(this.getState(nextProps));
+            },
+
             render() {
                 if (!this.state.$loaded) {
                     if (this.renderLoading) {

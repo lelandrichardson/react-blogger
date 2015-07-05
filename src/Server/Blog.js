@@ -31,7 +31,19 @@ var Blog = db.define('blog', {
             unique: true,
             fields: ['slug']
         }
-    ]
+    ],
+    scopes: {
+        published: {
+            where: {
+                datePublished: { $ne: null }
+            }
+        },
+        drafts: {
+            where: {
+                datePublished: { $eq: null }
+            }
+        }
+    }
 });
 
 // relationships...
