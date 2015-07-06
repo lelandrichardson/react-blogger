@@ -97,6 +97,7 @@ var Api = {
 
         update(id, model) {
             const { blogId, body } = model.editingVersion;
+            //TODO: it might be a good idea to "collapse" all of the "autoSave" versions of the body
             return Blog
                 .update(model, { where: { id } })
                 .then(() => Api.blog.updateBody(blogId, body));

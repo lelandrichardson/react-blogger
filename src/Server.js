@@ -20,6 +20,7 @@ var bcrypt = require('bcrypt');
 var urlAppend = require('url-append');
 var pg = require('pg');
 var pgSession = require('connect-pg-simple')(session);
+var favicon = require('serve-favicon');
 
 var chalk = require('chalk');
 var config = require('../config');
@@ -162,6 +163,8 @@ app.disable('x-powered-by');
 
 // Setting the app router and static folder
 app.use('/assets', express.static(path.resolve('./build/client')));
+app.use(favicon(path.resolve('./build/client/favicon.ico')));
+
 
 
 

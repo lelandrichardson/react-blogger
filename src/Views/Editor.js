@@ -9,11 +9,13 @@ var MarkdownEditor = require('../Components/MarkdownEditor');
 var Modal = require('../Components/Modal');
 var DocumentTitle = require('react-document-title');
 var Loading = require('../Components/Loading');
+var key = require('keymaster');
 var debounce = require('lodash/function/debounce');
 var { timeAgo } = require('../Lib/formatDate');
 
 const BODY = ['editingVersion','body'];
 
+//TODO: move to separate module
 const remHyphenRegex = /( ?- ?)|[ ']/g;
 const remRegex = /[^0-9a-zA-Z-]/g;
 function toSlug(title) {
@@ -33,9 +35,9 @@ class Editor extends React.Component {
     }
     onTitleChange(e) {
         const blog = this.state.blog;
-        const title = blog.get('title');
+        const title = e.target.value;
         const slugIsControlled = blog.get('slugIsControlled');
-        const slug = slugIsControlled ? blog.get('slug') : toSlug(title);
+        const slug = slugIsControlled ? toSlug(title) : blog.get('slug');
 
         this.setState({
             blog: blog.merge({ title, slug }),
@@ -45,7 +47,7 @@ class Editor extends React.Component {
     onSlugChange(e) {
         this.setState({
             blog: this.state.blog.merge({
-                slugIsControlled: true,
+                slugIsControlled: false,
                 slug: toSlug(e.target.value)
             }),
             needsSaving: true
@@ -76,6 +78,7 @@ class Editor extends React.Component {
     onSaveClick(e) {
         e.preventDefault();
         BlogActions.update(this.state.blog.toJS());
+        this.setState({ showModal: false });
     }
     onPublishClick(e) {
         e.preventDefault();
@@ -88,6 +91,12 @@ class Editor extends React.Component {
     onDeleteClick(e) {
         e.preventDefault();
         BlogActions.remove(this.state.blog.get('id'));
+    }
+    componentDidMount() {
+        key('ctrl+s, ⌘+s', e => this.onSaveClick(e));
+    }
+    componentWillUnmount() {
+        key.unbind('ctrl+s, ⌘+s');
     }
     componentWillReceiveProps({ blog }) {
         const current = this.state.blog;
@@ -127,7 +136,7 @@ class Editor extends React.Component {
                                 type="text"
                                 placeholder="Blog Title"
                                 value={blog.get('title')}
-                                onChange={this.inputChangeFor('title')} />
+                                onChange={::this.onTitleChange} />
                         </div>
                         <MarkdownEditor
                             onChange={::this.onBodyChange}
@@ -137,14 +146,13 @@ class Editor extends React.Component {
                     </div>
                     <Modal visible={this.state.showModal} onClose={() => this.setState({ showModal: false })}>
                         <div>
-
                             <label className="modal-input-label">Title</label>
                             <input
                                 type="text"
                                 className="modal-input"
                                 placeholder="Summary"
                                 value={blog.get('title')}
-                                onChange={this.inputChangeFor('title')} />
+                                onChange={::this.onTitleChange} />
 
                             <label className="modal-input-label">Subtitle</label>
                             <input
@@ -160,7 +168,7 @@ class Editor extends React.Component {
                                 className="modal-input"
                                 placeholder="Url Slug"
                                 value={blog.get('slug')}
-                                onChange={this.inputChangeFor('slug')} />
+                                onChange={::this.onSlugChange} />
 
                             <label className="modal-input-label">Blog Summary</label>
                             <textarea

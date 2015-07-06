@@ -41,11 +41,14 @@ const BlogDataSource = alt => ({
 export default class BlogStore extends EntityStore {
     constructor(listeners) {
         super();
+
         // TODO:
         // make entity store handle multiple keys (ie, "id" and "slug")
         // and correspondingly make a smarter `this.addEntity()` method...
+        //super({ imdexBy: ['slug'] });
         this._slugToId = Map(); // slug => id
         this.registerDataSource(BlogDataSource);
+
         this.bindListeners(listeners);
     }
 
@@ -66,4 +69,9 @@ export default class BlogStore extends EntityStore {
         this._slugToId = this._slugToId.delete(id);
         this.delete(id);
     }
+
+    //@onMiss(BlogActions.GET_FROM_SLUG)
+    //getFromId(id) {
+    //    return this.get(id)
+    //}
 }
