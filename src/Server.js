@@ -167,7 +167,7 @@ app.use(helmet.ienoopen());
 app.disable('x-powered-by');
 
 
-app.get('/admin/login', /* AUTHENTICATE,*/ function (req, res) {
+app.get(['/admin/login', '/admin/login'], /* AUTHENTICATE,*/ function (req, res) {
     res.render('Admin');
 });
 
@@ -179,10 +179,6 @@ app.post('/admin/login', passport.authenticate('login', {
     } else {
         res.redirect('/admin/blogs/drafts');
     }
-});
-
-app.get('/admin/register', /* AUTHENTICATE,*/ function (req, res) {
-    res.render('Register');
 });
 
 app.post('/admin/register', passport.authenticate('register', {

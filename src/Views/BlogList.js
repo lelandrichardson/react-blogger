@@ -10,7 +10,7 @@ require('../Styles/BlogList.less');
 class BlogList extends React.Component {
     handleCreateClick(e) {
         e.preventDefault();
-        BlogActions.create({ title: "(Untitled)" });
+        BlogActions.create({ });
     }
     render() {
         const { blogs, scope } = this.props;

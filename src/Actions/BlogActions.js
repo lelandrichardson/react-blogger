@@ -51,5 +51,3 @@ export default class BlogActions {
         return Api.blog.create(model);
     }
 }
-
-//module.exports = alt.createActions(BlogActions);

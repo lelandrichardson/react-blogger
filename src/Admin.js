@@ -7,7 +7,6 @@ require('es6-promise');
 require('./Styles/Reset.less');
 require('./Styles/Utility.less');
 require('./Styles/Base.less');
-require('./Styles/Pagination.less');
 
 var React = require('react');
 var { Router, Route } = require('react-router');
@@ -17,6 +16,7 @@ var { BrowserHistory } = require('react-router/lib/BrowserHistory');
 var BlogList = require('./Views/BlogList');
 var Editor = require('./Views/Editor');
 var Login = require('./Views/Login');
+var Register = require('./Views/Register');
 
 // Non-Component-Subscribable Stores
 var RouteStore = require('./Stores/RouteStore');
@@ -26,6 +26,7 @@ var alt = require('./alt');
 var routes = (
     <Route path="/admin">
         <Route path="login" component={Login} />
+        <Route path="register" component={Register} />
         <Route path="edit/:id" component={Editor} />
         <Route path="blogs/:scope" component={BlogList} />
     </Route>
