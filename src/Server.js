@@ -66,6 +66,11 @@ app.use(compress({
     level: 9
 }));
 
+// Setting the app router and static folder
+app.use('/assets', express.static(path.resolve('./build/client')));
+app.use(favicon(path.resolve('./build/client/favicon.ico')));
+
+
 app.set('view engine', 'ejs');
 app.set('views', './src/Views');
 
@@ -161,12 +166,6 @@ app.use(helmet.nosniff());
 app.use(helmet.ienoopen());
 app.disable('x-powered-by');
 
-// Setting the app router and static folder
-app.use('/assets', express.static(path.resolve('./build/client')));
-app.use(favicon(path.resolve('./build/client/favicon.ico')));
-
-
-
 
 app.get('/admin/login', /* AUTHENTICATE,*/ function (req, res) {
     res.render('Admin');
@@ -178,7 +177,7 @@ app.post('/admin/login', passport.authenticate('login', {
     if (req.query.returnUrl) {
         res.redirect(req.query.returnUrl);
     } else {
-        res.redirect('/admin');
+        res.redirect('/admin/blogs/drafts');
     }
 });
 
@@ -192,7 +191,7 @@ app.post('/admin/register', passport.authenticate('register', {
     if (req.query.returnUrl) {
         res.redirect(req.query.returnUrl);
     } else {
-        res.redirect('/admin');
+        res.redirect('/admin/blogs/drafts');
     }
 });
 

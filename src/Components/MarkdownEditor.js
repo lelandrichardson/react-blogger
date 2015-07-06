@@ -1,5 +1,11 @@
 var React = require('react');
 var CodeMirror = require('react-codemirror');
+require('codemirror/mode/xml/xml');
+require('codemirror/mode/markdown/markdown');
+require('codemirror/mode/gfm/gfm');
+require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/css/css');
+require('codemirror/mode/htmlmixed/htmlmixed');
 var Markdown = require('./Markdown');
 var WordCount = require('./WordCount');
 

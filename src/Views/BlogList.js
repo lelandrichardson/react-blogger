@@ -24,6 +24,7 @@ class BlogList extends React.Component {
                     <Tabs>
                         <Tab active={scope === "drafts"} to="/admin/blogs/drafts">Drafts</Tab>
                         <Tab active={scope === "published"} to="/admin/blogs/published">Published</Tab>
+                        <Tab active={scope === "pages"} to="/admin/blogs/pages">Pages</Tab>
                     </Tabs>
                 </div>
                 <div>

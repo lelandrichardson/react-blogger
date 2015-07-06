@@ -4,12 +4,14 @@
 body {
   background-color: #f5f5f5;
 }
+@linkColor: #025cba;
 
 a {
-  color: #fe8421;
+  color: @linkColor;
   text-decoration: none;
 
   &:hover {
+    color: darken(@linkColor, 5%);
     text-decoration: none;
   }
 }

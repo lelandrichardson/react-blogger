@@ -7,6 +7,7 @@ var {
         FLOAT,
         DOUBLE,
         INTEGER,
+        ENUM,
         NOW
     } = Sequelize;
 
@@ -30,7 +31,15 @@ var Blog = db.define('blog', {
         defaultValue: true
     },
     summary: STRING,
-    datePublished: DATE
+    datePublished: DATE,
+    type: {
+        type: STRING(4),
+        defaultValue: 'blog',
+        allowNull: false,
+        validate: {
+            isIn: [['blog','page']]
+        }
+    }
 }, {
     freezeTableName: true,
     indexes: [
@@ -40,14 +49,21 @@ var Blog = db.define('blog', {
         }
     ],
     scopes: {
+        pages: {
+            where: {
+                type: 'page'
+            }
+        },
         published: {
             where: {
-                datePublished: { $ne: null }
+                datePublished: { $ne: null },
+                type: 'blog'
             }
         },
         drafts: {
             where: {
-                datePublished: { $eq: null }
+                datePublished: { $eq: null },
+                type: 'blog'
             }
         }
     }

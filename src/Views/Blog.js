@@ -1,10 +1,13 @@
 var React = require('react');
 var Container = require('../Mixins/Container');
 var { Link } = require('react-router');
+var { timeAgo } = require('../Lib/formatDate');
 
 var BlogStore = require('../Stores/BlogStore');
 
 var Markdown = require('../Components/Markdown');
+var BlogHeader = require('../Components/BlogHeader');
+var Footer = require('../Components/Footer');
 var DocumentTitle = require('react-document-title');
 var Loading = require('../Components/Loading');
 
@@ -15,9 +18,17 @@ class Blog extends React.Component {
         const body = blog.getIn(['publishedVersion', 'body']);
         return (
             <DocumentTitle title={blog.get('title')}>
-                <div className="blog">
-                    <h1 className="blog-title">{blog.get('title')}</h1>
-                    <Markdown text={body} />
+                <div>
+                    <BlogHeader title={blog.get('title')} subtitle={blog.get('subtitle')} />
+                    <div className="container">
+                        <div className="blog-date">
+                            {timeAgo(blog.get('datePublished'))}
+                        </div>
+                        <div className="blog">
+                            <Markdown text={body} />
+                        </div>
+                    </div>
+                    <Footer />
                 </div>
             </DocumentTitle>
         );

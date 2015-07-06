@@ -19,7 +19,8 @@ var Layout = require('./Views/Layout');
 var Blog = require('./Views/Blog');
 
 var routes = (
-    <Route path="/" component={Layout}>
+    <Route path="/">
+        <Route path="" component={Layout} />
         <Route path=":slug" component={Blog} />
     </Route>
 );
@@ -37,12 +38,13 @@ class App extends React.Component {
     render() {
         return (
             <Router ref="router" location={this.props.location} history={this.props.history}>
-                {this.props.children}
+                <Route path="/" component={Layout} />
+                <Route path="/:slug" component={Blog} />
             </Router>
         );
     }
 }
 
 // Mount the app
-React.render(<App history={history} children={routes} />, document.getElementById("mount"));
+React.render(<App history={history} />, document.getElementById("mount"));
 

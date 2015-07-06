@@ -146,6 +146,27 @@ class Editor extends React.Component {
                     </div>
                     <Modal visible={this.state.showModal} onClose={() => this.setState({ showModal: false })}>
                         <div>
+
+                            <label className="modal-input-label">Page Type</label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="blog"
+                                    checked={blog.get('type') === 'blog'}
+                                    onChange={this.inputChangeFor('type')}
+                                    />
+                                Blog
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="page"
+                                    checked={blog.get('type') === 'page'}
+                                    onChange={this.inputChangeFor('type')}
+                                    />
+                                Page
+                            </label>
+
                             <label className="modal-input-label">Title</label>
                             <input
                                 type="text"

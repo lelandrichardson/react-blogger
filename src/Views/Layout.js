@@ -2,6 +2,7 @@ var React = require('react');
 var DocumentTitle = require('react-document-title');
 
 var Header = require('../Components/Header');
+var BlogHeader = require('../Components/BlogHeader');
 var Footer = require('../Components/Footer');
 var Home = require('../Views/Home');
 
@@ -11,7 +12,7 @@ class Layout extends React.Component {
         return (
             <DocumentTitle title="Intelligible Babble">
                 <div>
-                    <Header />
+                    <BlogHeader title="Intelligible Babble" subtitle="Programming, Startups, Hacking, Nonsense" />
                     <div className="container">
                         {this.props.children || <Home />}
                     </div>

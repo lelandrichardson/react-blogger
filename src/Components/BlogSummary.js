@@ -9,7 +9,7 @@ class BlogSummary extends React.Component {
         return (
             <Link className="blog-summary" to={`/${blog.get('slug')}`}>
                 <h3 className="blog-summary-title">{blog.get('title')}</h3>
-                <div>{blog.get('summary')}</div>
+                <div className="blog-summary-summary">{blog.get('summary')}</div>
                 <div className="blog-summary-date">
                     {short(blog.get('datePublished'))}
                 </div>
