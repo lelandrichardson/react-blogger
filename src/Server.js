@@ -27,10 +27,10 @@ var path = require('path');
 
 // database stuff
 var db = require('./Server/sequelize');
-var User = require('./Server/User');
-var Blog = require('./Server/Blog');
-var Version = require('./Server/Version');
-var Session = require('./Server/Session');
+var User = require('./Models/User');
+var Blog = require('./Models/Blog');
+var Version = require('./Models/Version');
+var Session = require('./Models/Session');
 
 db.sync();
 

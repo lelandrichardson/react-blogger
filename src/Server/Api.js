@@ -1,7 +1,7 @@
 var db = require('./sequelize');
-var Blog = require('./Blog');
-var Version = require('./Version');
-var User = require('./User');
+var Blog = require('./../Models/Blog');
+var Version = require('./../Models/Version');
+var User = require('./../Models/User');
 var shortid = require('shortid');
 
 var express = require('express');

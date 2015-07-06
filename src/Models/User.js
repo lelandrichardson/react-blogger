@@ -4,7 +4,7 @@ var {
     } = Sequelize;
 
 var bcrypt = require('bcrypt');
-var db = require('./sequelize');
+var db = require('./../Server/sequelize');
 
 var User = db.define('user', {
     username: { type: STRING, allowNull: false, unique: true },

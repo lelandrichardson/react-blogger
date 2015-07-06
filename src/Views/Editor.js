@@ -6,6 +6,7 @@ var BlogActions = require('../Actions/BlogActions');
 
 var { Toolbar, ToolbarButton, ToolbarLink, ToolbarText } = require('../Components/Toolbar');
 var MarkdownEditor = require('../Components/MarkdownEditor');
+var Modal = require('../Components/Modal');
 var DocumentTitle = require('react-document-title');
 var Loading = require('../Components/Loading');
 var debounce = require('lodash/function/debounce');
@@ -13,21 +14,50 @@ var { timeAgo } = require('../Lib/formatDate');
 
 const BODY = ['editingVersion','body'];
 
+const remHyphenRegex = /( ?- ?)|[ ']/g;
+const remRegex = /[^0-9a-zA-Z-]/g;
+function toSlug(title) {
+    return title.replace(remHyphenRegex, "-").replace(remRegex, "").trim().toLowerCase();
+}
+
 require('../Styles/Editor.less');
 class Editor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             blog: props.blog,
-            needsSaving: false
+            needsSaving: false,
+            showModal: false
         };
         this.saveBody = debounce(this.saveBody, 2000);
     }
     onTitleChange(e) {
+        const blog = this.state.blog;
+        const title = blog.get('title');
+        const slugIsControlled = blog.get('slugIsControlled');
+        const slug = slugIsControlled ? blog.get('slug') : toSlug(title);
+
         this.setState({
-            blog: this.state.blog.set('title', e.target.value),
+            blog: blog.merge({ title, slug }),
             needsSaving: true
         });
+    }
+    onSlugChange(e) {
+        this.setState({
+            blog: this.state.blog.merge({
+                slugIsControlled: true,
+                slug: toSlug(e.target.value)
+            }),
+            needsSaving: true
+        });
+    }
+    inputChangeFor(prop) {
+        return e => {
+            this.setState({
+                blog: this.state.blog.set(prop, e.target.value),
+                needsSaving: true
+            });
+        };
     }
     saveBody() {
         var { blog, needsSaving } = this.state;
@@ -88,6 +118,7 @@ class Editor extends React.Component {
                         {published && <ToolbarText>Published {timeAgo(blog.get('datePublished'))}</ToolbarText>}
                         {unpublishedChanges && <ToolbarButton onClick={::this.onPublishClick}>Update</ToolbarButton>}
                         <ToolbarButton onClick={::this.onDeleteClick}>Delete</ToolbarButton>
+                        <ToolbarButton onClick={() => this.setState({ showModal: true })}>Settings</ToolbarButton>
                     </Toolbar>
                     <div className="editor">
                         <div className="editor-title-box">
@@ -96,7 +127,7 @@ class Editor extends React.Component {
                                 type="text"
                                 placeholder="Blog Title"
                                 value={blog.get('title')}
-                                onChange={::this.onTitleChange} />
+                                onChange={this.inputChangeFor('title')} />
                         </div>
                         <MarkdownEditor
                             onChange={::this.onBodyChange}
@@ -104,6 +135,43 @@ class Editor extends React.Component {
                             hasChanges={hasChanges}
                             />
                     </div>
+                    <Modal visible={this.state.showModal} onClose={() => this.setState({ showModal: false })}>
+                        <div>
+
+                            <label className="modal-input-label">Title</label>
+                            <input
+                                type="text"
+                                className="modal-input"
+                                placeholder="Summary"
+                                value={blog.get('title')}
+                                onChange={this.inputChangeFor('title')} />
+
+                            <label className="modal-input-label">Subtitle</label>
+                            <input
+                                type="text"
+                                className="modal-input"
+                                placeholder="Subtitle"
+                                value={blog.get('subtitle')}
+                                onChange={this.inputChangeFor('subtitle')} />
+
+                            <label className="modal-input-label">Blog Url Slug</label>
+                            <input
+                                type="text"
+                                className="modal-input"
+                                placeholder="Url Slug"
+                                value={blog.get('slug')}
+                                onChange={this.inputChangeFor('slug')} />
+
+                            <label className="modal-input-label">Blog Summary</label>
+                            <textarea
+                                className="modal-textarea"
+                                placeholder="Summary"
+                                value={blog.get('summary')}
+                                onChange={this.inputChangeFor('summary')} />
+
+                            <button className="modal-button right" onClick={::this.onSaveClick}>Save</button>
+                        </div>
+                    </Modal>
                 </div>
             </DocumentTitle>
         );

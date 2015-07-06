@@ -3,7 +3,7 @@ var {
         TEXT
     } = Sequelize;
 
-var db = require('./sequelize');
+var db = require('./../Server/sequelize');
 
 var Version = db.define('version', {
     body: TEXT

@@ -5,7 +5,7 @@ var {
         DATE
     } = Sequelize;
 
-var db = require('./sequelize');
+var db = require('./../Server/sequelize');
 
 var Session = db.define('session', {
     sid: { type: STRING, allowNull: false, primaryKey: true },

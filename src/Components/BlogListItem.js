@@ -9,8 +9,8 @@ class BlogListItem extends React.Component {
         const published = !!blog.get('datePublished');
         return (
             <Link className="blog-list-item" to={`/admin/edit/${blog.get('id')}`}>
-                <h3 className="blog-list-item-title">{blog.get('title')}</h3>
-                <div>{blog.get('summary')}</div>
+                <h3 className="blog-list-item-title">{blog.get('title') || '(Untitled)'}</h3>
+                <div className="blog-list-item-summary">{blog.get('summary')}</div>
                 <div className="blog-list-item-date">
                     {published && (<span>Published {timeAgo(blog.get('datePublished'))}</span>)}
                     {published && (<span> | </span>)}
