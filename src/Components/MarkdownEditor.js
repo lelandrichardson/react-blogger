@@ -1,5 +1,6 @@
 var React = require('react');
-var CodeMirror = require('react-codemirror');
+var CodeMirror = require('codemirror');
+var ReactCodeMirror = require('react-codemirror');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
 require('codemirror/mode/gfm/gfm');
@@ -9,6 +10,39 @@ require('codemirror/mode/htmlmixed/htmlmixed');
 var Markdown = require('./Markdown');
 var WordCount = require('./WordCount');
 
+const extraKeys = CodeMirror.normalizeKeyMap({
+    Enter: 'newlineAndIndentContinueMarkdownList',
+    'Cmd-S': function (cm) {
+        console.log("ctrl-s");
+        return CodeMirror.Pass;
+    }
+});
+
+const options = {
+    mode: 'gfm',
+    lineNumbers: true,
+    matchBrackets: true,
+    lineWrapping: true,
+    theme: 'base16-light',
+    extraKeys
+};
+
+var noptions = {
+    mode: 'gfm',
+    lineNumbers: true,
+    matchBrackets: true,
+    lineWrapping: true,
+    theme: 'base16-light',
+    extraKeys: CodeMirror.normalizeKeyMap({
+        Enter: 'newlineAndIndentContinueMarkdownList',
+        'Cmd-S Ctrl-S': (cm) => {
+            console.log("ctrl-s");
+            this.props.onSave && this.props.onSave();
+            //return CodeMirror.Pass;
+        }
+    })
+};
+
 require('../Styles/base16-light.less');
 require('codemirror/lib/codemirror.css');
 require('../Styles/MarkdownEditor.less');
@@ -17,7 +51,7 @@ class MarkdownEditor extends React.Component {
         return (
             <div className="md-editor">
                 <div className="md-editor-body">
-                    <CodeMirror
+                    <ReactCodeMirror
                         value={this.props.value}
                         onChange={this.props.onChange}
                         options={{
@@ -26,9 +60,15 @@ class MarkdownEditor extends React.Component {
                             matchBrackets: true,
                             lineWrapping: true,
                             theme: 'base16-light',
-                            extraKeys: {
-                                Enter: 'newlineAndIndentContinueMarkdownList'
-                            }
+                            extraKeys: CodeMirror.normalizeKeyMap({
+                                Enter: 'newlineAndIndentContinueMarkdownList',
+                                'Cmd-S': (cm) => {
+                                    this.props.onSave && this.props.onSave();
+                                },
+                                'Ctrl-S': (cm) => {
+                                    this.props.onSave && this.props.onSave();
+                                }
+                            })
                         }}
                     />
                 </div>

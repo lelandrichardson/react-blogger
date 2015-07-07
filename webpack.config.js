@@ -55,6 +55,13 @@ module.exports = {
         extensions: ['', '.js', '.jsx', '.json']
     },
     plugins: [
-        new webpack.NoErrorsPlugin()
-    ]
+        new webpack.NoErrorsPlugin(),
+        //new webpack.optimize.DedupePlugin()
+    ],
+    externals: {
+        "react": "React",
+        //"codemirror": "CodeMirror",
+        "moment": "moment",
+        "immutable": "Immutable"
+    }
 };

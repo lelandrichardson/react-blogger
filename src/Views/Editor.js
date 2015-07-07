@@ -88,7 +88,7 @@ class Editor extends React.Component {
         this.saveBody();
     }
     onSaveClick(e) {
-        e.preventDefault();
+        e && e.preventDefault();
         BlogActions.update(this.state.blog.toJS());
         this.setState({ showModal: false });
     }
@@ -173,6 +173,7 @@ class Editor extends React.Component {
                         </div>
                         <MarkdownEditor
                             onChange={::this.onBodyChange}
+                            onSave={::this.onSaveClick}
                             value={body}
                             hasChanges={hasChanges}
                             />
