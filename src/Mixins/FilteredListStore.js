@@ -21,6 +21,11 @@ class FilteredListStore extends ImmutableStore {
         super();
         this._state = Map();
         this.size = 10;
+        this.exportPublicMethods({
+            getPage: this.getPage,
+            listFull: this.listFull,
+            key: this.key
+        });
     }
 
     key(filter) {
@@ -28,14 +33,25 @@ class FilteredListStore extends ImmutableStore {
         return filter.hashCode();
     }
 
-    static getPage(filter, page) {
+    getPage(filter, page) {
         return this.getIn([this.key(filter), 'pages', page]);
+    }
+
+    listFull(filter) {
+        this._state = this.getState()._state;
+        var key = this.key(filter);
+        var result = this.get(key);
+        if (!result) return null;
+        return {
+            total: result.get('total'),
+            items: result.get('pages').valueSeq().flatten(true).toList()
+        };
     }
 
     setPage(filter, page, items, count) {
         const key = this.key(filter);
         this.ensure(key, filter);
-        this.setIn([key, 'pages', page], fromJS(items));
+        this.setIn([key, 'pages', page], items);
         if (count !== undefined) {
             this.setIn([key, 'total'], count);
         }
@@ -45,7 +61,7 @@ class FilteredListStore extends ImmutableStore {
         const key = this.key(filter);
         this.ensure(key, filter);
         this.setIn([key, 'total'], total);
-        pages.forEach((page, i) => this.setIn([key, 'pages', i], fromJS(page)));
+        pages.forEach((page, i) => this.setIn([key, 'pages', i], page));
     }
 
     ensure(key, filter) {

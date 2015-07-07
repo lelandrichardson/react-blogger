@@ -14,7 +14,11 @@ const BlogListDataSource = alt => ({
         },
         local(store, filter, page) {
             var key = FilteredListStore.prototype.key(filter);
-            return store._state.getIn([key, 'pages', page]);
+            var items = store._state.getIn([key, 'pages', page]);
+            if (!items) return null;
+
+            var total = store._state.getIn([key, 'total']);
+            return { items, total };
         },
         loading: BlogActions.listAll,
         success: BlogActions.listAllSuccess,
@@ -44,4 +48,5 @@ export default class SummaryStore extends FilteredListStore {
         this._state = Map();
         this.changed();
     }
+
 }

@@ -7,6 +7,7 @@ require('es6-promise');
 require('./Styles/Reset.less');
 require('./Styles/Utility.less');
 require('./Styles/Base.less');
+require('./Styles/Pagination.less');
 
 var React = require('react');
 var { Router, Route } = require('react-router');
@@ -29,6 +30,7 @@ var routes = (
         <Route path="register" component={Register} />
         <Route path="edit/:id" component={Editor} />
         <Route path="blogs/:scope" component={BlogList} />
+        <Route path="blogs/:scope/:page" component={BlogList} />
     </Route>
 );
 

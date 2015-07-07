@@ -6,23 +6,35 @@ var SummaryStore = require('../Stores/SummaryStore');
 
 var BlogSummary = require('../Components/BlogSummary');
 var Loading = require('../Components/Loading');
+var InfiniteScroll = require('react-infinite-scroll');
 
 class Home extends React.Component {
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired
+    };
     render() {
+        const { blogs, page } = this.props;
         return (
-            <ul>
-                {this.props.blogs.map(blog =>
-                    <BlogSummary key={blog.get('slug')} blog={blog} />
-                )}
-            </ul>
+            <div>
+                <ul>
+                    {blogs.items.map(blog =>
+                        <BlogSummary key={blog.get('slug')} blog={blog} />
+                    )}
+                </ul>
+                <a onClick={() => this.context.router.transitionTo(`?page=${page+1}`)}>Load More...</a>
+            </div>
         );
     }
 }
 
 module.exports = Container.create(Home, [SummaryStore], {
-    getComponentProps() {
+    getComponentProps({ params, location }) {
+        const page = +(location.query && location.query.page) || 0;
+        const filter = { scope: 'published' };
+        SummaryStore.listAll(filter, page);
         return {
-            blogs: SummaryStore.listAll({ scope: 'published' })
+            page,
+            blogs: SummaryStore.listFull(filter) || { items: [], total: 0 }
         };
     },
     loadingComponent: <Loading />

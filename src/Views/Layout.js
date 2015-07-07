@@ -14,7 +14,7 @@ class Layout extends React.Component {
                 <div>
                     <BlogHeader title="Intelligible Babble" subtitle="Programming, Startups, Hacking, Nonsense" />
                     <div className="container">
-                        {this.props.children || <Home />}
+                        {this.props.children || <Home {...this.props} />}
                     </div>
                     <Footer />
                 </div>

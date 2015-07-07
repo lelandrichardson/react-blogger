@@ -16,7 +16,7 @@ var Container = {
             },
 
             getState(props) {
-                var $props = this.getComponentProps(props);
+                var $props = this.getComponentProps(props, this.context);
                 var $prop;
 
                 var $loaded = true;

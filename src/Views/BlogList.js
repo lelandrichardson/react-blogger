@@ -6,15 +6,19 @@ var BlogListItem = require('../Components/BlogListItem');
 var Icon = require('react-fontawesome');
 var { Toolbar, ToolbarLink, ToolbarButton } = require('../Components/Toolbar');
 var { Tabs, Tab } = require('../Components/Tabs');
+var Pager = require('react-pager');
 
 require('../Styles/BlogList.less');
 class BlogList extends React.Component {
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired
+    };
     handleCreateClick(e) {
         e.preventDefault();
         BlogActions.create({ });
     }
     render() {
-        const { blogs, scope } = this.props;
+        const { blogs, scope, page } = this.props;
         return (
             <div className="blog-list">
                 <Toolbar>
@@ -29,20 +33,29 @@ class BlogList extends React.Component {
                     </Tabs>
                 </div>
                 <div>
-                    {blogs.map(blog =>
+                    {blogs.items.map(blog =>
                         <BlogListItem key={blog.get('slug')} blog={blog} />
                     )}
                 </div>
+                <Pager
+                    total={Math.ceil(blogs.total/10)}
+                    current={page-1}
+                    visiblePages={3}
+                    onPageChanged={next => this.context.router.transitionTo(`/admin/blogs/${scope}/${next+1}`)}
+                    />
             </div>
         );
     }
 }
 
 module.exports = Container.create(BlogList, [SummaryStore], {
-    getComponentProps(props) {
+    getComponentProps({ params }) {
+        const page = +params.page || 1;
+        const scope = params.scope;
         return {
-            blogs: SummaryStore.listAll({ scope: props.params.scope }, 0) || [],
-            scope: props.params.scope
+            page,
+            scope,
+            blogs: SummaryStore.listAll({ scope }, page-1) || { items: [], total: 0 }
         };
     }
 });
