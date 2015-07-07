@@ -12,6 +12,7 @@ var Loading = require('../Components/Loading');
 var key = require('keymaster');
 var debounce = require('lodash/function/debounce');
 var { timeAgo } = require('../Lib/formatDate');
+var { is } = require('immutable');
 
 const BODY = ['editingVersion','body'];
 
@@ -55,9 +56,10 @@ class Editor extends React.Component {
     }
     inputChangeFor(prop) {
         return e => {
+            const blog = this.state.blog.set(prop, e.target.value);
             this.setState({
-                blog: this.state.blog.set(prop, e.target.value),
-                needsSaving: true
+                blog,
+                needsSaving: !is(blog, this.state.blog)
             });
         };
     }
@@ -148,7 +150,7 @@ class Editor extends React.Component {
                         <div>
 
                             <label className="modal-input-label">Page Type</label>
-                            <label>
+                            <label className="modal-radio-label">
                                 <input
                                     type="radio"
                                     value="blog"
@@ -157,7 +159,7 @@ class Editor extends React.Component {
                                     />
                                 Blog
                             </label>
-                            <label>
+                            <label className="modal-radio-label">
                                 <input
                                     type="radio"
                                     value="page"
@@ -196,7 +198,8 @@ class Editor extends React.Component {
                                 className="modal-textarea"
                                 placeholder="Summary"
                                 value={blog.get('summary')}
-                                onChange={this.inputChangeFor('summary')} />
+                                onChange={this.inputChangeFor('summary')}
+                                maxLength={255} />
 
                             <button className="modal-button right" onClick={::this.onSaveClick}>Save</button>
                         </div>

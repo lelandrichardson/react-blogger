@@ -113,10 +113,11 @@ var Api = {
         publish(id) {
             return Blog
                 .findById(id)
-                .then(blog => blog.setPublishedVersion(blog.editingVersionId))
-                .then(() => Blog.update({ datePublished: new Date() }, { where: { id }})
-                .then(() => Api.blog.get(id))
-            );
+                .then(blog => Blog.update({
+                    datePublished: blog.datePublished || new Date(),
+                    publishedVersionId: blog.editingVersionId
+                }, { where: { id }}))
+                .then(() => Api.blog.get(id));
         },
 
         unpublish(id) {
