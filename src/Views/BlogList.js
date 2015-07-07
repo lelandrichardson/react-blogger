@@ -3,6 +3,7 @@ var Container = require('../Mixins/Container');
 var SummaryStore = require('../Stores/SummaryStore');
 var BlogActions = require('../Actions/BlogActions');
 var BlogListItem = require('../Components/BlogListItem');
+var Icon = require('react-fontawesome');
 var { Toolbar, ToolbarLink, ToolbarButton } = require('../Components/Toolbar');
 var { Tabs, Tab } = require('../Components/Tabs');
 
@@ -17,7 +18,7 @@ class BlogList extends React.Component {
         return (
             <div className="blog-list">
                 <Toolbar>
-                    <ToolbarButton onClick={::this.handleCreateClick}>Add New</ToolbarButton>
+                    <ToolbarButton onClick={::this.handleCreateClick}><Icon name="plus" /> Add New</ToolbarButton>
                 </Toolbar>
                 <div style={{ marginTop: 54, padding: 20 }}>
                     <h1 className="blog-list-title">Your Posts</h1>

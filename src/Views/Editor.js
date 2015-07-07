@@ -9,6 +9,10 @@ var MarkdownEditor = require('../Components/MarkdownEditor');
 var Modal = require('../Components/Modal');
 var DocumentTitle = require('react-document-title');
 var Loading = require('../Components/Loading');
+var Icon = require('react-fontawesome');
+require('react-datepicker/dist/react-datepicker.css');
+var Datepicker = require('react-datepicker/dist/react-datepicker');
+var moment = require('moment');
 var key = require('keymaster');
 var debounce = require('lodash/function/debounce');
 var { timeAgo } = require('../Lib/formatDate');
@@ -51,6 +55,12 @@ class Editor extends React.Component {
                 slugIsControlled: false,
                 slug: toSlug(e.target.value)
             }),
+            needsSaving: true
+        });
+    }
+    onPublishDateChange(changed) {
+        this.setState({
+            blog: this.state.blog.set('datePublished', changed.toDate()),
             needsSaving: true
         });
     }
@@ -122,14 +132,35 @@ class Editor extends React.Component {
             <DocumentTitle title={blog.get('title') || '(Untitled)'}>
                 <div>
                     <Toolbar>
-                        <ToolbarLink to="/admin/blogs/drafts">Blogs</ToolbarLink>
-                        {hasChanges && <ToolbarButton onClick={::this.onSaveClick}>Save</ToolbarButton>}
-                        {!published && !hasChanges && <ToolbarButton onClick={::this.onPublishClick}>Publish</ToolbarButton>}
-                        {published && <ToolbarButton onClick={::this.onUnpublishClick}>Unpublish</ToolbarButton>}
-                        {published && <ToolbarText>Published {timeAgo(blog.get('datePublished'))}</ToolbarText>}
-                        {unpublishedChanges && <ToolbarButton onClick={::this.onPublishClick}>Update</ToolbarButton>}
-                        <ToolbarButton onClick={::this.onDeleteClick}>Delete</ToolbarButton>
-                        <ToolbarButton onClick={() => this.setState({ showModal: true })}>Settings</ToolbarButton>
+                        <ToolbarLink to="/admin/blogs/drafts">
+                            <Icon name="arrow-left" /> Blogs
+                        </ToolbarLink>
+                        {hasChanges &&
+                        <ToolbarButton onClick={::this.onSaveClick}>
+                            <Icon name="floppy-o" /> Save
+                        </ToolbarButton>}
+                        {!published && !hasChanges &&
+                        <ToolbarButton onClick={::this.onPublishClick}>
+                            <Icon name="bullhorn" /> Publish
+                        </ToolbarButton>}
+                        {published &&
+                        <ToolbarButton onClick={::this.onUnpublishClick}>
+                            Unpublish
+                        </ToolbarButton>}
+                        {published &&
+                        <ToolbarText>
+                            Published {timeAgo(blog.get('datePublished'))}
+                        </ToolbarText>}
+                        {unpublishedChanges &&
+                        <ToolbarButton onClick={::this.onPublishClick}>
+                            <Icon name="floppy-o" size="lg"/> Update
+                        </ToolbarButton>}
+                        <ToolbarButton onClick={::this.onDeleteClick}>
+                            <Icon name="trash-o" /> Delete
+                        </ToolbarButton>
+                        <ToolbarButton className="right" onClick={() => this.setState({ showModal: true })}>
+                            <Icon name="cog" size="lg"/>
+                        </ToolbarButton>
                     </Toolbar>
                     <div className="editor">
                         <div className="editor-title-box">
@@ -192,6 +223,14 @@ class Editor extends React.Component {
                                 placeholder="Url Slug"
                                 value={blog.get('slug')}
                                 onChange={::this.onSlugChange} />
+
+                            {published && <label className="modal-input-label">Publish Date</label>}
+                            {published && <Datepicker
+                                className="modal-input"
+                                placeholderText="Publish Date"
+                                dateFormat="YYYY/MM/DD"
+                                selected={moment(blog.get('datePublished'))}
+                                onChange={::this.onPublishDateChange} />}
 
                             <label className="modal-input-label">Blog Summary</label>
                             <textarea

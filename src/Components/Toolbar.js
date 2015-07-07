@@ -1,5 +1,6 @@
 var React = require('react');
 var { Link } = require('react-router');
+var cx = require('classnames');
 
 require('../Styles/Toolbar.less');
 export class Toolbar extends React.Component {
@@ -14,9 +15,9 @@ export class Toolbar extends React.Component {
 
 export class ToolbarButton extends React.Component {
     render() {
-        const { style, onClick } = this.props;
+        const { style, onClick, className } = this.props;
         return (
-            <a {...{ style, onClick }} className="toolbar-item">
+            <a {...{ style, onClick }} className={cx("toolbar-item", className)}>
                 <div className="toolbar-label">{this.props.children}</div>
             </a>
         );
@@ -25,9 +26,9 @@ export class ToolbarButton extends React.Component {
 
 export class ToolbarLink extends React.Component {
     render() {
-        const { style, to, onClick, activeStyle, activeClassName, query, state } = this.props;
+        const { style, to, onClick, activeStyle, activeClassName, query, state, className } = this.props;
         return (
-            <Link {...{ style, to, onClick, activeStyle, activeClassName, query, state }} className="toolbar-item">
+            <Link {...{ style, to, onClick, activeStyle, activeClassName, query, state }} className={cx("toolbar-item", className)}>
                 <div className="toolbar-label">{this.props.children}</div>
             </Link>
         );
@@ -36,9 +37,9 @@ export class ToolbarLink extends React.Component {
 
 export class ToolbarText extends React.Component {
     render() {
-        const { style, to, onClick, activeStyle, activeClassName, query, state } = this.props;
+        const { style, className } = this.props;
         return (
-            <div {...{ style }} className="toolbar-item">
+            <div {...{ style }} className={cx("toolbar-item", className)}>
                 <div className="toolbar-label">{this.props.children}</div>
             </div>
         );
