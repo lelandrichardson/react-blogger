@@ -1,40 +1,62 @@
 var React = require('react');
 var Container = require('../Mixins/Container');
-var { RouteHandler, Link } = require('react-router');
+var { Link } = require('react-router');
+var { List } = require('immutable');
 
 var SummaryStore = require('../Stores/SummaryStore');
 
 var BlogSummary = require('../Components/BlogSummary');
 var Loading = require('../Components/Loading');
-var InfiniteScroll = require('react-infinite-scroll');
+var InfiniteScroll = require('../Components/InfiniteScroll');
 
 class Home extends React.Component {
-    static contextTypes = {
-        router: React.PropTypes.object.isRequired
-    };
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            page: props.initialPage
+        };
+    }
+    onLoadMore() {
+        SummaryStore.listAll(this.props.filter, this.state.page + 1);
+        this.setState({
+            page: this.state.page + 1
+        });
+    }
     render() {
-        const { blogs, page } = this.props;
+        const { blogs } = this.props;
+        const hasMore = blogs.items.size < blogs.total;
+        const isLoading = this.state.page * 10 > blogs.items.size;
         return (
             <div>
-                <ul>
-                    {blogs.items.map(blog =>
-                        <BlogSummary key={blog.get('slug')} blog={blog} />
-                    )}
-                </ul>
-                <a onClick={() => this.context.router.transitionTo(`?page=${page+1}`)}>Load More...</a>
+                <InfiniteScroll
+                    hasMore={hasMore}
+                    isLoading={isLoading}
+                    onLoadMore={::this.onLoadMore}
+                    >
+                    <ul>
+                        {blogs.items.map(blog =>
+                            <BlogSummary key={blog.get('slug')} blog={blog} />
+                        )}
+                    </ul>
+                </InfiniteScroll>
+                <div style={{ textAlign: 'center' }}>
+                    {isLoading && "Loading..."}
+                    {hasMore && <Link to={`?page=${this.state.page+1}`}>Load More...</Link>}
+                </div>
             </div>
         );
     }
 }
 
 module.exports = Container.create(Home, [SummaryStore], {
-    getComponentProps({ params, location }) {
-        const page = +(location.query && location.query.page) || 0;
+    getComponentProps({ location }) {
+        const initialPage = +(location.query && location.query.page) || 0;
         const filter = { scope: 'published' };
-        SummaryStore.listAll(filter, page);
+        SummaryStore.listAll(filter, initialPage);
         return {
-            page,
-            blogs: SummaryStore.listFull(filter) || { items: [], total: 0 }
+            initialPage,
+            filter,
+            blogs: SummaryStore.listFull(filter) || { items: List(), total: 0 }
         };
     },
     loadingComponent: <Loading />

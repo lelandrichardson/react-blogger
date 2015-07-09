@@ -11,7 +11,7 @@ require('./Styles/Pagination.less');
 
 var React = require('react');
 var { Router, Route } = require('react-router');
-var { BrowserHistory } = require('react-router/lib/BrowserHistory');
+import BrowserHistory from 'react-router/lib/BrowserHistory';
 
 // Views
 var BlogList = require('./Views/BlogList');
