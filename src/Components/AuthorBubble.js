@@ -1,6 +1,6 @@
 var React = require('react');
 
-require('../Styles/AuthorBubble.less');
+if (__CLIENT__) require('../Styles/AuthorBubble.less');
 class AuthorBubble extends React.Component {
     render() {
         const size = this.props.size;

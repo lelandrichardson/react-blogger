@@ -5,6 +5,29 @@ var {
     } = require('immutable');
 
 class ImmutableStore {
+    static config = {
+        setState(currentState, nextState) {
+            this._state = nextState;
+            return this._state;
+        },
+
+        getState(currentState) {
+            return currentState
+        },
+
+        onSerialize(state) {
+            return state;
+        },
+
+        onDeserialize(data) {
+            for (var i in data) {
+                if (data.hasOwnProperty(i)) {
+                    data[i] = fromJS(data[i]);
+                }
+            }
+            return data;
+        }
+    }
     constructor() {
         this.exportPublicMethods({
             get: this.get,
@@ -13,8 +36,10 @@ class ImmutableStore {
             hasIn: this.hasIn
         });
         this.dirty = false;
-        this.changeTick = this.changeTick.bind(this);
-        requestAnimationFrame(this.changeTick);
+        //this.changeTick = this.changeTick.bind(this);
+        if (__CLIENT__) {
+            requestAnimationFrame(this.changeTick.bind(this));
+        }
     }
 
     changeTick() {
@@ -22,7 +47,9 @@ class ImmutableStore {
             this.emitChange();
             this.dirty = false;
         }
-        requestAnimationFrame(this.changeTick);
+        if(__CLIENT__) {
+            requestAnimationFrame(this.changeTick.bind(this));
+        }
     }
 
     changed() {

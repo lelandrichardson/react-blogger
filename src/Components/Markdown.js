@@ -16,7 +16,7 @@ const options = {
     //}
 };
 
-require('../Styles/Markdown.less');
+if (__CLIENT__) require('../Styles/Markdown.less');
 class Markdown extends React.Component {
 
     //static propTypes = {

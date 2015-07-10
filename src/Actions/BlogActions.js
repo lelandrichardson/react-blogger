@@ -1,10 +1,9 @@
-var alt = require('../alt');
 var Api = require('../Lib/Api');
-var { async, actions } = require('../Mixins/alt-decorators');
+var { async } = require('../Mixins/alt-decorators');
 
-@actions(alt)
 export default class BlogActions {
-    constructor() {
+    constructor(alt) {
+        this.Api = Api(alt);
         this.generateActions.apply(this, this.__actions__ || []);
         this.generateActions(
             'getFromId',
@@ -23,31 +22,31 @@ export default class BlogActions {
 
     @async
     update(blog) {
-        return Api.blog.update(blog);
+        return this.Api.blog.update(blog);
     }
 
     @async
     updateBody(id, body) {
-        return Api.blog.updateBody(id, body)
+        return this.Api.blog.updateBody(id, body)
     }
 
     @async
     publish(id) {
-        return Api.blog.publish(id);
+        return this.Api.blog.publish(id);
     }
 
     @async
     unpublish(id) {
-        return Api.blog.unpublish(id);
+        return this.Api.blog.unpublish(id);
     }
 
     @async
     remove(id) {
-        return Api.blog.remove(id);
+        return this.Api.blog.remove(id);
     }
 
     @async
     create(model) {
-        return Api.blog.create(model);
+        return this.Api.blog.create(model);
     }
 }

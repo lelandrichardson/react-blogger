@@ -2,7 +2,7 @@ var React = require('react');
 
 const year = (new Date()).getFullYear();
 
-require('../Styles/Footer.less');
+if (__CLIENT__) require('../Styles/Footer.less');
 class Footer extends React.Component {
     render() {
         return (

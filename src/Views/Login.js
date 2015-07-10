@@ -2,7 +2,7 @@ var React = require('react');
 var DocumentTitle = require('react-document-title');
 
 
-require('../Styles/Login.less');
+if(__CLIENT__) require('../Styles/Login.less');
 class Login extends React.Component {
     render() {
         return (

@@ -5,7 +5,8 @@
     <title>Intelligible Babble</title>
 </head>
 <body>
-    <div id="mount"></div>
+    <div id="mount"><%- html || '' %></div>
+    <script>window.__data__='<%- data || "{}" %>';</script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/immutable/3.7.4/immutable.min.js"></script>
     <script src="/assets/Client.js"></script>

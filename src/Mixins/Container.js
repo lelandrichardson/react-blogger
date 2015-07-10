@@ -1,22 +1,37 @@
 var React = require('react');
-var FluxyMixin = require('alt/mixins/FluxyMixin');
+//var FluxyMixin = require('alt/mixins/FluxyMixin');
+var Subscribe = require('alt/mixins/Subscribe');
 
 var Container = {
-    create(Component, storeListeners, spec) {
+    create(Component, storeNames, spec) {
         return React.createClass({
-            mixins: [
-                FluxyMixin,
-                spec
-            ],
+            mixins: [spec],
 
             statics: {
                 // for when you want to access the "pure" component, ie for testing
                 Component,
-                storeListeners
+                storeNames
+            },
+
+            contextTypes: {
+                flux: React.PropTypes.object.isRequired
+            },
+
+            stores: [],
+
+            componentDidMount() {
+                Subscribe.create(this);
+                this.stores.forEach(store => {
+                    Subscribe.add(this, store, this.onChange);
+                });
+            },
+
+            componentWillUnmount() {
+                Subscribe.destroy(this);
             },
 
             getState(props) {
-                var $props = this.getComponentProps(props, this.context);
+                var $props = this.getComponentProps(this.stores, props, this.context);
                 var $prop;
 
                 var $loaded = true;
@@ -39,6 +54,7 @@ var Container = {
             },
 
             getInitialState() {
+                this.stores = storeNames.map(name => this.context.flux.getStore(name));
                 return this.getState(this.props);
             },
 
@@ -59,6 +75,7 @@ var Container = {
 
                 return (
                     <Component
+                        flux={this.context.flux}
                         {...this.props}
                         {...this.state.$props}
                         />

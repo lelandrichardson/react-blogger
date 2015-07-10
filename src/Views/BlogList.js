@@ -8,7 +8,7 @@ var { Toolbar, ToolbarLink, ToolbarButton } = require('../Components/Toolbar');
 var { Tabs, Tab } = require('../Components/Tabs');
 var Pager = require('react-pager');
 
-require('../Styles/BlogList.less');
+if(__CLIENT__) require('../Styles/BlogList.less');
 class BlogList extends React.Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired

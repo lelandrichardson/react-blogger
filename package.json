@@ -66,6 +66,7 @@
     "serve-favicon": "^2.3.0",
     "shortid": "^2.2.2",
     "source-map-support": "^0.3.2",
+    "superagent": "^1.2.0",
     "url-append": "^0.1.0",
     "url-parse": "^1.0.2"
   },

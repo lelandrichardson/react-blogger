@@ -3,7 +3,7 @@ var Container = require('../Mixins/Container');
 var { Link } = require('react-router');
 var { List } = require('immutable');
 
-var SummaryStore = require('../Stores/SummaryStore');
+//var SummaryStore = require('../Stores/SummaryStore');
 
 var BlogSummary = require('../Components/BlogSummary');
 var Loading = require('../Components/Loading');
@@ -16,8 +16,13 @@ class Home extends React.Component {
             page: props.initialPage
         };
     }
+
+    static loadProps(params, setProps, onTeardown) {
+        cb(null, { newProp: "foo" });
+    }
+
     onLoadMore() {
-        SummaryStore.listAll(this.props.filter, this.state.page + 1);
+        this.props.SummaryStore.listAll(this.props.filter, this.state.page + 1);
         this.setState({
             page: this.state.page + 1
         });
@@ -48,12 +53,13 @@ class Home extends React.Component {
     }
 }
 
-module.exports = Container.create(Home, [SummaryStore], {
-    getComponentProps({ location }) {
+module.exports = Container.create(Home, ['SummaryStore'], {
+    getComponentProps([ SummaryStore ], { location }) {
         const initialPage = +(location.query && location.query.page) || 0;
         const filter = { scope: 'published' };
         SummaryStore.listAll(filter, initialPage);
         return {
+            SummaryStore,
             initialPage,
             filter,
             blogs: SummaryStore.listFull(filter) || { items: List(), total: 0 }

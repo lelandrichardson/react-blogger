@@ -33,6 +33,13 @@ var Blog = require('./Models/Blog');
 var Version = require('./Models/Version');
 var Session = require('./Models/Session');
 
+import Flux from './Flux.js';
+var ClientRoutes = require('./ClientRoutes');
+import Location from 'react-router/lib/Location';
+import Router from 'react-router';
+import App from './App';
+import React from 'react';
+
 db.sync();
 
 
@@ -211,7 +218,19 @@ app.use(['/admin','/admin/*'], AUTHENTICATE, function (req, res) {
 });
 
 app.use('/*', function (req, res) {
-    res.render('Client');
+    //debugger;
+    const location = new Location(req.path, req.query);
+    const flux = new Flux({ req });
+    Router.run(ClientRoutes, location, (error, initialState) => {
+        if (error) {
+            return res.status(500).send(error);
+        }
+
+        const html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
+        const data = flux.takeSnapshot();
+
+        res.render('Client', { html, data });
+    });
 });
 
 

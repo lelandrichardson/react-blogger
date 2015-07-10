@@ -28,8 +28,14 @@ module.exports = {
                 query: {
                     optional: [
                         'runtime',
+                        'es7.decorators',
+                        'es7.classProperties',
+                        'es7.objectRestSpread',
+                        'es7.comprehensions',
+                        'es7.functionBind',
+                        'utility.inlineEnvironmentVariables',
                         'minification.propertyLiterals',
-                        'es7.decorators'
+                        'minification.deadCodeElimination'
                     ]
                 }
             },
@@ -40,6 +46,11 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            __CLIENT__: false,
+            __SERVER__: true
+        }),
+        //new webpack.optimize.UglifyJsPlugin(),
         new webpack.IgnorePlugin(/\.(css|less)$/),
         new webpack.BannerPlugin('require("source-map-support").install();',
             { raw: true, entryOnly: false })

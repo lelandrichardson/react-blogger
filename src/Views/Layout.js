@@ -6,7 +6,7 @@ var BlogHeader = require('../Components/BlogHeader');
 var Footer = require('../Components/Footer');
 var Home = require('../Views/Home');
 
-require('../Styles/Layout.less');
+if(__CLIENT__) require('../Styles/Layout.less');
 class Layout extends React.Component {
     render() {
         return (

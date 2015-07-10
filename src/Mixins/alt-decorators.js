@@ -1,5 +1,5 @@
-export function store(alt) {
-    return (target, name, descriptor) => {
+export function store(alt, name) {
+    return (target, __, descriptor) => {
         return alt.createStore(target, name, target.listeners);
     };
 }

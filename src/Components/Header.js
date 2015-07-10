@@ -3,7 +3,7 @@ var { Link } = require('react-router');
 
 var AuthorBubble = require('./AuthorBubble');
 
-require('../Styles/Header.less');
+if (__CLIENT__) require('../Styles/Header.less');
 class Header extends React.Component {
     render() {
         return (

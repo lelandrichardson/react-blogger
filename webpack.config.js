@@ -55,6 +55,10 @@ module.exports = {
         extensions: ['', '.js', '.jsx', '.json']
     },
     plugins: [
+        new webpack.DefinePlugin({
+            __CLIENT__: true,
+            __SERVER__: false
+        }),
         new webpack.NoErrorsPlugin(),
         //new webpack.optimize.DedupePlugin()
     ],

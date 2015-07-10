@@ -1,14 +1,12 @@
 var { Map, List, fromJS } = require('immutable');
 var FilteredListStore = require('../Mixins/FilteredListStore');
-var alt = require('../alt');
 var Api = require('../Lib/Api');
 var BlogActions = require('../Actions/BlogActions');
-var { store, handles } = require('../Mixins/alt-decorators');
 
 const BlogListDataSource = alt => ({
     listAll: {
         remote(store, filter, page) {
-            return Api.blog
+            return Api(alt).blog
                 .list({ ...filter, offset: page * 10 })
                 .then(result => ({ ...result, page, filter }));
         },
@@ -26,24 +24,28 @@ const BlogListDataSource = alt => ({
     }
 });
 
-@store(alt)
 export default class SummaryStore extends FilteredListStore {
-    constructor(listeners) {
+    constructor() {
         super();
         this.registerDataSource(BlogListDataSource);
-        this.bindListeners(listeners);
+        this.bindListeners({
+            onReceiveResult: [
+                BlogActions.LIST_ALL_SUCCESS
+            ],
+            clearAll: [
+                BlogActions.UPDATE_SUCCESS,
+                BlogActions.PUBLISH_SUCCESS,
+                BlogActions.UNPUBLISH_SUCCESS,
+                BlogActions.REMOVE_SUCCESS,
+                BlogActions.CREATE_SUCCESS,
+            ]
+        });
     }
 
-    @handles(BlogActions.LIST_ALL_SUCCESS)
     onReceiveResult({ filter, count, page, rows }) {
         this.setPage(filter, page, rows, count);
     }
 
-    @handles(BlogActions.UPDATE_SUCCESS)
-    @handles(BlogActions.PUBLISH_SUCCESS)
-    @handles(BlogActions.UNPUBLISH_SUCCESS)
-    @handles(BlogActions.REMOVE_SUCCESS)
-    @handles(BlogActions.CREATE_SUCCESS)
     clearAll() {
         this._state = Map();
         this.changed();

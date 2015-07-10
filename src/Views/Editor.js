@@ -27,7 +27,7 @@ function toSlug(title) {
     return title.replace(remHyphenRegex, "-").replace(remRegex, "").trim().toLowerCase();
 }
 
-require('../Styles/Editor.less');
+if(__CLIENT__) require('../Styles/Editor.less');
 class Editor extends React.Component {
     constructor(props) {
         super(props);

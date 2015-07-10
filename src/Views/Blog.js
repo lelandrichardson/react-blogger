@@ -11,7 +11,7 @@ var Footer = require('../Components/Footer');
 var DocumentTitle = require('react-document-title');
 var Loading = require('../Components/Loading');
 
-require('../Styles/Blog.less');
+if(__CLIENT__) require('../Styles/Blog.less');
 class Blog extends React.Component {
     render() {
         const blog = this.props.blog;
@@ -35,10 +35,10 @@ class Blog extends React.Component {
     }
 }
 
-module.exports = Container.create(Blog, [BlogStore], {
-    getComponentProps(props) {
+module.exports = Container.create(Blog, ['BlogStore'], {
+    getComponentProps([ BlogStore ], { params }) {
         return {
-            blog: BlogStore.getFromSlug(props.params.slug)
+            blog: BlogStore.getFromSlug(params.slug)
         }
     },
     loadingComponent: <Loading />

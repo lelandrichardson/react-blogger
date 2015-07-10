@@ -43,9 +43,9 @@ var noptions = {
     })
 };
 
-require('../Styles/base16-light.less');
-require('codemirror/lib/codemirror.css');
-require('../Styles/MarkdownEditor.less');
+if (__CLIENT__) require('../Styles/base16-light.less');
+if (__CLIENT__) require('codemirror/lib/codemirror.css');
+if (__CLIENT__) require('../Styles/MarkdownEditor.less');
 class MarkdownEditor extends React.Component {
     render() {
         return (
