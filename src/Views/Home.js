@@ -17,9 +17,9 @@ class Home extends React.Component {
         };
     }
 
-    static loadProps(params, setProps, onTeardown) {
-        cb(null, { newProp: "foo" });
-    }
+    //static loadProps(params, setProps, onTeardown) {
+    //    cb(null, { newProp: "foo" });
+    //}
 
     onLoadMore() {
         this.props.SummaryStore.listAll(this.props.filter, this.state.page + 1);

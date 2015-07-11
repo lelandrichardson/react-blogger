@@ -1,8 +1,10 @@
 var {
     Map,
     List,
-    fromJS
+    fromJS,
+    Seq
     } = require('immutable');
+import fromJSSpecial from '../Lib/fromJSSpecial.js';
 
 class ImmutableStore {
     static config = {
@@ -22,7 +24,7 @@ class ImmutableStore {
         onDeserialize(data) {
             for (var i in data) {
                 if (data.hasOwnProperty(i)) {
-                    data[i] = fromJS(data[i]);
+                    data[i] = fromJSSpecial(data[i]);
                 }
             }
             return data;

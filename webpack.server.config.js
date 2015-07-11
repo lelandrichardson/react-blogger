@@ -40,6 +40,23 @@ module.exports = {
                 }
             },
             {
+                test: /AsyncProps\.js$/,
+                loader: 'babel',
+                query: {
+                    optional: [
+                        'runtime',
+                        'es7.decorators',
+                        'es7.classProperties',
+                        'es7.objectRestSpread',
+                        'es7.comprehensions',
+                        'es7.functionBind',
+                        'utility.inlineEnvironmentVariables',
+                        'minification.propertyLiterals',
+                        'minification.deadCodeElimination'
+                    ]
+                }
+            },
+            {
                 test: /\.json$/,
                 loader: "json"
             }

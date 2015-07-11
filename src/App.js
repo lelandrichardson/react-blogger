@@ -1,5 +1,6 @@
 var React = require('react');
-var { Router } = require('react-router');
+var { Router, Route } = require('react-router');
+//import AsyncProps from 'react-router/modules/experimental/AsyncProps';
 
 export default class App extends React.Component {
     static childContextTypes = {

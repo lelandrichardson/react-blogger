@@ -219,17 +219,23 @@ app.use(['/admin','/admin/*'], AUTHENTICATE, function (req, res) {
 
 app.use('/*', function (req, res) {
     //debugger;
-    const location = new Location(req.path, req.query);
+    const location = new Location(req.baseUrl, req.query);
     const flux = new Flux({ req });
+    flux.Http.start();
     Router.run(ClientRoutes, location, (error, initialState) => {
         if (error) {
             return res.status(500).send(error);
         }
 
-        const html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
-        const data = flux.takeSnapshot();
+        var html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
+        flux.Http.stop();
+        Promise.all(flux.Http.promises).then(() => {
+            var html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
+            const data = flux.takeSnapshot();
 
-        res.render('Client', { html, data });
+            res.render('Client', { html, data });
+        });
+
     });
 });
 

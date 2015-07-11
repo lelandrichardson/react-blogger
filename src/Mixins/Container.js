@@ -10,7 +10,16 @@ var Container = {
             statics: {
                 // for when you want to access the "pure" component, ie for testing
                 Component,
-                storeNames
+                storeNames,
+
+                loadProps(params, cb) {
+                    var { flux } = this.context;
+                    var stores = storeNames.map(name => flux.getStore(name));
+                    flux.Http.start();
+                    this.getComponentProps(stores, { params }, this.context);
+                    flux.Http.stop();
+                    Promise.all(flux.Http.promises).then(() => cb(null, {}), cb);
+                }
             },
 
             contextTypes: {

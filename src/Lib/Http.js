@@ -29,10 +29,12 @@ export function AJAX(method, url, data, query, req) {
 export default class ApiClient {
     constructor(req) {
         this.req = req;
-        this.GET = this.GET.bind(this);
-        this.POST = this.POST.bind(this);
-        this.PUT = this.PUT.bind(this);
-        this.DELETE = this.DELETE.bind(this);
+        this.watching = false;
+        this.promises = [];
+        this.GET = this.wrap(this.GET);
+        this.POST = this.wrap(this.POST);
+        this.PUT = this.wrap(this.PUT);
+        this.DELETE = this.wrap(this.DELETE);
     }
     GET(url, query) {
         return AJAX('get', url, null, query, this.req);
@@ -45,5 +47,21 @@ export default class ApiClient {
     }
     DELETE(url, query) {
         return AJAX('del', url, null, query, this.req);
+    }
+    start() {
+        this.watching = true;
+        this.promises = [];
+    }
+    stop() {
+        this.watching = false;
+    }
+    wrap(fn) {
+        return function() {
+            var promise = fn.apply(this, arguments);
+            if (this.watching) {
+                this.promises.push(promise);
+            }
+            return promise;
+        }.bind(this);
     }
 }
