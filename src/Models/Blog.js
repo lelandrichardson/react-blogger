@@ -1,14 +1,14 @@
 var Sequelize = require('sequelize');
 var {
-        STRING,
-        DATE,
-        BOOLEAN,
-        JSON,
-        FLOAT,
-        DOUBLE,
-        INTEGER,
-        ENUM,
-        NOW
+    STRING,
+    DATE,
+    BOOLEAN,
+    JSON,
+    FLOAT,
+    DOUBLE,
+    INTEGER,
+    ENUM,
+    NOW
     } = Sequelize;
 
 var bcrypt = require('bcrypt');

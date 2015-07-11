@@ -1,10 +1,7 @@
-var db = require('./sequelize');
-var Blog = require('./../Models/Blog');
-var Version = require('./../Models/Version');
-var User = require('./../Models/User');
-var shortid = require('shortid');
-
 var express = require('express');
+var shortid = require('shortid');
+import { AUTHENTICATEJSON } from './security.js';
+import { db, Blog, Version, User } from './database.js';
 
 var FOR_PUBLIC = {
     include: [
@@ -52,7 +49,6 @@ var FOR_EDITING = {
 var FOR_SUMMARY = {
     include: []
 };
-
 
 var Api = {
     blog: {
@@ -134,16 +130,6 @@ var Api = {
     }
 };
 
-var AUTHENTICATE = function (req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    } else {
-        res.status(401).json({
-            message: "You are not authorized to see this resource"
-        });
-    }
-};
-
 var router = express.Router();
 
 // a function which expects a function with (req/res) as parameters that returns
@@ -173,29 +159,29 @@ router.get('/blog/list', ApiRequest(function(req, res) {
     return Api.blog.list(scope, +offset);
 }));
 router.get('/blog/from-slug/:slug', ApiRequest((req, res) => Api.blog.getFromSlug(req.params.slug)));
-router.get('/blog/:id', AUTHENTICATE, ApiRequest((req, res) => Api.blog.get(+req.params.id)));
-router.put('/blog/', AUTHENTICATE, ApiRequest(function (req, res) {
+router.get('/blog/:id', AUTHENTICATEJSON, ApiRequest((req, res) => Api.blog.get(+req.params.id)));
+router.put('/blog/', AUTHENTICATEJSON, ApiRequest(function (req, res) {
     var model = Object.assign({}, req.body, { authorId: req.user.id });
     return Api.blog.create(model);
 }));
 
-router.post('/blog/:id/body', AUTHENTICATE, AUTHENTICATE, ApiRequest(function (req, res) {
+router.post('/blog/:id/body', AUTHENTICATEJSON, ApiRequest(function (req, res) {
     return Api.blog.updateBody(+req.params.id, req.body.body);
 }));
 
-router.post('/blog/:id', AUTHENTICATE, ApiRequest(function (req, res) {
+router.post('/blog/:id', AUTHENTICATEJSON, ApiRequest(function (req, res) {
     return Api.blog.update(+req.params.id, req.body);
 }));
 
-router.post('/blog/:id/publish', AUTHENTICATE, ApiRequest(function (req, res) {
+router.post('/blog/:id/publish', AUTHENTICATEJSON, ApiRequest(function (req, res) {
     return Api.blog.publish(+req.params.id);
 }));
 
-router.post('/blog/:id/unpublish', AUTHENTICATE, ApiRequest(function (req, res) {
+router.post('/blog/:id/unpublish', AUTHENTICATEJSON, ApiRequest(function (req, res) {
     return Api.blog.unpublish(+req.params.id);
 }));
 
-router.post('/blog/:id/remove', AUTHENTICATE, ApiRequest(function (req, res) {
+router.post('/blog/:id/remove', AUTHENTICATEJSON, ApiRequest(function (req, res) {
     return Api.blog.remove(+req.params.id);
 }));
 

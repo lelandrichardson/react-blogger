@@ -29,3 +29,10 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+
+//export var sequelize = require('sequelize');
+//export var Sequelize = require('sequelize');
+//export var Blog = require('./Blog');
+//export var Session = require('./Session');
+//export var User = require('./User');
+//export var Version = require('./Version');
