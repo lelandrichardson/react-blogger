@@ -35,6 +35,7 @@ var Session = require('./Models/Session');
 
 import Flux from './Flux.js';
 var ClientRoutes = require('./ClientRoutes');
+var AdminRoutes = require('./AdminRoutes');
 import Location from 'react-router/lib/Location';
 import Router from 'react-router';
 import App from './App';
@@ -175,7 +176,24 @@ app.disable('x-powered-by');
 
 
 app.get(['/admin/login', '/admin/login'], /* AUTHENTICATE,*/ function (req, res) {
-    res.render('Admin');
+    const location = new Location(req.baseUrl, req.query);
+    const flux = new Flux({ req });
+    flux.Http.start();
+    Router.run(AdminRoutes, location, (error, initialState) => {
+        if (error) {
+            return res.status(500).send(error);
+        }
+
+        // NOTE: this render pass is effectively wasted :(
+        var html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
+        flux.Http.stop();
+        Promise.all(flux.Http.promises).then(() => {
+            var html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
+            const data = flux.takeSnapshot();
+
+            res.render('Admin', { html, data });
+        });
+    });
 });
 
 app.post('/admin/login', passport.authenticate('login', {
@@ -214,11 +232,28 @@ var AUTHENTICATE = function (req, res, next) {
 app.use('/api', AUTHENTICATE, require('./Server/Api'));
 
 app.use(['/admin','/admin/*'], AUTHENTICATE, function (req, res) {
-    res.render('Admin');
+
+    const location = new Location(req.baseUrl, req.query);
+    const flux = new Flux({ req });
+    flux.Http.start();
+    Router.run(AdminRoutes, location, (error, initialState) => {
+        if (error) {
+            return res.status(500).send(error);
+        }
+
+        // NOTE: this render pass is effectively wasted :(
+        var html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
+        flux.Http.stop();
+        Promise.all(flux.Http.promises).then(() => {
+            var html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
+            const data = flux.takeSnapshot();
+
+            res.render('Admin', { html, data });
+        });
+    });
 });
 
 app.use('/*', function (req, res) {
-    //debugger;
     const location = new Location(req.baseUrl, req.query);
     const flux = new Flux({ req });
     flux.Http.start();
@@ -227,6 +262,7 @@ app.use('/*', function (req, res) {
             return res.status(500).send(error);
         }
 
+        // NOTE: this render pass is effectively wasted :(
         var html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
         flux.Http.stop();
         Promise.all(flux.Http.promises).then(() => {
@@ -235,7 +271,6 @@ app.use('/*', function (req, res) {
 
             res.render('Client', { html, data });
         });
-
     });
 });
 

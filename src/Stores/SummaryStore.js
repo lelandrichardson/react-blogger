@@ -6,7 +6,7 @@ var BlogActions = require('../Actions/BlogActions');
 const BlogListDataSource = alt => ({
     listAll: {
         remote(store, filter, page) {
-            return Api(alt).blog
+            return Api(alt.Http).blog
                 .list({ ...filter, offset: page * 10 })
                 .then(result => ({ ...result, page, filter }));
         },

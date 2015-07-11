@@ -1,0 +1,1140 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'i',
+1 verbose cli   '--save',
+1 verbose cli   'extract-text-webpack-plugin' ]
+2 info using npm@2.12.1
+3 info using node@v0.12.6
+4 verbose node symlink /usr/local/bin/node
+5 verbose install initial load of /Users/lmr/code/react-blogger/package.json
+6 warn package.json react-blogger@0.0.1 No repository field.
+7 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/alt/package.json
+8 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/babel-core/package.json
+9 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/babel-loader/package.json
+10 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/babel-runtime/package.json
+11 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/bcrypt/package.json
+12 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/body-parser/package.json
+13 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/chalk/package.json
+14 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/classnames/package.json
+15 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/codemirror/package.json
+16 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/compression/package.json
+17 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/connect-pg-simple/package.json
+18 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/contrast/package.json
+19 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/cookie-parser/package.json
+20 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/css-loader/package.json
+21 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/ejs/package.json
+22 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/es5-shim/package.json
+23 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/es6-promise/package.json
+24 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/es6-shim/package.json
+25 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/express/package.json
+26 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/express-session/package.json
+27 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/helmet/package.json
+28 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/highlight.js/package.json
+29 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/immutable/package.json
+30 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/jasmine/package.json
+31 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/jasmine-core/package.json
+32 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/json-loader/package.json
+33 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/karma/package.json
+34 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/karma-chrome-launcher/package.json
+35 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/karma-jasmine/package.json
+36 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/karma-spec-reporter/package.json
+37 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/karma-webpack/package.json
+38 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/keymaster/package.json
+39 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/less/package.json
+40 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/less-loader/package.json
+41 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/lodash/package.json
+42 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/md2react/package.json
+43 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/md5/package.json
+44 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/method-override/package.json
+45 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/moment/package.json
+46 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/morgan/package.json
+47 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/node-libs-browser/package.json
+48 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/normalizr/package.json
+49 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/passport/package.json
+50 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/passport-local/package.json
+51 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/pg/package.json
+52 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/pg-hstore/package.json
+53 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/pure-render-mixin/package.json
+54 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/react/package.json
+55 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/react-code-mirror/package.json
+56 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/react-codemirror/package.json
+57 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/react-datepicker/package.json
+58 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/react-document-title/package.json
+59 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/react-flux/package.json
+60 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/react-fontawesome/package.json
+61 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/react-highlight/package.json
+62 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/react-hotkeys/package.json
+63 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/react-infinite-scroll/package.json
+64 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/react-pager/package.json
+65 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/react-router/package.json
+66 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/react-timeago/package.json
+67 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/redux/package.json
+68 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/sequelize/package.json
+69 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/sequelize-cli/package.json
+70 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/serve-favicon/package.json
+71 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/shortid/package.json
+72 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/sinon/package.json
+73 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/source-map-support/package.json
+74 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/style-loader/package.json
+75 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/superagent/package.json
+76 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/url-append/package.json
+77 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/url-parse/package.json
+78 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/webpack/package.json
+79 verbose installManyTop reading scoped package data from /Users/lmr/code/react-blogger/node_modules/webpack-dev-server/package.json
+80 info package.json css-loader@0.13.1 No license field.
+81 info package.json json-loader@0.5.1 No license field.
+82 info package.json karma-webpack@1.5.1 No license field.
+83 info package.json less-loader@2.2.0 No license field.
+84 info package.json md5@1.0.1 No README data
+85 info package.json md5@1.0.1 No license field.
+86 info package.json moment@2.10.3 No license field.
+87 info package.json passport-local@1.0.0 No license field.
+88 info package.json sinon@1.14.1 No license field.
+89 info package.json style-loader@0.12.2 No license field.
+90 info package.json bcrypt@0.8.3 No license field.
+91 info package.json keymaster@1.6.2 No license field.
+92 info package.json pg-hstore@2.3.2 No license field.
+93 info package.json react-codemirror@0.1.2 No license field.
+94 info package.json superagent@1.2.0 No license field.
+95 verbose readDependencies loading dependencies from /Users/lmr/code/react-blogger/package.json
+96 silly cache add args [ 'extract-text-webpack-plugin', null ]
+97 verbose cache add spec extract-text-webpack-plugin
+98 silly cache add parsed spec { raw: 'extract-text-webpack-plugin',
+98 silly cache add   scope: null,
+98 silly cache add   name: 'extract-text-webpack-plugin',
+98 silly cache add   rawSpec: '',
+98 silly cache add   spec: '*',
+98 silly cache add   type: 'range' }
+99 silly addNamed extract-text-webpack-plugin@*
+100 verbose addNamed "*" is a valid semver range for extract-text-webpack-plugin
+101 silly addNameRange { name: 'extract-text-webpack-plugin',
+101 silly addNameRange   range: '*',
+101 silly addNameRange   hasData: false }
+102 silly mapToRegistry name extract-text-webpack-plugin
+103 silly mapToRegistry using default registry
+104 silly mapToRegistry registry https://registry.npmjs.org/
+105 silly mapToRegistry uri https://registry.npmjs.org/extract-text-webpack-plugin
+106 verbose addNameRange registry:https://registry.npmjs.org/extract-text-webpack-plugin not in flight; fetching
+107 verbose request uri https://registry.npmjs.org/extract-text-webpack-plugin
+108 verbose request no auth needed
+109 info attempt registry request try #1 at 17:53:42
+110 verbose request using bearer token for auth
+111 verbose request id 73329025903b301c
+112 http request GET https://registry.npmjs.org/extract-text-webpack-plugin
+113 http 200 https://registry.npmjs.org/extract-text-webpack-plugin
+114 silly get cb [ 200,
+114 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+114 silly get     etag: '"7CYCMU1KZNXCRNFHUZCTLON85"',
+114 silly get     'content-type': 'application/json',
+114 silly get     'cache-control': 'max-age=60',
+114 silly get     'content-length': '35008',
+114 silly get     'accept-ranges': 'bytes',
+114 silly get     date: 'Sat, 11 Jul 2015 00:53:42 GMT',
+114 silly get     via: '1.1 varnish',
+114 silly get     connection: 'keep-alive',
+114 silly get     'x-served-by': 'cache-lax1429-LAX',
+114 silly get     'x-cache': 'MISS',
+114 silly get     'x-cache-hits': '0',
+114 silly get     'x-timer': 'S1436576022.185969,VS0,VE94',
+114 silly get     vary: 'Accept' } ]
+115 verbose get saving extract-text-webpack-plugin to /Users/lmr/.npm/registry.npmjs.org/extract-text-webpack-plugin/.cache.json
+116 silly addNameRange number 2 { name: 'extract-text-webpack-plugin',
+116 silly addNameRange   range: '*',
+116 silly addNameRange   hasData: true }
+117 silly addNameRange versions [ 'extract-text-webpack-plugin',
+117 silly addNameRange   [ '0.1.0',
+117 silly addNameRange     '0.1.1',
+117 silly addNameRange     '0.1.2',
+117 silly addNameRange     '0.2.0',
+117 silly addNameRange     '0.2.1',
+117 silly addNameRange     '0.2.2',
+117 silly addNameRange     '0.2.3',
+117 silly addNameRange     '0.2.4',
+117 silly addNameRange     '0.2.5',
+117 silly addNameRange     '0.3.0',
+117 silly addNameRange     '0.3.1',
+117 silly addNameRange     '0.3.2',
+117 silly addNameRange     '0.3.3',
+117 silly addNameRange     '0.3.4',
+117 silly addNameRange     '0.3.5',
+117 silly addNameRange     '0.3.6',
+117 silly addNameRange     '0.3.7',
+117 silly addNameRange     '0.3.8',
+117 silly addNameRange     '0.4.0',
+117 silly addNameRange     '0.5.0',
+117 silly addNameRange     '0.6.0',
+117 silly addNameRange     '0.7.0',
+117 silly addNameRange     '0.7.1',
+117 silly addNameRange     '0.8.0',
+117 silly addNameRange     '0.8.1',
+117 silly addNameRange     '0.8.2' ] ]
+118 silly addNamed extract-text-webpack-plugin@0.8.2
+119 verbose addNamed "0.8.2" is a plain semver version for extract-text-webpack-plugin
+120 silly mapToRegistry name extract-text-webpack-plugin
+121 silly mapToRegistry using default registry
+122 silly mapToRegistry registry https://registry.npmjs.org/
+123 silly mapToRegistry uri https://registry.npmjs.org/extract-text-webpack-plugin
+124 verbose addRemoteTarball https://registry.npmjs.org/extract-text-webpack-plugin/-/extract-text-webpack-plugin-0.8.2.tgz not in flight; adding
+125 verbose addRemoteTarball [ 'https://registry.npmjs.org/extract-text-webpack-plugin/-/extract-text-webpack-plugin-0.8.2.tgz',
+125 verbose addRemoteTarball   '49309df325f53affc53972f711afba2360c1914c' ]
+126 info retry fetch attempt 1 at 17:53:42
+127 info attempt registry request try #1 at 17:53:42
+128 http fetch GET https://registry.npmjs.org/extract-text-webpack-plugin/-/extract-text-webpack-plugin-0.8.2.tgz
+129 verbose request using bearer token for auth
+130 http fetch 200 https://registry.npmjs.org/extract-text-webpack-plugin/-/extract-text-webpack-plugin-0.8.2.tgz
+131 silly fetchAndShaCheck shasum 49309df325f53affc53972f711afba2360c1914c
+132 verbose addTmpTarball /var/folders/18/d5n9rbfn6gq7_2xqlhqb9f5m0000gn/T/npm-8139-8423a14e/registry.npmjs.org/extract-text-webpack-plugin/-/extract-text-webpack-plugin-0.8.2.tgz not in flight; adding
+133 verbose addTmpTarball already have metadata; skipping unpack for extract-text-webpack-plugin@0.8.2
+134 silly cache afterAdd extract-text-webpack-plugin@0.8.2
+135 verbose afterAdd /Users/lmr/.npm/extract-text-webpack-plugin/0.8.2/package/package.json not in flight; writing
+136 verbose afterAdd /Users/lmr/.npm/extract-text-webpack-plugin/0.8.2/package/package.json written
+137 silly install resolved [ { name: 'extract-text-webpack-plugin',
+137 silly install resolved     version: '0.8.2',
+137 silly install resolved     author: { name: 'Tobias Koppers @sokra' },
+137 silly install resolved     description: 'Extract text from bundle into a file.',
+137 silly install resolved     peerDependencies: { webpack: '^1.9.11' },
+137 silly install resolved     dependencies: { async: '^1.2.1', 'loader-utils': '~0.2.3' },
+137 silly install resolved     devDependencies:
+137 silly install resolved      { 'file-loader': '*',
+137 silly install resolved        'style-loader': '*',
+137 silly install resolved        'css-loader': '*',
+137 silly install resolved        webpack: '*' },
+137 silly install resolved     homepage: 'http://github.com/webpack/extract-text-webpack-plugin',
+137 silly install resolved     repository:
+137 silly install resolved      { type: 'git',
+137 silly install resolved        url: 'git+ssh://git@github.com/webpack/extract-text-webpack-plugin.git' },
+137 silly install resolved     license: 'MIT',
+137 silly install resolved     gitHead: 'a03c82c59d557ec4abe1f9afff8ad7cb91325eb0',
+137 silly install resolved     bugs: { url: 'https://github.com/webpack/extract-text-webpack-plugin/issues' },
+137 silly install resolved     _id: 'extract-text-webpack-plugin@0.8.2',
+137 silly install resolved     scripts: {},
+137 silly install resolved     _shasum: '49309df325f53affc53972f711afba2360c1914c',
+137 silly install resolved     _from: 'extract-text-webpack-plugin@*',
+137 silly install resolved     _npmVersion: '2.10.0',
+137 silly install resolved     _nodeVersion: '0.12.2',
+137 silly install resolved     _npmUser: { name: 'sokra', email: 'tobias.koppers@googlemail.com' },
+137 silly install resolved     maintainers: [ [Object] ],
+137 silly install resolved     dist:
+137 silly install resolved      { shasum: '49309df325f53affc53972f711afba2360c1914c',
+137 silly install resolved        tarball: 'http://registry.npmjs.org/extract-text-webpack-plugin/-/extract-text-webpack-plugin-0.8.2.tgz' },
+137 silly install resolved     directories: {},
+137 silly install resolved     _resolved: 'https://registry.npmjs.org/extract-text-webpack-plugin/-/extract-text-webpack-plugin-0.8.2.tgz' } ]
+138 info install extract-text-webpack-plugin@0.8.2 into /Users/lmr/code/react-blogger
+139 info installOne extract-text-webpack-plugin@0.8.2
+140 verbose installOne of extract-text-webpack-plugin to /Users/lmr/code/react-blogger not in flight; installing
+141 verbose lock using /Users/lmr/.npm/_locks/extract-text-webpack-plu-a405b4d4ca9e46ce.lock for /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin
+142 silly install write writing extract-text-webpack-plugin 0.8.2 to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin
+143 verbose unbuild node_modules/extract-text-webpack-plugin
+144 silly gentlyRm /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin is being purged from base /Users/lmr/code/react-blogger
+145 verbose gentlyRm don't care about contents; nuking /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin
+146 verbose tar unpack /Users/lmr/.npm/extract-text-webpack-plugin/0.8.2/package.tgz
+147 verbose tar unpacking to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin
+148 silly gentlyRm /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin is being purged
+149 verbose gentlyRm don't care about contents; nuking /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin
+150 silly gunzTarPerm modes [ '755', '644' ]
+151 silly gunzTarPerm extractEntry package.json
+152 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+153 silly gunzTarPerm extractEntry .npmignore
+154 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+155 silly gunzTarPerm extractEntry README.md
+156 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+157 silly gunzTarPerm extractEntry ExtractedModule.js
+158 silly gunzTarPerm modified mode [ 'ExtractedModule.js', 438, 420 ]
+159 silly gunzTarPerm extractEntry OrderUndefinedError.js
+160 silly gunzTarPerm modified mode [ 'OrderUndefinedError.js', 438, 420 ]
+161 silly gunzTarPerm extractEntry index.js
+162 silly gunzTarPerm modified mode [ 'index.js', 438, 420 ]
+163 silly gunzTarPerm extractEntry loader.js
+164 silly gunzTarPerm modified mode [ 'loader.js', 438, 420 ]
+165 silly gunzTarPerm extractEntry .eslintrc
+166 silly gunzTarPerm modified mode [ '.eslintrc', 438, 420 ]
+167 silly gunzTarPerm extractEntry .editorconfig
+168 silly gunzTarPerm modified mode [ '.editorconfig', 438, 420 ]
+169 verbose write writing to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/package.json
+170 info preinstall extract-text-webpack-plugin@0.8.2
+171 verbose readDependencies loading dependencies from /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/package.json
+172 silly prepareForInstallMany adding async@^1.2.1 from extract-text-webpack-plugin dependencies
+173 silly prepareForInstallMany adding loader-utils@~0.2.3 from extract-text-webpack-plugin dependencies
+174 silly prepareForInstallMany adding webpack@^1.9.11 from extract-text-webpack-plugin peerDependencies
+175 warn peerDependencies The peer dependency webpack@^1.9.11 included from extract-text-webpack-plugin will no
+176 warn peerDependencies longer be automatically installed to fulfill the peerDependency
+177 warn peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+178 verbose readDependencies loading dependencies from /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/package.json
+179 silly cache add args [ 'async@^1.2.1', null ]
+180 verbose cache add spec async@^1.2.1
+181 silly cache add args [ 'loader-utils@~0.2.3', null ]
+182 verbose cache add spec loader-utils@~0.2.3
+183 silly cache add parsed spec { raw: 'async@^1.2.1',
+183 silly cache add   scope: null,
+183 silly cache add   name: 'async',
+183 silly cache add   rawSpec: '^1.2.1',
+183 silly cache add   spec: '>=1.2.1 <2.0.0',
+183 silly cache add   type: 'range' }
+184 silly addNamed async@>=1.2.1 <2.0.0
+185 verbose addNamed ">=1.2.1 <2.0.0" is a valid semver range for async
+186 silly addNameRange { name: 'async', range: '>=1.2.1 <2.0.0', hasData: false }
+187 silly mapToRegistry name async
+188 silly mapToRegistry using default registry
+189 silly mapToRegistry registry https://registry.npmjs.org/
+190 silly mapToRegistry uri https://registry.npmjs.org/async
+191 verbose addNameRange registry:https://registry.npmjs.org/async not in flight; fetching
+192 silly cache add parsed spec { raw: 'loader-utils@~0.2.3',
+192 silly cache add   scope: null,
+192 silly cache add   name: 'loader-utils',
+192 silly cache add   rawSpec: '~0.2.3',
+192 silly cache add   spec: '>=0.2.3 <0.3.0',
+192 silly cache add   type: 'range' }
+193 silly addNamed loader-utils@>=0.2.3 <0.3.0
+194 verbose addNamed ">=0.2.3 <0.3.0" is a valid semver range for loader-utils
+195 silly addNameRange { name: 'loader-utils', range: '>=0.2.3 <0.3.0', hasData: false }
+196 silly mapToRegistry name loader-utils
+197 silly mapToRegistry using default registry
+198 silly mapToRegistry registry https://registry.npmjs.org/
+199 silly mapToRegistry uri https://registry.npmjs.org/loader-utils
+200 verbose addNameRange registry:https://registry.npmjs.org/loader-utils not in flight; fetching
+201 verbose request uri https://registry.npmjs.org/loader-utils
+202 verbose request no auth needed
+203 info attempt registry request try #1 at 17:53:42
+204 verbose request using bearer token for auth
+205 http request GET https://registry.npmjs.org/loader-utils
+206 verbose request uri https://registry.npmjs.org/async
+207 verbose request no auth needed
+208 info attempt registry request try #1 at 17:53:42
+209 verbose request using bearer token for auth
+210 verbose etag "7CWITCDOF3IUU2P7ALOWJMGAA"
+211 http request GET https://registry.npmjs.org/async
+212 http 200 https://registry.npmjs.org/loader-utils
+213 silly get cb [ 200,
+213 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+213 silly get     etag: '"47OAW8EATAH4HYQTCQT4MBAWY"',
+213 silly get     'content-type': 'application/json',
+213 silly get     'cache-control': 'max-age=60',
+213 silly get     'content-length': '18462',
+213 silly get     'accept-ranges': 'bytes',
+213 silly get     date: 'Sat, 11 Jul 2015 00:53:43 GMT',
+213 silly get     via: '1.1 varnish',
+213 silly get     connection: 'keep-alive',
+213 silly get     'x-served-by': 'cache-lax1424-LAX',
+213 silly get     'x-cache': 'MISS',
+213 silly get     'x-cache-hits': '0',
+213 silly get     'x-timer': 'S1436576022.857871,VS0,VE212',
+213 silly get     vary: 'Accept' } ]
+214 verbose get saving loader-utils to /Users/lmr/.npm/registry.npmjs.org/loader-utils/.cache.json
+215 silly addNameRange number 2 { name: 'loader-utils', range: '>=0.2.3 <0.3.0', hasData: true }
+216 silly addNameRange versions [ 'loader-utils',
+216 silly addNameRange   [ '0.1.0',
+216 silly addNameRange     '0.1.1',
+216 silly addNameRange     '0.1.2',
+216 silly addNameRange     '0.2.0',
+216 silly addNameRange     '0.2.1',
+216 silly addNameRange     '0.2.2',
+216 silly addNameRange     '0.2.3',
+216 silly addNameRange     '0.2.4',
+216 silly addNameRange     '0.2.5',
+216 silly addNameRange     '0.2.6',
+216 silly addNameRange     '0.2.7',
+216 silly addNameRange     '0.2.8',
+216 silly addNameRange     '0.2.9',
+216 silly addNameRange     '0.2.10' ] ]
+217 silly addNamed loader-utils@0.2.10
+218 verbose addNamed "0.2.10" is a plain semver version for loader-utils
+219 silly mapToRegistry name loader-utils
+220 silly mapToRegistry using default registry
+221 silly mapToRegistry registry https://registry.npmjs.org/
+222 silly mapToRegistry uri https://registry.npmjs.org/loader-utils
+223 verbose addRemoteTarball https://registry.npmjs.org/loader-utils/-/loader-utils-0.2.10.tgz not in flight; adding
+224 verbose addRemoteTarball [ 'https://registry.npmjs.org/loader-utils/-/loader-utils-0.2.10.tgz',
+224 verbose addRemoteTarball   '7ed2258e496644c83680590489bb82f3f57892fc' ]
+225 info retry fetch attempt 1 at 17:53:43
+226 info attempt registry request try #1 at 17:53:43
+227 http fetch GET https://registry.npmjs.org/loader-utils/-/loader-utils-0.2.10.tgz
+228 verbose request using bearer token for auth
+229 http fetch 200 https://registry.npmjs.org/loader-utils/-/loader-utils-0.2.10.tgz
+230 silly fetchAndShaCheck shasum 7ed2258e496644c83680590489bb82f3f57892fc
+231 verbose addTmpTarball /var/folders/18/d5n9rbfn6gq7_2xqlhqb9f5m0000gn/T/npm-8139-8423a14e/registry.npmjs.org/loader-utils/-/loader-utils-0.2.10.tgz not in flight; adding
+232 verbose addTmpTarball already have metadata; skipping unpack for loader-utils@0.2.10
+233 silly cache afterAdd loader-utils@0.2.10
+234 verbose afterAdd /Users/lmr/.npm/loader-utils/0.2.10/package/package.json not in flight; writing
+235 verbose afterAdd /Users/lmr/.npm/loader-utils/0.2.10/package/package.json written
+236 http 200 https://registry.npmjs.org/async
+237 silly get cb [ 200,
+237 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+237 silly get     etag: '"9CYP4MTIDJWQOS7YZG1XHWLLG"',
+237 silly get     'content-type': 'application/json',
+237 silly get     'cache-control': 'max-age=60',
+237 silly get     'content-length': '125347',
+237 silly get     'accept-ranges': 'bytes',
+237 silly get     date: 'Sat, 11 Jul 2015 00:53:43 GMT',
+237 silly get     via: '1.1 varnish',
+237 silly get     connection: 'keep-alive',
+237 silly get     'x-served-by': 'cache-lax1424-LAX',
+237 silly get     'x-cache': 'MISS',
+237 silly get     'x-cache-hits': '0',
+237 silly get     'x-timer': 'S1436576022.860747,VS0,VE436',
+237 silly get     vary: 'Accept' } ]
+238 verbose get saving async to /Users/lmr/.npm/registry.npmjs.org/async/.cache.json
+239 silly addNameRange number 2 { name: 'async', range: '>=1.2.1 <2.0.0', hasData: true }
+240 silly addNameRange versions [ 'async',
+240 silly addNameRange   [ '0.1.0',
+240 silly addNameRange     '0.1.1',
+240 silly addNameRange     '0.1.2',
+240 silly addNameRange     '0.1.3',
+240 silly addNameRange     '0.1.4',
+240 silly addNameRange     '0.1.5',
+240 silly addNameRange     '0.1.6',
+240 silly addNameRange     '0.1.7',
+240 silly addNameRange     '0.1.8',
+240 silly addNameRange     '0.1.9',
+240 silly addNameRange     '0.1.10',
+240 silly addNameRange     '0.1.11',
+240 silly addNameRange     '0.1.12',
+240 silly addNameRange     '0.1.13',
+240 silly addNameRange     '0.1.14',
+240 silly addNameRange     '0.1.15',
+240 silly addNameRange     '0.1.16',
+240 silly addNameRange     '0.1.17',
+240 silly addNameRange     '0.1.18',
+240 silly addNameRange     '0.1.19',
+240 silly addNameRange     '0.1.20',
+240 silly addNameRange     '0.1.21',
+240 silly addNameRange     '0.1.22',
+240 silly addNameRange     '0.2.0',
+240 silly addNameRange     '0.2.1',
+240 silly addNameRange     '0.2.2',
+240 silly addNameRange     '0.2.3',
+240 silly addNameRange     '0.2.4',
+240 silly addNameRange     '0.2.5',
+240 silly addNameRange     '0.2.6',
+240 silly addNameRange     '0.2.7',
+240 silly addNameRange     '0.2.8',
+240 silly addNameRange     '0.2.9',
+240 silly addNameRange     '0.2.10',
+240 silly addNameRange     '0.3.0',
+240 silly addNameRange     '0.4.0',
+240 silly addNameRange     '0.4.1',
+240 silly addNameRange     '0.5.0',
+240 silly addNameRange     '0.6.0',
+240 silly addNameRange     '0.6.1',
+240 silly addNameRange     '0.6.2',
+240 silly addNameRange     '0.7.0',
+240 silly addNameRange     '0.8.0',
+240 silly addNameRange     '0.9.0',
+240 silly addNameRange     '0.9.2',
+240 silly addNameRange     '1.0.0',
+240 silly addNameRange     '1.1.0',
+240 silly addNameRange     '1.2.0',
+240 silly addNameRange     '1.1.1',
+240 silly addNameRange     '1.2.1',
+240 silly addNameRange     '1.3.0' ] ]
+241 silly addNamed async@1.3.0
+242 verbose addNamed "1.3.0" is a plain semver version for async
+243 silly mapToRegistry name async
+244 silly mapToRegistry using default registry
+245 silly mapToRegistry registry https://registry.npmjs.org/
+246 silly mapToRegistry uri https://registry.npmjs.org/async
+247 verbose addRemoteTarball https://registry.npmjs.org/async/-/async-1.3.0.tgz not in flight; adding
+248 verbose addRemoteTarball [ 'https://registry.npmjs.org/async/-/async-1.3.0.tgz',
+248 verbose addRemoteTarball   'a6f1631e8a595a663496d0a5586bd12007d4871d' ]
+249 info retry fetch attempt 1 at 17:53:43
+250 info attempt registry request try #1 at 17:53:43
+251 http fetch GET https://registry.npmjs.org/async/-/async-1.3.0.tgz
+252 verbose request using bearer token for auth
+253 http fetch 200 https://registry.npmjs.org/async/-/async-1.3.0.tgz
+254 silly fetchAndShaCheck shasum a6f1631e8a595a663496d0a5586bd12007d4871d
+255 verbose addTmpTarball /var/folders/18/d5n9rbfn6gq7_2xqlhqb9f5m0000gn/T/npm-8139-8423a14e/registry.npmjs.org/async/-/async-1.3.0.tgz not in flight; adding
+256 verbose addTmpTarball already have metadata; skipping unpack for async@1.3.0
+257 silly cache afterAdd async@1.3.0
+258 verbose afterAdd /Users/lmr/.npm/async/1.3.0/package/package.json not in flight; writing
+259 verbose afterAdd /Users/lmr/.npm/async/1.3.0/package/package.json written
+260 silly install resolved [ { name: 'loader-utils',
+260 silly install resolved     version: '0.2.10',
+260 silly install resolved     author: { name: 'Tobias Koppers @sokra' },
+260 silly install resolved     description: 'utils for webpack loaders',
+260 silly install resolved     dependencies: { 'big.js': '^3.0.2', json5: '^0.4.0' },
+260 silly install resolved     scripts:
+260 silly install resolved      { test: 'mocha',
+260 silly install resolved        travis: 'npm run cover -- --report lcovonly',
+260 silly install resolved        cover: 'istanbul cover -x *.runtime.js node_modules/mocha/bin/_mocha',
+260 silly install resolved        'publish-patch': 'mocha && npm version patch && git push && git push --tags && npm publish' },
+260 silly install resolved     license: 'MIT',
+260 silly install resolved     repository:
+260 silly install resolved      { type: 'git',
+260 silly install resolved        url: 'git+https://github.com/webpack/loader-utils.git' },
+260 silly install resolved     devDependencies: { coveralls: '^2.11.2', istanbul: '^0.3.14', mocha: '^1.21.4' },
+260 silly install resolved     files: [ 'index.js' ],
+260 silly install resolved     gitHead: '7fd3e9a1c9a0fb8d775f835498b8c0a2002e36a0',
+260 silly install resolved     bugs: { url: 'https://github.com/webpack/loader-utils/issues' },
+260 silly install resolved     homepage: 'https://github.com/webpack/loader-utils#readme',
+260 silly install resolved     _id: 'loader-utils@0.2.10',
+260 silly install resolved     _shasum: '7ed2258e496644c83680590489bb82f3f57892fc',
+260 silly install resolved     _from: 'loader-utils@>=0.2.3 <0.3.0',
+260 silly install resolved     _npmVersion: '2.10.0',
+260 silly install resolved     _nodeVersion: '0.12.2',
+260 silly install resolved     _npmUser: { name: 'sokra', email: 'tobias.koppers@googlemail.com' },
+260 silly install resolved     maintainers: [ [Object] ],
+260 silly install resolved     dist:
+260 silly install resolved      { shasum: '7ed2258e496644c83680590489bb82f3f57892fc',
+260 silly install resolved        tarball: 'http://registry.npmjs.org/loader-utils/-/loader-utils-0.2.10.tgz' },
+260 silly install resolved     directories: {},
+260 silly install resolved     _resolved: 'https://registry.npmjs.org/loader-utils/-/loader-utils-0.2.10.tgz' },
+260 silly install resolved   { name: 'async',
+260 silly install resolved     description: 'Higher-order functions and common patterns for asynchronous code',
+260 silly install resolved     main: 'lib/async.js',
+260 silly install resolved     author: { name: 'Caolan McMahon' },
+260 silly install resolved     version: '1.3.0',
+260 silly install resolved     keywords: [ 'async', 'callback', 'utility', 'module' ],
+260 silly install resolved     repository: { type: 'git', url: 'git+https://github.com/caolan/async.git' },
+260 silly install resolved     bugs: { url: 'https://github.com/caolan/async/issues' },
+260 silly install resolved     license: 'MIT',
+260 silly install resolved     devDependencies:
+260 silly install resolved      { benchmark: 'github:bestiejs/benchmark.js',
+260 silly install resolved        coveralls: '^2.11.2',
+260 silly install resolved        jshint: '~2.8.0',
+260 silly install resolved        lodash: '^3.9.0',
+260 silly install resolved        mkdirp: '~0.5.1',
+260 silly install resolved        nodeunit: '>0.0.0',
+260 silly install resolved        nyc: '^2.1.0',
+260 silly install resolved        'uglify-js': '~2.4.0',
+260 silly install resolved        xyz: '^0.5.0',
+260 silly install resolved        yargs: '~3.9.1' },
+260 silly install resolved     jam: { main: 'lib/async.js', include: [Object], categories: [Object] },
+260 silly install resolved     scripts:
+260 silly install resolved      { test: 'npm run-script lint && nodeunit test/test-async.js',
+260 silly install resolved        lint: 'jshint lib/*.js test/*.js perf/*.js',
+260 silly install resolved        coverage: 'nyc npm test && nyc report',
+260 silly install resolved        coveralls: 'nyc npm test && nyc report --reporter=text-lcov | coveralls' },
+260 silly install resolved     spm: { main: 'lib/async.js' },
+260 silly install resolved     volo: { main: 'lib/async.js', ignore: [Object] },
+260 silly install resolved     gitHead: '71fa2638973dafd8761fa5457c472a312cc820fe',
+260 silly install resolved     homepage: 'https://github.com/caolan/async#readme',
+260 silly install resolved     _id: 'async@1.3.0',
+260 silly install resolved     _shasum: 'a6f1631e8a595a663496d0a5586bd12007d4871d',
+260 silly install resolved     _from: 'async@>=1.2.1 <2.0.0',
+260 silly install resolved     _npmVersion: '2.9.1',
+260 silly install resolved     _nodeVersion: '0.12.3',
+260 silly install resolved     _npmUser: { name: 'aearly', email: 'alexander.early@gmail.com' },
+260 silly install resolved     maintainers: [ [Object], [Object], [Object] ],
+260 silly install resolved     dist:
+260 silly install resolved      { shasum: 'a6f1631e8a595a663496d0a5586bd12007d4871d',
+260 silly install resolved        tarball: 'http://registry.npmjs.org/async/-/async-1.3.0.tgz' },
+260 silly install resolved     directories: {},
+260 silly install resolved     _resolved: 'https://registry.npmjs.org/async/-/async-1.3.0.tgz' } ]
+261 info install loader-utils@0.2.10 into /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin
+262 info install async@1.3.0 into /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin
+263 info installOne loader-utils@0.2.10
+264 verbose installOne of loader-utils to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin not in flight; installing
+265 info installOne async@1.3.0
+266 verbose installOne of async to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin not in flight; installing
+267 verbose lock using /Users/lmr/.npm/_locks/loader-utils-adbf586ad40fb516.lock for /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils
+268 verbose lock using /Users/lmr/.npm/_locks/async-55f280bc8fd2963a.lock for /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/async
+269 silly install write writing loader-utils 0.2.10 to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils
+270 silly install write writing async 1.3.0 to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/async
+271 verbose unbuild node_modules/extract-text-webpack-plugin/node_modules/loader-utils
+272 verbose unbuild node_modules/extract-text-webpack-plugin/node_modules/async
+273 silly gentlyRm /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils is being purged from base /Users/lmr/code/react-blogger
+274 verbose gentlyRm don't care about contents; nuking /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils
+275 verbose tar unpack /Users/lmr/.npm/loader-utils/0.2.10/package.tgz
+276 verbose tar unpacking to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils
+277 silly gentlyRm /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils is being purged
+278 verbose gentlyRm don't care about contents; nuking /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils
+279 silly gentlyRm /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/async is being purged from base /Users/lmr/code/react-blogger
+280 verbose gentlyRm don't care about contents; nuking /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/async
+281 silly gunzTarPerm modes [ '755', '644' ]
+282 verbose tar unpack /Users/lmr/.npm/async/1.3.0/package.tgz
+283 verbose tar unpacking to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/async
+284 silly gentlyRm /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/async is being purged
+285 verbose gentlyRm don't care about contents; nuking /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/async
+286 silly gunzTarPerm modes [ '755', '644' ]
+287 silly gunzTarPerm extractEntry package.json
+288 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+289 silly gunzTarPerm extractEntry package.json
+290 silly gunzTarPerm modified mode [ 'package.json', 436, 420 ]
+291 silly gunzTarPerm extractEntry README.md
+292 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+293 silly gunzTarPerm extractEntry LICENSE
+294 silly gunzTarPerm modified mode [ 'LICENSE', 438, 420 ]
+295 silly gunzTarPerm extractEntry README.md
+296 silly gunzTarPerm modified mode [ 'README.md', 436, 420 ]
+297 silly gunzTarPerm extractEntry LICENSE
+298 silly gunzTarPerm modified mode [ 'LICENSE', 436, 420 ]
+299 silly gunzTarPerm extractEntry CHANGELOG.md
+300 silly gunzTarPerm modified mode [ 'CHANGELOG.md', 436, 420 ]
+301 silly gunzTarPerm extractEntry lib/async.js
+302 silly gunzTarPerm modified mode [ 'lib/async.js', 436, 420 ]
+303 silly gunzTarPerm extractEntry support/sync-package-managers.js
+304 silly gunzTarPerm modified mode [ 'support/sync-package-managers.js', 509, 493 ]
+305 silly gunzTarPerm extractEntry index.js
+306 silly gunzTarPerm modified mode [ 'index.js', 438, 420 ]
+307 verbose write writing to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/package.json
+308 info preinstall loader-utils@0.2.10
+309 verbose readDependencies loading dependencies from /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/package.json
+310 silly prepareForInstallMany adding big.js@^3.0.2 from loader-utils dependencies
+311 silly prepareForInstallMany adding json5@^0.4.0 from loader-utils dependencies
+312 verbose readDependencies loading dependencies from /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/package.json
+313 silly cache add args [ 'json5@^0.4.0', null ]
+314 verbose cache add spec json5@^0.4.0
+315 silly cache add parsed spec { raw: 'json5@^0.4.0',
+315 silly cache add   scope: null,
+315 silly cache add   name: 'json5',
+315 silly cache add   rawSpec: '^0.4.0',
+315 silly cache add   spec: '>=0.4.0 <0.5.0',
+315 silly cache add   type: 'range' }
+316 silly addNamed json5@>=0.4.0 <0.5.0
+317 verbose addNamed ">=0.4.0 <0.5.0" is a valid semver range for json5
+318 silly addNameRange { name: 'json5', range: '>=0.4.0 <0.5.0', hasData: false }
+319 silly mapToRegistry name json5
+320 silly mapToRegistry using default registry
+321 silly mapToRegistry registry https://registry.npmjs.org/
+322 silly mapToRegistry uri https://registry.npmjs.org/json5
+323 verbose addNameRange registry:https://registry.npmjs.org/json5 not in flight; fetching
+324 silly cache add args [ 'big.js@^3.0.2', null ]
+325 verbose cache add spec big.js@^3.0.2
+326 silly cache add parsed spec { raw: 'big.js@^3.0.2',
+326 silly cache add   scope: null,
+326 silly cache add   name: 'big.js',
+326 silly cache add   rawSpec: '^3.0.2',
+326 silly cache add   spec: '>=3.0.2 <4.0.0',
+326 silly cache add   type: 'range' }
+327 silly addNamed big.js@>=3.0.2 <4.0.0
+328 verbose addNamed ">=3.0.2 <4.0.0" is a valid semver range for big.js
+329 silly addNameRange { name: 'big.js', range: '>=3.0.2 <4.0.0', hasData: false }
+330 silly mapToRegistry name big.js
+331 silly mapToRegistry using default registry
+332 silly mapToRegistry registry https://registry.npmjs.org/
+333 silly mapToRegistry uri https://registry.npmjs.org/big.js
+334 verbose addNameRange registry:https://registry.npmjs.org/big.js not in flight; fetching
+335 verbose request uri https://registry.npmjs.org/json5
+336 verbose request no auth needed
+337 info attempt registry request try #1 at 17:53:43
+338 verbose request using bearer token for auth
+339 http request GET https://registry.npmjs.org/json5
+340 verbose request uri https://registry.npmjs.org/big.js
+341 verbose request no auth needed
+342 info attempt registry request try #1 at 17:53:43
+343 verbose request using bearer token for auth
+344 http request GET https://registry.npmjs.org/big.js
+345 verbose write writing to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/async/package.json
+346 info preinstall async@1.3.0
+347 verbose readDependencies loading dependencies from /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/async/package.json
+348 verbose readDependencies loading dependencies from /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/async/package.json
+349 silly install resolved []
+350 verbose about to build /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/async
+351 info build /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/async
+352 info linkStuff async@1.3.0
+353 silly linkStuff async@1.3.0 has /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules as its parent node_modules
+354 verbose linkBins async@1.3.0
+355 verbose linkMans async@1.3.0
+356 verbose rebuildBundles async@1.3.0
+357 info install async@1.3.0
+358 info postinstall async@1.3.0
+359 verbose unlock done using /Users/lmr/.npm/_locks/async-55f280bc8fd2963a.lock for /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/async
+360 http 200 https://registry.npmjs.org/json5
+361 silly get cb [ 200,
+361 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+361 silly get     etag: '"WJHOV7OMGVWCGCCSOCWNWLFT"',
+361 silly get     'content-type': 'application/json',
+361 silly get     'cache-control': 'max-age=60',
+361 silly get     'content-length': '13929',
+361 silly get     'accept-ranges': 'bytes',
+361 silly get     date: 'Sat, 11 Jul 2015 00:53:44 GMT',
+361 silly get     via: '1.1 varnish',
+361 silly get     connection: 'keep-alive',
+361 silly get     'x-served-by': 'cache-lax1426-LAX',
+361 silly get     'x-cache': 'MISS',
+361 silly get     'x-cache-hits': '0',
+361 silly get     'x-timer': 'S1436576024.098921,VS0,VE87',
+361 silly get     vary: 'Accept' } ]
+362 verbose get saving json5 to /Users/lmr/.npm/registry.npmjs.org/json5/.cache.json
+363 silly addNameRange number 2 { name: 'json5', range: '>=0.4.0 <0.5.0', hasData: true }
+364 silly addNameRange versions [ 'json5', [ '0.0.0', '0.0.1', '0.1.0', '0.2.0', '0.4.0' ] ]
+365 silly addNamed json5@0.4.0
+366 verbose addNamed "0.4.0" is a plain semver version for json5
+367 silly mapToRegistry name json5
+368 silly mapToRegistry using default registry
+369 silly mapToRegistry registry https://registry.npmjs.org/
+370 silly mapToRegistry uri https://registry.npmjs.org/json5
+371 verbose addRemoteTarball https://registry.npmjs.org/json5/-/json5-0.4.0.tgz not in flight; adding
+372 verbose addRemoteTarball [ 'https://registry.npmjs.org/json5/-/json5-0.4.0.tgz',
+372 verbose addRemoteTarball   '054352e4c4c80c86c0923877d449de176a732c8d' ]
+373 info retry fetch attempt 1 at 17:53:44
+374 info attempt registry request try #1 at 17:53:44
+375 http fetch GET https://registry.npmjs.org/json5/-/json5-0.4.0.tgz
+376 verbose request using bearer token for auth
+377 http 200 https://registry.npmjs.org/big.js
+378 silly get cb [ 200,
+378 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+378 silly get     etag: '"V2BGW5VM749T7RMZ6I77UNR9"',
+378 silly get     'content-type': 'application/json',
+378 silly get     'cache-control': 'max-age=60',
+378 silly get     'content-length': '23314',
+378 silly get     'accept-ranges': 'bytes',
+378 silly get     date: 'Sat, 11 Jul 2015 00:53:44 GMT',
+378 silly get     via: '1.1 varnish',
+378 silly get     connection: 'keep-alive',
+378 silly get     'x-served-by': 'cache-lax1435-LAX',
+378 silly get     'x-cache': 'MISS',
+378 silly get     'x-cache-hits': '0',
+378 silly get     'x-timer': 'S1436576024.096217,VS0,VE152',
+378 silly get     vary: 'Accept' } ]
+379 verbose get saving big.js to /Users/lmr/.npm/registry.npmjs.org/big.js/.cache.json
+380 silly addNameRange number 2 { name: 'big.js', range: '>=3.0.2 <4.0.0', hasData: true }
+381 silly addNameRange versions [ 'big.js',
+381 silly addNameRange   [ '2.0.0',
+381 silly addNameRange     '2.1.0',
+381 silly addNameRange     '2.2.0',
+381 silly addNameRange     '2.4.0',
+381 silly addNameRange     '2.4.1',
+381 silly addNameRange     '2.5.0',
+381 silly addNameRange     '2.5.1',
+381 silly addNameRange     '3.0.0',
+381 silly addNameRange     '3.0.1',
+381 silly addNameRange     '3.0.2',
+381 silly addNameRange     '3.1.1',
+381 silly addNameRange     '3.1.2',
+381 silly addNameRange     '3.1.3' ] ]
+382 silly addNamed big.js@3.1.3
+383 verbose addNamed "3.1.3" is a plain semver version for big.js
+384 silly mapToRegistry name big.js
+385 silly mapToRegistry using default registry
+386 silly mapToRegistry registry https://registry.npmjs.org/
+387 silly mapToRegistry uri https://registry.npmjs.org/big.js
+388 verbose addRemoteTarball https://registry.npmjs.org/big.js/-/big.js-3.1.3.tgz not in flight; adding
+389 verbose addRemoteTarball [ 'https://registry.npmjs.org/big.js/-/big.js-3.1.3.tgz',
+389 verbose addRemoteTarball   '4cada2193652eb3ca9ec8e55c9015669c9806978' ]
+390 info retry fetch attempt 1 at 17:53:44
+391 info attempt registry request try #1 at 17:53:44
+392 http fetch GET https://registry.npmjs.org/big.js/-/big.js-3.1.3.tgz
+393 verbose request using bearer token for auth
+394 http fetch 200 https://registry.npmjs.org/json5/-/json5-0.4.0.tgz
+395 silly fetchAndShaCheck shasum 054352e4c4c80c86c0923877d449de176a732c8d
+396 verbose addTmpTarball /var/folders/18/d5n9rbfn6gq7_2xqlhqb9f5m0000gn/T/npm-8139-8423a14e/registry.npmjs.org/json5/-/json5-0.4.0.tgz not in flight; adding
+397 verbose addTmpTarball already have metadata; skipping unpack for json5@0.4.0
+398 silly cache afterAdd json5@0.4.0
+399 verbose afterAdd /Users/lmr/.npm/json5/0.4.0/package/package.json not in flight; writing
+400 verbose afterAdd /Users/lmr/.npm/json5/0.4.0/package/package.json written
+401 http fetch 200 https://registry.npmjs.org/big.js/-/big.js-3.1.3.tgz
+402 silly fetchAndShaCheck shasum 4cada2193652eb3ca9ec8e55c9015669c9806978
+403 verbose addTmpTarball /var/folders/18/d5n9rbfn6gq7_2xqlhqb9f5m0000gn/T/npm-8139-8423a14e/registry.npmjs.org/big.js/-/big.js-3.1.3.tgz not in flight; adding
+404 verbose addTmpTarball already have metadata; skipping unpack for big.js@3.1.3
+405 silly cache afterAdd big.js@3.1.3
+406 verbose afterAdd /Users/lmr/.npm/big.js/3.1.3/package/package.json not in flight; writing
+407 verbose afterAdd /Users/lmr/.npm/big.js/3.1.3/package/package.json written
+408 silly install resolved [ { name: 'json5',
+408 silly install resolved     version: '0.4.0',
+408 silly install resolved     description: 'JSON for the ES5 era.',
+408 silly install resolved     keywords: [ 'json', 'es5' ],
+408 silly install resolved     author: { name: 'Aseem Kishore', email: 'aseem.kishore@gmail.com' },
+408 silly install resolved     license: 'MIT',
+408 silly install resolved     contributors: [ [Object], [Object] ],
+408 silly install resolved     main: 'lib/json5.js',
+408 silly install resolved     bin: { json5: 'lib/cli.js' },
+408 silly install resolved     dependencies: {},
+408 silly install resolved     devDependencies: { mocha: '~1.0.3' },
+408 silly install resolved     scripts:
+408 silly install resolved      { build: './lib/cli.js -c package.json5',
+408 silly install resolved        test: 'mocha --ui exports --reporter spec' },
+408 silly install resolved     homepage: 'http://json5.org/',
+408 silly install resolved     repository: { type: 'git', url: 'https://github.com/aseemk/json5.git' },
+408 silly install resolved     bugs: { url: 'https://github.com/aseemk/json5/issues' },
+408 silly install resolved     _id: 'json5@0.4.0',
+408 silly install resolved     dist:
+408 silly install resolved      { shasum: '054352e4c4c80c86c0923877d449de176a732c8d',
+408 silly install resolved        tarball: 'http://registry.npmjs.org/json5/-/json5-0.4.0.tgz' },
+408 silly install resolved     _from: 'json5@>=0.4.0 <0.5.0',
+408 silly install resolved     _npmVersion: '1.3.21',
+408 silly install resolved     _npmUser: { name: 'aseemk', email: 'aseem.kishore@gmail.com' },
+408 silly install resolved     maintainers: [ [Object] ],
+408 silly install resolved     directories: {},
+408 silly install resolved     _shasum: '054352e4c4c80c86c0923877d449de176a732c8d',
+408 silly install resolved     _resolved: 'https://registry.npmjs.org/json5/-/json5-0.4.0.tgz' },
+408 silly install resolved   { name: 'big.js',
+408 silly install resolved     description: 'A small, fast, easy-to-use library for arbitrary-precision decimal arithmetic',
+408 silly install resolved     version: '3.1.3',
+408 silly install resolved     keywords:
+408 silly install resolved      [ 'arbitrary',
+408 silly install resolved        'precision',
+408 silly install resolved        'arithmetic',
+408 silly install resolved        'big',
+408 silly install resolved        'number',
+408 silly install resolved        'decimal',
+408 silly install resolved        'float',
+408 silly install resolved        'biginteger',
+408 silly install resolved        'bigdecimal',
+408 silly install resolved        'bignumber',
+408 silly install resolved        'bigint',
+408 silly install resolved        'bignum' ],
+408 silly install resolved     repository:
+408 silly install resolved      { type: 'git',
+408 silly install resolved        url: 'git+https://github.com/MikeMcl/big.js.git' },
+408 silly install resolved     main: './big',
+408 silly install resolved     author: { name: 'Michael Mclaughlin', email: 'M8ch88l@gmail.com' },
+408 silly install resolved     bugs: { url: 'https://github.com/MikeMcl/big.js/issues' },
+408 silly install resolved     engines: { node: '*' },
+408 silly install resolved     license: 'MIT',
+408 silly install resolved     scripts:
+408 silly install resolved      { test: 'node ./test/every-test.js',
+408 silly install resolved        build: 'uglifyjs -o ./big.min.js ./big.js' },
+408 silly install resolved     files: [ 'big.js', 'big.min.js' ],
+408 silly install resolved     gitHead: '86268e96b3dbf6db8ce319489f410277d9d4ea1b',
+408 silly install resolved     homepage: 'https://github.com/MikeMcl/big.js#readme',
+408 silly install resolved     _id: 'big.js@3.1.3',
+408 silly install resolved     _shasum: '4cada2193652eb3ca9ec8e55c9015669c9806978',
+408 silly install resolved     _from: 'big.js@>=3.0.2 <4.0.0',
+408 silly install resolved     _npmVersion: '2.9.1',
+408 silly install resolved     _nodeVersion: '0.12.0',
+408 silly install resolved     _npmUser: { name: 'mikemcl', email: 'M8ch88l@gmail.com' },
+408 silly install resolved     maintainers: [ [Object] ],
+408 silly install resolved     dist:
+408 silly install resolved      { shasum: '4cada2193652eb3ca9ec8e55c9015669c9806978',
+408 silly install resolved        tarball: 'http://registry.npmjs.org/big.js/-/big.js-3.1.3.tgz' },
+408 silly install resolved     directories: {},
+408 silly install resolved     _resolved: 'https://registry.npmjs.org/big.js/-/big.js-3.1.3.tgz' } ]
+409 info install json5@0.4.0 into /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils
+410 info install big.js@3.1.3 into /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils
+411 info installOne json5@0.4.0
+412 verbose installOne of json5 to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils not in flight; installing
+413 info installOne big.js@3.1.3
+414 verbose installOne of big.js to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils not in flight; installing
+415 verbose lock using /Users/lmr/.npm/_locks/json5-7d87dceab584d110.lock for /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5
+416 verbose lock using /Users/lmr/.npm/_locks/big-js-7d31005daea5fa01.lock for /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js
+417 silly install write writing json5 0.4.0 to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5
+418 silly install write writing big.js 3.1.3 to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js
+419 verbose unbuild node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js
+420 verbose unbuild node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5
+421 silly gentlyRm /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js is being purged from base /Users/lmr/code/react-blogger
+422 verbose gentlyRm don't care about contents; nuking /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js
+423 silly gentlyRm /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5 is being purged from base /Users/lmr/code/react-blogger
+424 verbose gentlyRm don't care about contents; nuking /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5
+425 verbose tar unpack /Users/lmr/.npm/big.js/3.1.3/package.tgz
+426 verbose tar unpacking to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js
+427 silly gentlyRm /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js is being purged
+428 verbose gentlyRm don't care about contents; nuking /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js
+429 verbose tar unpack /Users/lmr/.npm/json5/0.4.0/package.tgz
+430 verbose tar unpacking to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5
+431 silly gentlyRm /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5 is being purged
+432 verbose gentlyRm don't care about contents; nuking /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5
+433 silly gunzTarPerm modes [ '755', '644' ]
+434 silly gunzTarPerm modes [ '755', '644' ]
+435 silly gunzTarPerm extractEntry package.json
+436 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+437 silly gunzTarPerm extractEntry package.json
+438 silly gunzTarPerm extractEntry README.md
+439 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+440 silly gunzTarPerm extractEntry LICENCE
+441 silly gunzTarPerm modified mode [ 'LICENCE', 438, 420 ]
+442 silly gunzTarPerm extractEntry .npmignore
+443 silly gunzTarPerm extractEntry README.md
+444 silly gunzTarPerm extractEntry big.js
+445 silly gunzTarPerm modified mode [ 'big.js', 438, 420 ]
+446 silly gunzTarPerm extractEntry big.min.js
+447 silly gunzTarPerm modified mode [ 'big.min.js', 438, 420 ]
+448 silly gunzTarPerm extractEntry .editorconfig
+449 silly gunzTarPerm extractEntry .travis.yml
+450 silly gunzTarPerm extractEntry CHANGELOG.md
+451 silly gunzTarPerm extractEntry lib/cli.js
+452 silly gunzTarPerm extractEntry lib/json5.js
+453 silly gunzTarPerm extractEntry lib/require.js
+454 silly gunzTarPerm extractEntry package.json5
+455 silly gunzTarPerm extractEntry test/parse.js
+456 silly gunzTarPerm extractEntry test/require.js
+457 silly gunzTarPerm extractEntry test/stringify.js
+458 silly gunzTarPerm extractEntry test/parse-cases/arrays/leading-comma-array.js
+459 silly gunzTarPerm extractEntry test/parse-cases/arrays/lone-trailing-comma-array.js
+460 silly gunzTarPerm extractEntry test/parse-cases/arrays/empty-array.json
+461 silly gunzTarPerm extractEntry test/parse-cases/arrays/no-comma-array.txt
+462 silly gunzTarPerm extractEntry test/parse-cases/arrays/regular-array.json
+463 silly gunzTarPerm extractEntry test/parse-cases/arrays/trailing-comma-array.json5
+464 silly gunzTarPerm extractEntry test/parse-cases/comments/inline-comment-following-top-level-value.json5
+465 silly gunzTarPerm extractEntry test/parse-cases/comments/block-comment-following-array-element.json5
+466 silly gunzTarPerm extractEntry test/parse-cases/comments/block-comment-in-string.json
+467 silly gunzTarPerm extractEntry test/parse-cases/comments/block-comment-preceding-top-level-value.json5
+468 silly gunzTarPerm extractEntry test/parse-cases/comments/block-comment-with-asterisks.json5
+469 silly gunzTarPerm extractEntry test/parse-cases/comments/inline-comment-following-array-element.json5
+470 silly gunzTarPerm extractEntry test/parse-cases/comments/block-comment-following-top-level-value.json5
+471 silly gunzTarPerm extractEntry test/parse-cases/comments/inline-comment-in-string.json
+472 silly gunzTarPerm extractEntry test/parse-cases/comments/inline-comment-preceding-top-level-value.json5
+473 silly gunzTarPerm extractEntry test/parse-cases/comments/top-level-block-comment.txt
+474 silly gunzTarPerm extractEntry test/parse-cases/comments/top-level-inline-comment.txt
+475 silly gunzTarPerm extractEntry test/parse-cases/comments/unterminated-block-comment.txt
+476 silly gunzTarPerm extractEntry test/parse-cases/misc/empty.txt
+477 silly gunzTarPerm extractEntry test/parse-cases/misc/npm-package.json
+478 silly gunzTarPerm extractEntry test/parse-cases/misc/npm-package.json5
+479 silly gunzTarPerm extractEntry test/parse-cases/misc/readme-example.json5
+480 silly gunzTarPerm extractEntry test/parse-cases/misc/valid-whitespace.json5
+481 silly gunzTarPerm extractEntry test/parse-cases/new-lines/.editorconfig
+482 silly gunzTarPerm extractEntry test/parse-cases/new-lines/.gitattributes
+483 silly gunzTarPerm extractEntry test/parse-cases/new-lines/comment-cr.json5
+484 silly gunzTarPerm extractEntry test/parse-cases/new-lines/comment-crlf.json5
+485 silly gunzTarPerm extractEntry test/parse-cases/new-lines/comment-lf.json5
+486 silly gunzTarPerm extractEntry test/parse-cases/new-lines/escaped-cr.json5
+487 silly gunzTarPerm extractEntry test/parse-cases/new-lines/escaped-crlf.json5
+488 silly gunzTarPerm extractEntry test/parse-cases/new-lines/escaped-lf.json5
+489 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-noctal.js
+490 silly gunzTarPerm extractEntry test/parse-cases/numbers/noctal-with-leading-octal-digit.js
+491 silly gunzTarPerm extractEntry test/parse-cases/numbers/noctal.js
+492 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-noctal.js
+493 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-binary-coffeescript.txt
+494 silly gunzTarPerm extractEntry test/parse-cases/numbers/float-with-integer-exponent.json
+495 silly gunzTarPerm extractEntry test/parse-cases/numbers/float.json
+496 silly gunzTarPerm extractEntry test/parse-cases/numbers/hexadecimal-empty.txt
+497 silly gunzTarPerm extractEntry test/parse-cases/numbers/hexadecimal-lowercase-letter.json5
+498 silly gunzTarPerm extractEntry test/parse-cases/numbers/hexadecimal-uppercase-x.json5
+499 silly gunzTarPerm extractEntry test/parse-cases/numbers/hexadecimal-with-integer-exponent.json5
+500 silly gunzTarPerm extractEntry test/parse-cases/numbers/hexadecimal.json5
+501 silly gunzTarPerm extractEntry test/parse-cases/numbers/infinity.json5
+502 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-float-exponent.txt
+503 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-hexadecimal-exponent.txt
+504 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-integer-exponent.json
+505 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-negative-float-exponent.txt
+506 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-negative-hexadecimal-exponent.txt
+507 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-negative-integer-exponent.json
+508 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-negative-zero-integer-exponent.json
+509 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-positive-float-exponent.txt
+510 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-positive-hexadecimal-exponent.txt
+511 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-positive-integer-exponent.json
+512 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-positive-zero-integer-exponent.json
+513 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-zero-integer-exponent.json
+514 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer.json
+515 silly gunzTarPerm extractEntry test/parse-cases/numbers/lone-decimal-point.txt
+516 silly gunzTarPerm extractEntry test/parse-cases/numbers/nan.json5
+517 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-binary-coffeescript.txt
+518 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-float-leading-decimal-point.json5
+519 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-float-leading-zero.json
+520 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-float-trailing-decimal-point.json5
+521 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-float.json
+522 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-hexadecimal.json5
+523 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-infinity.json5
+524 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-integer.json
+525 silly gunzTarPerm extractEntry test/parse-cases/numbers/binary-coffeescript.txt
+526 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-octal-coffeescript.txt
+527 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-octal.txt
+528 silly gunzTarPerm extractEntry test/parse-cases/numbers/float-leading-decimal-point.json5
+529 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-float-leading-decimal-point.json5
+530 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-float-trailing-decimal-point.json5
+531 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-float.json
+532 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-hexadecimal.json5
+533 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-integer.json
+534 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-octal-coffeescript.txt
+535 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-octal.txt
+536 silly gunzTarPerm extractEntry test/parse-cases/numbers/float-leading-zero.json
+537 silly gunzTarPerm extractEntry test/parse-cases/numbers/float-trailing-decimal-point-with-integer-exponent.json5
+538 silly gunzTarPerm extractEntry test/parse-cases/numbers/octal-coffeescript.txt
+539 silly gunzTarPerm extractEntry test/parse-cases/numbers/octal.txt
+540 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-binary-coffeescript.txt
+541 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-float-leading-decimal-point.json5
+542 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-float-leading-zero.json5
+543 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-float-trailing-decimal-point.json5
+544 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-float.json5
+545 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-hexadecimal.json5
+546 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-infinity.json5
+547 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-integer.json5
+548 silly gunzTarPerm extractEntry test/parse-cases/numbers/float-trailing-decimal-point.json5
+549 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-octal-coffeescript.txt
+550 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-octal.txt
+551 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-binary-coffeescript.txt
+552 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-float-leading-decimal-point.json5
+553 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-float-trailing-decimal-point.json5
+554 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-float.json5
+555 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-hexadecimal.json5
+556 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-integer.json5
+557 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-octal-coffeescript.txt
+558 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-octal.txt
+559 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-binary-coffeescript.txt
+560 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-float-leading-decimal-point.json5
+561 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-float-trailing-decimal-point.json5
+562 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-float.json
+563 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-hexadecimal.json5
+564 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-integer-with-integer-exponent.json
+565 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-integer.json
+566 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-octal-coffeescript.txt
+567 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-octal.txt
+568 silly gunzTarPerm extractEntry test/parse-cases/objects/lone-trailing-comma-object.txt
+569 silly gunzTarPerm extractEntry test/parse-cases/objects/duplicate-keys.json
+570 silly gunzTarPerm extractEntry test/parse-cases/objects/illegal-unquoted-key-number.txt
+571 silly gunzTarPerm extractEntry test/parse-cases/objects/illegal-unquoted-key-symbol.txt
+572 silly gunzTarPerm extractEntry test/parse-cases/objects/leading-comma-object.txt
+573 silly gunzTarPerm extractEntry test/parse-cases/objects/empty-object.json
+574 silly gunzTarPerm extractEntry test/parse-cases/objects/no-comma-object.txt
+575 silly gunzTarPerm extractEntry test/parse-cases/objects/reserved-unquoted-key.json5
+576 silly gunzTarPerm extractEntry test/parse-cases/objects/single-quoted-key.json5
+577 silly gunzTarPerm extractEntry test/parse-cases/objects/trailing-comma-object.json5
+578 silly gunzTarPerm extractEntry test/parse-cases/objects/unquoted-keys.json5
+579 silly gunzTarPerm extractEntry test/parse-cases/strings/escaped-single-quoted-string.json5
+580 silly gunzTarPerm extractEntry test/parse-cases/strings/multi-line-string.json5
+581 silly gunzTarPerm extractEntry test/parse-cases/strings/single-quoted-string.json5
+582 silly gunzTarPerm extractEntry test/parse-cases/strings/unescaped-multi-line-string.txt
+583 silly gunzTarPerm extractEntry test/parse-cases/todo/unicode-escaped-unquoted-key.json5
+584 silly gunzTarPerm extractEntry test/parse-cases/todo/unicode-unquoted-key.json5
+585 silly gunzTarPerm extractEntry test/readme.md
+586 verbose write writing to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js/package.json
+587 info preinstall big.js@3.1.3
+588 verbose readDependencies loading dependencies from /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js/package.json
+589 verbose readDependencies loading dependencies from /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js/package.json
+590 silly install resolved []
+591 verbose about to build /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js
+592 info build /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js
+593 info linkStuff big.js@3.1.3
+594 silly linkStuff big.js@3.1.3 has /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules as its parent node_modules
+595 verbose linkBins big.js@3.1.3
+596 verbose linkMans big.js@3.1.3
+597 verbose rebuildBundles big.js@3.1.3
+598 info install big.js@3.1.3
+599 info postinstall big.js@3.1.3
+600 verbose unlock done using /Users/lmr/.npm/_locks/big-js-7d31005daea5fa01.lock for /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/big.js
+601 verbose write writing to /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5/package.json
+602 info preinstall json5@0.4.0
+603 verbose readDependencies loading dependencies from /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5/package.json
+604 verbose readDependencies loading dependencies from /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5/package.json
+605 silly install resolved []
+606 verbose about to build /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5
+607 info build /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5
+608 info linkStuff json5@0.4.0
+609 silly linkStuff json5@0.4.0 has /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules as its parent node_modules
+610 verbose linkBins json5@0.4.0
+611 verbose link bins [ { json5: 'lib/cli.js' },
+611 verbose link bins   '/Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/.bin',
+611 verbose link bins   false ]
+612 verbose linkMans json5@0.4.0
+613 verbose rebuildBundles json5@0.4.0
+614 silly gentlyRm /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/.bin/json5 is being purged
+615 verbose gentlyRm don't care about contents; nuking /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/.bin/json5
+616 info install json5@0.4.0
+617 info postinstall json5@0.4.0
+618 verbose unlock done using /Users/lmr/.npm/_locks/json5-7d87dceab584d110.lock for /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils/node_modules/json5
+619 verbose about to build /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils
+620 info build /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils
+621 info linkStuff loader-utils@0.2.10
+622 silly linkStuff loader-utils@0.2.10 has /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules as its parent node_modules
+623 verbose linkBins loader-utils@0.2.10
+624 verbose linkMans loader-utils@0.2.10
+625 verbose rebuildBundles loader-utils@0.2.10
+626 verbose rebuildBundles [ '.bin', 'big.js', 'json5' ]
+627 info install loader-utils@0.2.10
+628 info postinstall loader-utils@0.2.10
+629 verbose unlock done using /Users/lmr/.npm/_locks/loader-utils-adbf586ad40fb516.lock for /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/node_modules/loader-utils
+630 verbose about to build /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin
+631 info build /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin
+632 info linkStuff extract-text-webpack-plugin@0.8.2
+633 silly linkStuff extract-text-webpack-plugin@0.8.2 has /Users/lmr/code/react-blogger/node_modules as its parent node_modules
+634 verbose linkBins extract-text-webpack-plugin@0.8.2
+635 verbose linkMans extract-text-webpack-plugin@0.8.2
+636 verbose rebuildBundles extract-text-webpack-plugin@0.8.2
+637 verbose rebuildBundles [ 'async', 'loader-utils' ]
+638 info install extract-text-webpack-plugin@0.8.2
+639 info postinstall extract-text-webpack-plugin@0.8.2
+640 verbose readDependencies loading dependencies from /Users/lmr/code/react-blogger/package.json
+641 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/alt/package.json
+642 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/babel-core/package.json
+643 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/babel-loader/package.json
+644 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/babel-runtime/package.json
+645 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/bcrypt/package.json
+646 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/body-parser/package.json
+647 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/chalk/package.json
+648 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/classnames/package.json
+649 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/codemirror/package.json
+650 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/compression/package.json
+651 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/connect-pg-simple/package.json
+652 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/contrast/package.json
+653 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/cookie-parser/package.json
+654 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/css-loader/package.json
+655 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/ejs/package.json
+656 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/es5-shim/package.json
+657 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/es6-promise/package.json
+658 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/es6-shim/package.json
+659 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/express/package.json
+660 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/express-session/package.json
+661 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin/package.json
+662 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/helmet/package.json
+663 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/highlight.js/package.json
+664 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/immutable/package.json
+665 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/jasmine/package.json
+666 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/jasmine-core/package.json
+667 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/json-loader/package.json
+668 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/karma/package.json
+669 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/karma-chrome-launcher/package.json
+670 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/karma-jasmine/package.json
+671 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/karma-spec-reporter/package.json
+672 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/karma-webpack/package.json
+673 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/keymaster/package.json
+674 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/less/package.json
+675 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/less-loader/package.json
+676 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/lodash/package.json
+677 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/md2react/package.json
+678 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/md5/package.json
+679 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/method-override/package.json
+680 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/moment/package.json
+681 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/morgan/package.json
+682 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/node-libs-browser/package.json
+683 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/normalizr/package.json
+684 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/passport/package.json
+685 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/passport-local/package.json
+686 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/pg/package.json
+687 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/pg-hstore/package.json
+688 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/pure-render-mixin/package.json
+689 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/react/package.json
+690 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/react-code-mirror/package.json
+691 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/react-codemirror/package.json
+692 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/react-datepicker/package.json
+693 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/react-document-title/package.json
+694 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/react-flux/package.json
+695 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/react-fontawesome/package.json
+696 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/react-highlight/package.json
+697 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/react-hotkeys/package.json
+698 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/react-infinite-scroll/package.json
+699 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/react-pager/package.json
+700 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/react-router/package.json
+701 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/react-timeago/package.json
+702 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/redux/package.json
+703 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/sequelize/package.json
+704 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/sequelize-cli/package.json
+705 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/serve-favicon/package.json
+706 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/shortid/package.json
+707 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/sinon/package.json
+708 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/source-map-support/package.json
+709 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/style-loader/package.json
+710 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/superagent/package.json
+711 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/url-append/package.json
+712 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/url-parse/package.json
+713 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/webpack/package.json
+714 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/webpack-dev-server/package.json
+715 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/.bin/esparse/package.json
+716 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/.bin/esparse.cmd/package.json
+717 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/.bin/esvalidate/package.json
+718 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/.bin/esvalidate.cmd/package.json
+719 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/.bin/jasmine/package.json
+720 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/.bin/jasmine.cmd/package.json
+721 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/.bin/lessc/package.json
+722 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/.bin/lessc.cmd/package.json
+723 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/.bin/sequelize/package.json
+724 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/.bin/webpack/package.json
+725 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/.bin/webpack-dev-server/package.json
+726 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/.bin/webpack-dev-server.cmd/package.json
+727 verbose targetResolver reading package data from /Users/lmr/code/react-blogger/node_modules/.bin/webpack.cmd/package.json
+728 verbose already installed skipping webpack@^1.9.11 /Users/lmr/code/react-blogger
+729 silly install resolved []
+730 verbose unlock done using /Users/lmr/.npm/_locks/extract-text-webpack-plu-a405b4d4ca9e46ce.lock for /Users/lmr/code/react-blogger/node_modules/extract-text-webpack-plugin
+731 verbose validateInstall loading /Users/lmr/code/react-blogger/package.json for validation
+732 verbose stack Error: The package webpack does not satisfy its siblings' peerDependencies requirements!
+732 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:125:32
+732 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:267:7
+732 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:142:5
+732 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+732 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+732 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+732 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+732 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+732 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+732 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+733 verbose cwd /Users/lmr/code/react-blogger
+734 error Darwin 14.3.0
+735 error argv "node" "/usr/local/bin/npm" "i" "--save" "extract-text-webpack-plugin"
+736 error node v0.12.6
+737 error npm  v2.12.1
+738 error code EPEERINVALID
+739 error peerinvalid The package webpack does not satisfy its siblings' peerDependencies requirements!
+739 error peerinvalid Peer babel-loader@5.1.3 wants webpack@*
+739 error peerinvalid Peer extract-text-webpack-plugin@0.8.2 wants webpack@^1.9.11
+739 error peerinvalid Peer karma-webpack@1.5.1 wants webpack@^1.4.0
+739 error peerinvalid Peer webpack-dev-server@1.9.0 wants webpack@^1.3.0
+740 verbose exit [ 1, true ]

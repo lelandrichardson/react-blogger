@@ -3,5 +3,7 @@ node_modules
 .idea
 build/**/*.js
 build/**/*.js.map
+build/**/*.css
+build/**/*.css.map
 config.js
 config.sequelize.json

@@ -1,28 +1,29 @@
 var React = require('react');
 var Container = require('../Mixins/Container');
-var SummaryStore = require('../Stores/SummaryStore');
 var BlogActions = require('../Actions/BlogActions');
 var BlogListItem = require('../Components/BlogListItem');
 var Icon = require('react-fontawesome');
 var { Toolbar, ToolbarLink, ToolbarButton } = require('../Components/Toolbar');
 var { Tabs, Tab } = require('../Components/Tabs');
 var Pager = require('react-pager');
+var { autobind } = require('../Mixins/decorators');
 
 if(__CLIENT__) require('../Styles/BlogList.less');
 class BlogList extends React.Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired
     };
+    @autobind
     handleCreateClick(e) {
         e.preventDefault();
-        BlogActions.create({ });
+        this.props.BlogActions.create({ });
     }
     render() {
         const { blogs, scope, page } = this.props;
         return (
             <div className="blog-list">
                 <Toolbar>
-                    <ToolbarButton onClick={::this.handleCreateClick}><Icon name="plus" /> Add New</ToolbarButton>
+                    <ToolbarButton onClick={this.handleCreateClick}><Icon name="plus" /> Add New</ToolbarButton>
                 </Toolbar>
                 <div style={{ marginTop: 54, padding: 20 }}>
                     <h1 className="blog-list-title">Your Posts</h1>
@@ -48,13 +49,14 @@ class BlogList extends React.Component {
     }
 }
 
-module.exports = Container.create(BlogList, [SummaryStore], {
-    getComponentProps({ params }) {
+module.exports = Container.create(BlogList, ['SummaryStore'], {
+    getComponentProps([SummaryStore], { params }, { flux }) {
         const page = +params.page || 1;
         const scope = params.scope;
         return {
             page,
             scope,
+            BlogActions: flux.getActions('BlogActions'),
             blogs: SummaryStore.listAll({ scope }, page-1) || { items: [], total: 0 }
         };
     }

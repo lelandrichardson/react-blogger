@@ -22,31 +22,31 @@ export default class BlogActions {
 
     @async
     update(blog) {
-        return this.Api.blog.update(blog);
+        return Api().blog.update(blog); // TODO: figure out way to get at `this.Api`
     }
 
     @async
     updateBody(id, body) {
-        return this.Api.blog.updateBody(id, body)
+        return Api().blog.updateBody(id, body)
     }
 
     @async
     publish(id) {
-        return this.Api.blog.publish(id);
+        return Api().blog.publish(id);
     }
 
     @async
     unpublish(id) {
-        return this.Api.blog.unpublish(id);
+        return Api().blog.unpublish(id);
     }
 
     @async
     remove(id) {
-        return this.Api.blog.remove(id);
+        return Api().blog.remove(id);
     }
 
     @async
     create(model) {
-        return this.Api.blog.create(model);
+        return Api().blog.create(model);
     }
 }

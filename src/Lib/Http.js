@@ -26,7 +26,7 @@ export function AJAX(method, url, data, query, req) {
     });
 }
 
-export default class ApiClient {
+export default class Http {
     constructor(req) {
         this.req = req;
         this.watching = false;

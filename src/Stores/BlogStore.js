@@ -12,7 +12,7 @@ var BlogActions = require('../Actions/BlogActions');
 const BlogDataSource = alt => ({
     getFromId: {
         remote(store, id) {
-            return Api(alt).blog.get(id);
+            return Api(alt.Http).blog.get(id);
         },
         local(store, id) {
             return store._state.get(id);
@@ -23,7 +23,7 @@ const BlogDataSource = alt => ({
     },
     getFromSlug: {
         remote(store, slug) {
-            return Api(alt).blog.getFromSlug(slug);
+            return Api(alt.Http).blog.getFromSlug(slug);
         },
         local(store, slug) {
             var id = store._slugToId.get(slug);

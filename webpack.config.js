@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     cache: true,
@@ -56,9 +57,13 @@ module.exports = {
                     ]
                 }
             },
+            //{
+            //    test: /\.(less|css|scss)$/,
+            //    loader: "style!css!less"
+            //},
             {
                 test: /\.(less|css|scss)$/,
-                loader: "style!css!less"
+                loader: ExtractTextPlugin.extract("style-loader", "css!less")
             },
             {
                 test: /\.json$/,
@@ -77,7 +82,8 @@ module.exports = {
             __SERVER__: false
         }),
         new webpack.NoErrorsPlugin(),
-        //new webpack.optimize.DedupePlugin()
+        //new webpack.optimize.DedupePlugin(),
+        new ExtractTextPlugin("[name].css"),
     ],
     externals: {
         "react": "React",

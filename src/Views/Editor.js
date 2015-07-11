@@ -1,33 +1,23 @@
 var React = require('react');
 var Container = require('../Mixins/Container');
 
-var BlogStore = require('../Stores/BlogStore');
-var BlogActions = require('../Actions/BlogActions');
-
 var { Toolbar, ToolbarButton, ToolbarLink, ToolbarText } = require('../Components/Toolbar');
 var MarkdownEditor = require('../Components/MarkdownEditor');
 var Modal = require('../Components/Modal');
 var DocumentTitle = require('react-document-title');
 var Loading = require('../Components/Loading');
 var Icon = require('react-fontawesome');
-require('react-datepicker/dist/react-datepicker.css');
 var Datepicker = require('react-datepicker/dist/react-datepicker');
 var moment = require('moment');
-var key = require('keymaster');
-var debounce = require('lodash/function/debounce');
 var { timeAgo } = require('../Lib/formatDate');
 var { is } = require('immutable');
+var { autobind, debounce } = require('../Mixins/decorators');
+import toSlug from '../Lib/toSlug.js';
 
 const BODY = ['editingVersion','body'];
 
-//TODO: move to separate module
-const remHyphenRegex = /( ?- ?)|[ ']/g;
-const remRegex = /[^0-9a-zA-Z-]/g;
-function toSlug(title) {
-    return title.replace(remHyphenRegex, "-").replace(remRegex, "").trim().toLowerCase();
-}
-
-if(__CLIENT__) require('../Styles/Editor.less');
+if (__CLIENT__) require('react-datepicker/dist/react-datepicker.css');
+if (__CLIENT__) require('../Styles/Editor.less');
 class Editor extends React.Component {
     constructor(props) {
         super(props);
@@ -36,8 +26,9 @@ class Editor extends React.Component {
             needsSaving: false,
             showModal: false
         };
-        this.saveBody = debounce(this.saveBody, 2000);
     }
+
+    @autobind
     onTitleChange(e) {
         const blog = this.state.blog;
         const title = e.target.value;
@@ -49,6 +40,8 @@ class Editor extends React.Component {
             needsSaving: true
         });
     }
+
+    @autobind
     onSlugChange(e) {
         this.setState({
             blog: this.state.blog.merge({
@@ -58,12 +51,15 @@ class Editor extends React.Component {
             needsSaving: true
         });
     }
+
+    @autobind
     onPublishDateChange(changed) {
         this.setState({
             blog: this.state.blog.set('datePublished', changed.toDate()),
             needsSaving: true
         });
     }
+
     inputChangeFor(prop) {
         return e => {
             const blog = this.state.blog.set(prop, e.target.value);
@@ -73,43 +69,51 @@ class Editor extends React.Component {
             });
         };
     }
+
+    @autobind
+    @debounce(2000)
     saveBody() {
         var { blog, needsSaving } = this.state;
         if (needsSaving) {
-            BlogActions.update(blog.toJS())
+            this.props.BlogActions.update(blog.toJS())
         } else {
-            BlogActions.updateBody(blog.get('id'), blog.getIn(BODY));
+            this.props.BlogActions.updateBody(blog.get('id'), blog.getIn(BODY));
         }
     }
-    onBodyChange(body) {
+
+    @autobind
+    onBodyChange(e) {
         this.setState({
-            blog: this.state.blog.setIn(BODY, body)
+            blog: this.state.blog.setIn(BODY, e.target.value)
         });
         this.saveBody();
     }
+
+    @autobind
     onSaveClick(e) {
         e && e.preventDefault();
-        BlogActions.update(this.state.blog.toJS());
+        this.props.BlogActions.update(this.state.blog.toJS());
         this.setState({ showModal: false });
     }
+
+    @autobind
     onPublishClick(e) {
         e.preventDefault();
-        BlogActions.publish(this.state.blog.get('id'));
+        this.props.BlogActions.publish(this.state.blog.get('id'));
     }
+
+    @autobind
     onUnpublishClick(e) {
         e.preventDefault();
-        BlogActions.unpublish(this.state.blog.get('id'));
+        this.props.BlogActions.unpublish(this.state.blog.get('id'));
     }
+
+    @autobind
     onDeleteClick(e) {
         e.preventDefault();
-        BlogActions.remove(this.state.blog.get('id'));
+        this.props.BlogActions.remove(this.state.blog.get('id'));
     }
-    componentDidMount() {
-        key('ctrl+s, ⌘+s', e => this.onSaveClick(e));
-    }
-    componentWillUnmount() {
-        key.unbind('ctrl+s, ⌘+s');
-    }
+
     componentWillReceiveProps({ blog }) {
         const current = this.state.blog;
         const currentBody = current.get(BODY);
@@ -122,6 +126,7 @@ class Editor extends React.Component {
 
         this.setState({ blog, needsSaving: false });
     }
+
     render() {
         const blog = this.state.blog;
         const hasChanges = blog !== this.props.blog;
@@ -136,15 +141,15 @@ class Editor extends React.Component {
                             <Icon name="arrow-left" /> Blogs
                         </ToolbarLink>
                         {hasChanges &&
-                        <ToolbarButton onClick={::this.onSaveClick}>
+                        <ToolbarButton onClick={this.onSaveClick}>
                             <Icon name="floppy-o" /> Save
                         </ToolbarButton>}
                         {!published && !hasChanges &&
-                        <ToolbarButton onClick={::this.onPublishClick}>
+                        <ToolbarButton onClick={this.onPublishClick}>
                             <Icon name="bullhorn" /> Publish
                         </ToolbarButton>}
                         {published &&
-                        <ToolbarButton onClick={::this.onUnpublishClick}>
+                        <ToolbarButton onClick={this.onUnpublishClick}>
                             Unpublish
                         </ToolbarButton>}
                         {published &&
@@ -152,10 +157,10 @@ class Editor extends React.Component {
                             Published {timeAgo(blog.get('datePublished'))}
                         </ToolbarText>}
                         {unpublishedChanges &&
-                        <ToolbarButton onClick={::this.onPublishClick}>
+                        <ToolbarButton onClick={this.onPublishClick}>
                             <Icon name="floppy-o" size="lg"/> Update
                         </ToolbarButton>}
-                        <ToolbarButton onClick={::this.onDeleteClick}>
+                        <ToolbarButton onClick={this.onDeleteClick}>
                             <Icon name="trash-o" /> Delete
                         </ToolbarButton>
                         <ToolbarButton className="right" onClick={() => this.setState({ showModal: true })}>
@@ -169,11 +174,11 @@ class Editor extends React.Component {
                                 type="text"
                                 placeholder="Blog Title"
                                 value={blog.get('title')}
-                                onChange={::this.onTitleChange} />
+                                onChange={this.onTitleChange} />
                         </div>
                         <MarkdownEditor
-                            onChange={::this.onBodyChange}
-                            onSave={::this.onSaveClick}
+                            onChange={this.onBodyChange}
+                            onSave={this.onSaveClick}
                             value={body}
                             hasChanges={hasChanges}
                             />
@@ -207,7 +212,7 @@ class Editor extends React.Component {
                                 className="modal-input"
                                 placeholder="Summary"
                                 value={blog.get('title')}
-                                onChange={::this.onTitleChange} />
+                                onChange={this.onTitleChange} />
 
                             <label className="modal-input-label">Subtitle</label>
                             <input
@@ -223,7 +228,7 @@ class Editor extends React.Component {
                                 className="modal-input"
                                 placeholder="Url Slug"
                                 value={blog.get('slug')}
-                                onChange={::this.onSlugChange} />
+                                onChange={this.onSlugChange} />
 
                             {published && <label className="modal-input-label">Publish Date</label>}
                             {published && <Datepicker
@@ -231,7 +236,7 @@ class Editor extends React.Component {
                                 placeholderText="Publish Date"
                                 dateFormat="YYYY/MM/DD"
                                 selected={moment(blog.get('datePublished'))}
-                                onChange={::this.onPublishDateChange} />}
+                                onChange={this.onPublishDateChange} />}
 
                             <label className="modal-input-label">Blog Summary</label>
                             <textarea
@@ -241,7 +246,7 @@ class Editor extends React.Component {
                                 onChange={this.inputChangeFor('summary')}
                                 maxLength={255} />
 
-                            <button className="modal-button right" onClick={::this.onSaveClick}>Save</button>
+                            <button className="modal-button right" onClick={this.onSaveClick}>Save</button>
                         </div>
                     </Modal>
                 </div>
@@ -250,10 +255,11 @@ class Editor extends React.Component {
     }
 }
 
-module.exports = Container.create(Editor, [BlogStore], {
-    getComponentProps(props) {
+module.exports = Container.create(Editor, ['BlogStore'], {
+    getComponentProps([ BlogStore ], { params }, { flux }) {
         return {
-            blog: BlogStore.getFromId(+props.params.id)
+            BlogActions: flux.getActions('BlogActions'),
+            blog: BlogStore.getFromId(+params.id)
         }
     },
     loadingComponent: <Loading />
