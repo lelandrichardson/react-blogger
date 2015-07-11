@@ -13,7 +13,7 @@ export default class RouteStore {
     }
 
     afterCreateBlog({ id }) {
-        alt.router.transitionTo(`/admin/edit/${id}`; // TODO: figure out way to get at alt
+        alt.router.transitionTo(`/admin/edit/${id}`); // TODO: figure out way to get at alt
     }
 
     afterRemoveBlog({ id }) {
