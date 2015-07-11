@@ -34,12 +34,9 @@ var Version = require('./Models/Version');
 var Session = require('./Models/Session');
 
 import Flux from './Flux.js';
-var ClientRoutes = require('./ClientRoutes');
-var AdminRoutes = require('./AdminRoutes');
-import Location from 'react-router/lib/Location';
-import Router from 'react-router';
+const ClientRoutes = require('./ClientRoutes');
+const AdminRoutes = require('./AdminRoutes');
 import App from './App';
-import React from 'react';
 
 db.sync();
 
@@ -56,8 +53,6 @@ var app = express();
 app.locals.title = config.title;
 app.locals.description = config.description;
 app.locals.keywords = config.keywords;
-//app.locals.jsFiles = config.getJavaScriptAssets();
-//app.locals.cssFiles = config.getCSSAssets();
 
 
 // Passing the request url to environment locals
@@ -93,12 +88,6 @@ app.use(methodOverride());
 // CookieParser should be above session
 app.use(cookieParser());
 
-// use passport session
-//app.use(session({
-//    secret: 'my-secret-key',
-//    saveUninitialized: true,
-//    resave: true
-//}));
 
 // use postgres for passport session
 app.use(session({
@@ -176,24 +165,11 @@ app.disable('x-powered-by');
 
 
 app.get(['/admin/login', '/admin/login'], /* AUTHENTICATE,*/ function (req, res) {
-    const location = new Location(req.baseUrl, req.query);
     const flux = new Flux({ req });
-    flux.Http.start();
-    Router.run(AdminRoutes, location, (error, initialState) => {
-        if (error) {
-            return res.status(500).send(error);
-        }
-
-        // NOTE: this render pass is effectively wasted :(
-        var html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
-        flux.Http.stop();
-        Promise.all(flux.Http.promises).then(() => {
-            var html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
-            const data = flux.takeSnapshot();
-
-            res.render('Admin', { html, data });
-        });
-    });
+    flux.render(AdminRoutes, App).then(
+        ({ html, data }) => res.render('Admin', { html, data }),
+        error => res.status(500).send(JSON.stringify(error))
+    );
 });
 
 app.post('/admin/login', passport.authenticate('login', {
@@ -232,76 +208,20 @@ var AUTHENTICATE = function (req, res, next) {
 app.use('/api', AUTHENTICATE, require('./Server/Api'));
 
 app.use(['/admin','/admin/*'], AUTHENTICATE, function (req, res) {
-
-    const location = new Location(req.baseUrl, req.query);
     const flux = new Flux({ req });
-    flux.Http.start();
-    Router.run(AdminRoutes, location, (error, initialState) => {
-        if (error) {
-            return res.status(500).send(error);
-        }
-
-        // NOTE: this render pass is effectively wasted :(
-        var html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
-        flux.Http.stop();
-        Promise.all(flux.Http.promises).then(() => {
-            var html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
-            const data = flux.takeSnapshot();
-
-            res.render('Admin', { html, data });
-        });
-    });
+    flux.render(AdminRoutes, App).then(
+        ({ html, data }) => res.render('Admin', { html, data }),
+        error => res.status(500).send(error)
+    );
 });
 
 app.use('/*', function (req, res) {
-    const location = new Location(req.baseUrl, req.query);
     const flux = new Flux({ req });
-    flux.Http.start();
-    Router.run(ClientRoutes, location, (error, initialState) => {
-        if (error) {
-            return res.status(500).send(error);
-        }
-
-        // NOTE: this render pass is effectively wasted :(
-        var html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
-        flux.Http.stop();
-        Promise.all(flux.Http.promises).then(() => {
-            var html = React.renderToString(<App location={location} flux={flux} {...initialState} />);
-            const data = flux.takeSnapshot();
-
-            res.render('Client', { html, data });
-        });
-    });
+    flux.render(ClientRoutes, App).then(
+        ({ html, data }) => res.render('Client', { html, data }),
+        error => res.status(500).send({ message: error.message, stackTrace: Object.keys(error) })
+    );
 });
-
-
-
-// Assume 'not found' in the error msgs is a 404.
-// this is somewhat silly, but valid, you can do whatever you like, set properties,
-// use instanceof etc.
-//app.use(function ( err, req, res, next ) {
-//    // If the error object doesn't exists
-//    if (!err) {
-//        return next();
-//    }
-//
-//    // Log it
-//    console.error(err.stack);
-//
-//    // Error page
-//    //TODO: make an error pge
-//    res.status(500).json({
-//        error: err
-//    });
-//});
-//
-//// Assume 404 since no middleware responded
-//app.use(function ( req, res ) {
-//    res.status(404).json({
-//        url: req.originalUrl,
-//        error: 'Not Found'
-//    });
-//});
 
 
 // Start the app by listening on <port>

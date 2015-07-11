@@ -1,6 +1,13 @@
 var React = require('react');
 var { Router, Route } = require('react-router');
 //import AsyncProps from 'react-router/modules/experimental/AsyncProps';
+import FluxyTransition from './Mixins/AsyncFluxProps.js';
+
+function makeElementCreator(alt) {
+    return function createElement(Component, state) {
+
+    }
+}
 
 export default class App extends React.Component {
     static childContextTypes = {
@@ -19,15 +26,18 @@ export default class App extends React.Component {
         this.props.flux.router = this.refs.router;
     }
     render() {
+        if (__SERVER__) {
+            return (
+                <Router ref="router" {...this.props} />
+            );
+        }
+
         return (
-            <Router ref="router" {...this.props} />
+            <Router ref="router" {...this.props}>
+                <Route component={FluxyTransition} flux={this.props.flux}>
+                    {this.props.children}
+                </Route>
+            </Router>
         );
-        //return (
-        //    <Router ref="router" {...this.props} createElement={AsyncProps.createElement}>
-        //        <Route component={AsyncProps}>
-        //            {this.props.children}
-        //        </Route>
-        //    </Router>
-        //);
     }
 }

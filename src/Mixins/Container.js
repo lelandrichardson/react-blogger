@@ -12,13 +12,14 @@ var Container = {
                 Component,
                 storeNames,
 
-                loadProps(params, cb) {
-                    var { flux } = this.context;
+                loadProps(params, flux) {
+                    //Subscribe.create(this);
+                    //var { flux } = this.context;
                     var stores = storeNames.map(name => flux.getStore(name));
-                    flux.Http.start();
-                    this.getComponentProps(stores, { params }, this.context);
-                    flux.Http.stop();
-                    Promise.all(flux.Http.promises).then(() => cb(null, {}), cb);
+                    //flux.Http.start();
+                    spec.getComponentProps(stores, { params }, { flux });
+                    //flux.Http.stop();
+                    //Promise.all(flux.Http.promises).then(() => cb(null, {}), cb);
                 }
             },
 

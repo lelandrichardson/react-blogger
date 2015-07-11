@@ -1,7 +1,7 @@
 var { Map, Seq } = require('immutable');
 
 function key(prop) {
-    return /^\d+$/.test(prop) ? +prop : prop;
+    return /^-?\d+$/.test(prop) ? +prop : prop;
 }
 
 function NumberKeyedMap(obj, converter) {

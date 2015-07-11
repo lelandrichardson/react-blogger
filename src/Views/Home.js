@@ -9,6 +9,8 @@ var BlogSummary = require('../Components/BlogSummary');
 var Loading = require('../Components/Loading');
 var InfiniteScroll = require('../Components/InfiniteScroll');
 
+var { autobind } = require('../Mixins/decorators');
+
 class Home extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -20,13 +22,14 @@ class Home extends React.Component {
     //static loadProps(params, setProps, onTeardown) {
     //    cb(null, { newProp: "foo" });
     //}
-
+    @autobind
     onLoadMore() {
         this.props.SummaryStore.listAll(this.props.filter, this.state.page + 1);
         this.setState({
             page: this.state.page + 1
         });
     }
+
     render() {
         const { blogs } = this.props;
         const hasMore = blogs.items.size < blogs.total;
@@ -36,7 +39,7 @@ class Home extends React.Component {
                 <InfiniteScroll
                     hasMore={hasMore}
                     isLoading={isLoading}
-                    onLoadMore={::this.onLoadMore}
+                    onLoadMore={this.onLoadMore}
                     >
                     <ul>
                         {blogs.items.map(blog =>
