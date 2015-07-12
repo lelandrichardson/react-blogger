@@ -3,21 +3,20 @@
   "version": "0.0.1",
   "description": "project description",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lelandrichardson/react-blogger.git"
+  }
   "scripts": {
     "test": "karma start",
     "start": "set NODE_ENV=production && npm run start-server",
-
     "build-client-dev": "node_modules/.bin/webpack --config webpack.dev.config.js",
     "build-client-prod": "node_modules/.bin/webpack --config webpack.prod.config.js",
     "build-server": "node_modules/.bin/webpack --config webpack.server.config.js",
-
     "watch-client": "node_modules/.bin/webpack --config webpack.config.js --watch",
     "watch-server": "node_modules/.bin/webpack --config webpack.server.config.js --watch",
-
-
     "start-server": "node build/server/server.js",
     "start-server-dev": "nodemon build/server/Server.js  --watch build/server",
-
     "create-migration": "node_modules/.bin/sequelize migration:create --config config.sequelize.json --models-path src/Models",
     "run-migration": "node_modules/.bin/sequelize db:migrate --config config.sequelize.json --models-path src/Models",
     "undo-migration": "node_modules/.bin/sequelize db:migrate:undo --config config.sequelize.json --models-path src/Models"
@@ -41,6 +40,7 @@
     "es6-shim": "^0.32.2",
     "express": "^4.13.1",
     "express-session": "^1.11.3",
+    "extract-text-webpack-plugin": "^0.8.2",
     "helmet": "^0.9.1",
     "highlight.js": "^8.6.0",
     "immutable": "^3.7.4",
