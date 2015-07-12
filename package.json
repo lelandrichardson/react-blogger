@@ -5,11 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "karma start",
-    "dev": "webpack --config webpack.config.js --watch",
-    "dev-server": "webpack --config webpack.server.config.js --watch",
-    "start": "set NODE_ENV=production && webpack --config webpack.prod.config.js",
-    "start-dev": "nodemon build/server/Server.js  --watch build/server",
-    "start-prod": "set NODE_ENV=production && webpack --config webpack.prod.config.js",
+    "start": "set NODE_ENV=production && npm run build-client-prod && npm run build-server && npm run start-server",
+
+    "build-client-dev": "node_modules/.bin/webpack --config webpack.dev.config.js",
+    "build-client-prod": "node_modules/.bin/webpack --config webpack.prod.config.js",
+    "build-server": "node_modules/.bin/webpack --config webpack.server.config.js",
+
+    "watch-client": "node_modules/.bin/webpack --config webpack.config.js --watch",
+    "watch-server": "node_modules/.bin/webpack --config webpack.server.config.js --watch",
+
+
+    "start-server": "node build/server/server.js",
+    "start-server-dev": "nodemon build/server/Server.js  --watch build/server",
+
     "create-migration": "node_modules/.bin/sequelize migration:create --config config.sequelize.json --models-path src/Models",
     "run-migration": "node_modules/.bin/sequelize db:migrate --config config.sequelize.json --models-path src/Models",
     "undo-migration": "node_modules/.bin/sequelize db:migrate:undo --config config.sequelize.json --models-path src/Models"
@@ -17,7 +25,7 @@
   "author": "Leland Richardson",
   "license": "MIT",
   "dependencies": {
-    "alt": "https://github.com/lelandrichardson/alt.git",
+    "alt": "https://github.com/lelandrichardson/alt/tarball/master",
     "bcrypt": "^0.8.3",
     "body-parser": "^1.13.2",
     "chalk": "^1.1.0",
@@ -70,7 +78,8 @@
     "source-map-support": "^0.3.2",
     "superagent": "^1.2.0",
     "url-append": "^0.1.0",
-    "url-parse": "^1.0.2"
+    "url-parse": "^1.0.2",
+    "webpack": "^1.9.11"
   },
   "devDependencies": {
     "babel-core": "^5.4.7",

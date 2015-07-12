@@ -21,9 +21,9 @@ export function security(config) {
             saveUninitialized: true,
             store: new pgSession({
                 pg : pg,
-                conString : config.database.url
+                conString : process.env.DATABASE_URL
             }),
-            secret: config.authCookieSecret,
+            secret: process.env.COOKIE_SECRET,
             cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
         }),
 

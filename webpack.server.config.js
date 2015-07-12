@@ -67,7 +67,6 @@ module.exports = {
             __CLIENT__: false,
             __SERVER__: true
         }),
-        //new webpack.optimize.UglifyJsPlugin(),
         new webpack.IgnorePlugin(/\.(css|less)$/),
         new webpack.BannerPlugin('require("source-map-support").install();',
             { raw: true, entryOnly: false })

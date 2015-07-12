@@ -73,7 +73,7 @@ module.exports = {
         noParse: /\.min\.js/
     },
     resolve: {
-        modulesDirectories: ['src/Components', 'src/Views', 'src/Styles', 'node_modules'],
+        modulesDirectories: ['node_modules'],
         extensions: ['', '.js', '.jsx', '.json']
     },
     plugins: [
@@ -82,7 +82,6 @@ module.exports = {
             __SERVER__: false
         }),
         new webpack.NoErrorsPlugin(),
-        //new webpack.optimize.DedupePlugin(),
         new ExtractTextPlugin("[name].css"),
     ],
     externals: {

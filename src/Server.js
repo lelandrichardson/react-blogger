@@ -109,7 +109,7 @@ app.use('/*', function (req, res) {
 });
 
 // Start the app by listening on <port>
-app.listen(config.port);
+app.listen(process.env.PORT || 3030);
 
 // Expose app
 module.exports = app;
