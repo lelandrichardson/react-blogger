@@ -6,7 +6,7 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/lelandrichardson/react-blogger.git"
-  }
+  },
   "scripts": {
     "test": "karma start",
     "start": "set NODE_ENV=production && npm run start-server",
