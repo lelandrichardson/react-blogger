@@ -150,7 +150,7 @@ function ApiRequest(fn) {
 
 router.get('/blog/list', ApiRequest(function(req, res) {
     var { scope, offset } = req.query;
-    if (scope !== "published" && !req.isAuthenticated()) {
+    if (scope === "drafts" && !req.isAuthenticated()) {
         //TODO: not authorized
         return res.status(401).json({
             message: "You are not authorized to see this resource"

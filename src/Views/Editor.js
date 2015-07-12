@@ -9,6 +9,7 @@ var Loading = require('../Components/Loading');
 var Icon = require('react-fontawesome');
 var Datepicker = require('react-datepicker/dist/react-datepicker');
 var moment = require('moment');
+var UrlSlugInput = require('../Components/UrlSlugInput');
 var { timeAgo } = require('../Lib/formatDate');
 var { is } = require('immutable');
 var { autobind, debounce } = require('../Mixins/decorators');
@@ -68,6 +69,16 @@ class Editor extends React.Component {
                 needsSaving: !is(blog, this.state.blog)
             });
         };
+    }
+
+    @autobind
+    onSlugIsControlledChange(e) {
+        var blog = this.state.blog;
+        var slugIsControlled = !!e.target.value;
+        var slug = !slugIsControlled ? blog.get('slug') : toSlug(blog.get('title'));
+        this.setState({
+            blog: blog.merge({ slugIsControlled, slug })
+        });
     }
 
     @autobind
@@ -223,10 +234,11 @@ class Editor extends React.Component {
                                 onChange={this.inputChangeFor('subtitle')} />
 
                             <label className="modal-input-label">Blog Url Slug</label>
-                            <input
-                                type="text"
+                            <UrlSlugInput
                                 className="modal-input"
                                 placeholder="Url Slug"
+                                locked={blog.get('slugIsControlled')}
+                                onLockChange={this.onSlugIsControlledChange}
                                 value={blog.get('slug')}
                                 onChange={this.onSlugChange} />
 

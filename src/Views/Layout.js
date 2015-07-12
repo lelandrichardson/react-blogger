@@ -1,5 +1,6 @@
 var React = require('react');
 var DocumentTitle = require('react-document-title');
+var Container = require('../Mixins/Container');
 
 var Header = require('../Components/Header');
 var BlogHeader = require('../Components/BlogHeader');
@@ -12,7 +13,11 @@ class Layout extends React.Component {
         return (
             <DocumentTitle title="Intelligible Babble">
                 <div>
-                    <BlogHeader title="Intelligible Babble" subtitle="Programming, Startups, Hacking, Nonsense" />
+                    <BlogHeader
+                        title="Intelligible Babble"
+                        subtitle="Programming, Startups, Hacking, Nonsense"
+                        pages={this.props.pages}
+                        />
                     <div className="container">
                         {this.props.children || <Home {...this.props} />}
                     </div>
@@ -23,4 +28,12 @@ class Layout extends React.Component {
     }
 }
 
-module.exports = Layout;
+module.exports = Container.create(Layout, ['SummaryStore'], {
+    getComponentProps([ SummaryStore ]) {
+        return {
+            pages: [] // SummaryStore.listAll({ scope: "pages" }, 0)
+        };
+    }
+});
+
+//module.exports = Layout;

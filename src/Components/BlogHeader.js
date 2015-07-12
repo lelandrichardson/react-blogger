@@ -10,6 +10,11 @@ class BlogHeader extends React.Component {
                 <div className="header-links">
                     <Link className="header-link" to="/">Blogs</Link>
                     <Link className="header-link" to="/about-me">About Me</Link>
+                    <div>
+                        {this.props.pages.map(
+                            page => <Link className="header-link" to={`/${page.get('slug')}`}>{page.get('title')}</Link>
+                        )}
+                    </div>
                     <a className="header-link" target="_blank" href="http://twitter.com/intelligibabble">Twitter</a>
                 </div>
                 <h1 className="header-title">{this.props.title}</h1>

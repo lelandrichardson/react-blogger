@@ -86,9 +86,9 @@ module.exports = {
         new ExtractTextPlugin("[name].css"),
     ],
     externals: {
-        //"react": "React",
+        "react": "React",
         //"codemirror": "CodeMirror",
-        //"moment": "moment",
-        //"immutable": "Immutable"
+        "moment": "moment",
+        "immutable": "Immutable"
     }
 };
