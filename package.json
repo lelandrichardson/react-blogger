@@ -86,7 +86,7 @@
     "json-loader": "^0.5.1",
     "style-loader": "^0.12.2",
     "less": "^2.5.1",
-    "less-loader": "^2.2.0",
+    "less-loader": "^2.2.0"
   },
   "devDependencies": {
     "jasmine": "^2.3.1",
