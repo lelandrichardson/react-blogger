@@ -1,6 +1,6 @@
 // polyfill
 require('es6-shim');
-require('dotenv').load();
+require('dotenv').config({ silent: true });
 
 var config = require('../config');
 
