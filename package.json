@@ -53,6 +53,7 @@
     "less": "^2.5.1",
     "less-loader": "^2.2.0",
     "lodash": "^3.10.0",
+    "marked": "^0.3.3",
     "md2react": "^0.6.4",
     "md5": "^1.0.0",
     "method-override": "^2.3.3",

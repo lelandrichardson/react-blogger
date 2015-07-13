@@ -54,8 +54,7 @@ module.exports = {
                         'es7.comprehensions',
                         'es7.functionBind',
                         'utility.inlineEnvironmentVariables',
-                        'minification.propertyLiterals',
-                        'minification.deadCodeElimination'
+                        'minification.propertyLiterals'
                     ]
                 }
             },

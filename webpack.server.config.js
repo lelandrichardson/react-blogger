@@ -39,8 +39,7 @@ module.exports = {
                         'es7.objectRestSpread',
                         'es7.comprehensions',
                         'es7.functionBind',
-                        'minification.propertyLiterals',
-                        'minification.deadCodeElimination'
+                        'minification.propertyLiterals'
                     ]
                 }
             },
