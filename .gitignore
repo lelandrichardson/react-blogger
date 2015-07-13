@@ -1,13 +1,10 @@
 
 node_modules
 .idea
-.bashrc
 build/**/*.js
 build/**/*.js.map
 build/**/*.css
 build/**/*.css.map
 config.js
 config.sequelize.json
-.bashrc
-
-.bashrc
+.env

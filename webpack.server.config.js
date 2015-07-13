@@ -13,8 +13,13 @@ fs.readdirSync('node_modules')
     });
 
 module.exports = {
-    entry: './src/Server.js',
+    cache: !PROD,
+    debug: !PROD,
+    profile: !PROD,
+    bail: PROD,
     target: 'node',
+    entry: './src/Server.js',
+    devtool: 'sourcemap',
     output: {
         path: path.join(__dirname, 'build', 'server'),
         filename: 'server.js'
@@ -34,7 +39,6 @@ module.exports = {
                         'es7.objectRestSpread',
                         'es7.comprehensions',
                         'es7.functionBind',
-                        'utility.inlineEnvironmentVariables',
                         'minification.propertyLiterals',
                         'minification.deadCodeElimination'
                     ]
@@ -46,6 +50,10 @@ module.exports = {
             }
         ]
     },
+    resolve: {
+        modulesDirectories: ['node_modules'],
+        extensions: ['', '.js', '.jsx', '.json']
+    },
     plugins: [
         new webpack.DefinePlugin({
             __CLIENT__: false,
@@ -55,6 +63,5 @@ module.exports = {
         new webpack.IgnorePlugin(/\.(css|less)$/),
         new webpack.BannerPlugin('require("source-map-support").install();',
             { raw: true, entryOnly: false })
-    ],
-    devtool: 'sourcemap'
+    ]
 };

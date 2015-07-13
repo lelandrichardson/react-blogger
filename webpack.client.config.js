@@ -10,7 +10,7 @@ var plugins = [
         __DEV__: !PROD
     }),
     new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin("[name].css"),
+    new ExtractTextPlugin("[name].css")
 ];
 if (PROD) {
     plugins.concat([
@@ -19,7 +19,7 @@ if (PROD) {
 }
 
 module.exports = {
-    cache: true,
+    cache: !PROD,
     debug: !PROD,
     profile: !PROD,
     bail: PROD,
