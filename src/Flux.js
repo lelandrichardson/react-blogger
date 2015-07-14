@@ -28,7 +28,6 @@ export default class Flux extends Alt {
 
     render(routes, App) {
         return new Promise((resolve, reject) => {
-            console.log(JSON.stringify({ baseUrl: this.req.baseUrl, url: this.req.url, query: this.req.query }, null, 2));
             const location = new Location(this.req.baseUrl || this.req.url, this.req.query);
             this.Http.start();
             Router.run(routes, location, (error, initialState) => {
