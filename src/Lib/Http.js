@@ -1,6 +1,10 @@
 import superagent from 'superagent';
 
-var prefix = __SERVER__ ? `http://localhost:${3030}` : '';
+var prefix = __CLIENT__ ?
+                '' :
+                `http://${process.env.BASE_URL}`;
+
+console.log(`Base URL: ${process.env.BASE_URL}`);
 
 export function AJAX(method, url, data, query, req) {
     return new Promise((resolve, reject) => {
