@@ -95,29 +95,31 @@ export function AUTHENTICATEJSON (req, res, next) {
 };
 
 export function attemptLogin({ success, fail }) {
-    return function (req, res) {
+    return [
         passport.authenticate('login', {
             failureRedirect: fail
-        })(req, res, function (req, res) {
-            if (req.query.returnUrl) {
+        }),
+        function (req, res) {
+            if (req.query && req.query.returnUrl) {
                 res.redirect(req.query.returnUrl);
             } else {
                 res.redirect(success);
             }
-        });
-    };
+        }
+    ];
 }
 
 export function attemptRegister({ success, fail }) {
-    return function (req, res) {
+    return [
         passport.authenticate('register', {
             failureRedirect: fail
-        })(req, res, function (req, res) {
-            if (req.query.returnUrl) {
+        }),
+        function (req, res) {
+            if (req.query && req.query.returnUrl) {
                 res.redirect(req.query.returnUrl);
             } else {
                 res.redirect(success);
             }
-        });
-    };
+        }
+    ];
 }

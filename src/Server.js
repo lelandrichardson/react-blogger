@@ -90,9 +90,9 @@ app.use(helmet.nosniff());
 app.use(helmet.ienoopen());
 app.disable('x-powered-by');
 
-app.post('/admin/login', attemptLogin({ success: '/admin/blogs/drafts', fail: '/admin/login'}));
+app.post('/admin/login', ...attemptLogin({ success: '/admin/blogs/drafts', fail: '/admin/login'}));
 
-app.post('/admin/register', attemptRegister({ success: '/admin/blogs/drafts', fail: '/admin/login'}));
+app.post('/admin/register', ...attemptRegister({ success: '/admin/blogs/drafts', fail: '/admin/login'}));
 
 app.use('/admin/logout', function (req, res) {
     req.logout();
