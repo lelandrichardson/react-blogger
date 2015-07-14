@@ -1,7 +1,10 @@
 // polyfill
 require('es6-shim');
+
+// load environment variables into `process.env`
 require('dotenv').config({ silent: true });
 
+// site-wide config
 var config = require('../config');
 
 // modules
@@ -26,6 +29,22 @@ const AdminRoutes = require('./AdminRoutes');
 import App from './App';
 
 db.sync();
+
+express.response.error = function(code, error) {
+    if (typeof code !== 'number') {
+        error = code;
+        code = 500;
+    }
+
+    var message = typeof error !== 'string' ? (error.message || error.msg || error.error) : error;
+
+
+    return this.status(code).json({
+        message,
+        code,
+        stackTrace: error.stackTrace
+    });
+};
 
 /**
  * Main application entry file.
@@ -87,7 +106,7 @@ app.get(['/admin/login', '/admin/register'], function (req, res) {
     const flux = new Flux({ req });
     flux.render(AdminRoutes, App).then(
         ({ html, data }) => res.render('Admin', { html, data }),
-            error => res.status(500).send(JSON.stringify(error))
+        error => res.error(error)
     );
 });
 
@@ -96,7 +115,7 @@ app.use(['/admin','/admin/*'], AUTHENTICATE, function (req, res) {
     const flux = new Flux({ req });
     flux.render(AdminRoutes, App).then(
         ({ html, data }) => res.render('Admin', { html, data }),
-        error => res.status(500).send(error)
+        error => res.error(error)
     );
 });
 
@@ -105,7 +124,7 @@ app.use('/*', function (req, res) {
     const flux = new Flux({ req });
     flux.render(ClientRoutes, App).then(
         ({ html, data }) => res.render('Client', { html, data }),
-        error => res.status(500).send({ message: error.message, stackTrace: Object.keys(error) })
+        error => res.error(error)
     );
 });
 

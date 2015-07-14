@@ -3,8 +3,7 @@ var config = {
     domain: "intelligiblebabble.com",
     title: "Intelligible Babble",
     keywords: "blogs",
-    description: "",
-    port: 3030
+    description: ""
 };
 
 module.exports = config;

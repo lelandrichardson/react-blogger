@@ -6,6 +6,7 @@ var BlogList = require('./Views/BlogList');
 var Editor = require('./Views/Editor');
 var Login = require('./Views/Login');
 var Register = require('./Views/Register');
+var EditSettings = require('./Views/EditSettings');
 
 export default (
     <Route path="/admin">
@@ -14,5 +15,6 @@ export default (
         <Route path="edit/:id" component={Editor} />
         <Route path="blogs/:scope" component={BlogList} />
         <Route path="blogs/:scope/:page" component={BlogList} />
+        <Route path="settings" component={EditSettings} />
     </Route>
 );

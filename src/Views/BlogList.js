@@ -24,6 +24,9 @@ class BlogList extends React.Component {
             <div className="blog-list">
                 <Toolbar>
                     <ToolbarButton onClick={this.handleCreateClick}><Icon name="plus" /> Add New</ToolbarButton>
+                    <ToolbarLink to="/admin/settings" className="right">
+                        <Icon name="settings" /> Settings
+                    </ToolbarLink>
                 </Toolbar>
                 <div style={{ marginTop: 54, padding: 20 }}>
                     <h1 className="blog-list-title">Your Posts</h1>

@@ -152,9 +152,7 @@ router.get('/blog/list', ApiRequest(function(req, res) {
     var { scope, offset } = req.query;
     if (scope === "drafts" && !req.isAuthenticated()) {
         //TODO: not authorized
-        return res.status(401).json({
-            message: "You are not authorized to see this resource"
-        });
+        return res.error(401,  "You are not authorized to see this resource");
     }
     return Api.blog.list(scope, +offset);
 }));
