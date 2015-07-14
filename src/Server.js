@@ -42,7 +42,7 @@ express.response.error = function(code, error) {
     return this.status(code).json({
         message,
         code,
-        stackTrace: error.stackTrace
+        stack: error.stack
     });
 };
 
