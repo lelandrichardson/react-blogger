@@ -3,7 +3,12 @@ import Http from './Lib/Http';
 import Api from './Lib/Api.js'
 import Router from 'react-router';
 import React from 'react';
-import Location from 'react-router/lib/Location';
+
+if (__SERVER__) {
+    var Location = require('react-router/lib/Location');
+    var URL = require('url-parse');
+}
+
 
 export default class Flux extends Alt {
     constructor(config = {}) {
@@ -27,21 +32,24 @@ export default class Flux extends Alt {
     }
 
     render(routes, App) {
-        return new Promise((resolve, reject) => {
-            const location = new Location(this.req.baseUrl || this.req.url, this.req.query);
-            this.Http.start();
-            Router.run(routes, location, (error, initialState) => {
-                if (error) { return reject(error); }
+        if (__SERVER__) {
+            return new Promise(( resolve, reject ) => {
+                const url = new URL(this.req.baseUrl + this.req.url, true);
+                const location = new Location(url.pathname, url.query);
+                this.Http.start();
+                Router.run(routes, location, ( error, initialState ) => {
+                    if (error) { return reject(error); }
 
-                // NOTE: this render pass is effectively wasted :(
-                var _html = React.renderToString(<App location={location} flux={this} {...initialState} />);
-                this.Http.stop();
-                Promise.all(this.Http.promises).then(() => {
-                    const html = React.renderToString(<App location={location} flux={this} {...initialState} />);
-                    const data = this.takeSnapshot();
-                    resolve({ html, data });
-                }, reject);
+                    // NOTE: this render pass is effectively wasted :(
+                    var _html = React.renderToString(<App location={location} flux={this} {...initialState} />);
+                    this.Http.stop();
+                    Promise.all(this.Http.promises).then(() => {
+                        const html = React.renderToString(<App location={location} flux={this} {...initialState} />);
+                        const data = this.takeSnapshot();
+                        resolve({ html, data });
+                    }, reject);
+                });
             });
-        });
+        }
     }
 }

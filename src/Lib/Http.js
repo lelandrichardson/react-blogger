@@ -4,8 +4,6 @@ var prefix = __CLIENT__ ?
                 '' :
                 `http://${process.env.BASE_URL}`;
 
-console.log(`Base URL: ${process.env.BASE_URL}`);
-
 export function AJAX(method, url, data, query, req) {
     return new Promise((resolve, reject) => {
         let request = superagent[method](`${prefix}/api/${url}`);
@@ -13,7 +11,7 @@ export function AJAX(method, url, data, query, req) {
             request.query(query);
         }
         if (__SERVER__) {
-            if(req.get('cookie')){
+            if(req.get('cookie')) {
                 request.set('cookie', req.get('cookie'));
             }
         }

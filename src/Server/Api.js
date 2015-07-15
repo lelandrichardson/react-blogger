@@ -156,6 +156,7 @@ router.get('/blog/list', ApiRequest(function(req, res) {
     }
     return Api.blog.list(scope, +offset);
 }));
+
 router.get('/blog/from-slug/:slug', ApiRequest((req, res) => Api.blog.getFromSlug(req.params.slug)));
 router.get('/blog/:id', AUTHENTICATEJSON, ApiRequest((req, res) => Api.blog.get(+req.params.id)));
 router.put('/blog/', AUTHENTICATEJSON, ApiRequest(function (req, res) {

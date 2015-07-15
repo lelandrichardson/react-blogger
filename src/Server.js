@@ -30,6 +30,7 @@ import App from './App';
 
 db.sync();
 
+//TODO: move to separate file
 express.response.error = function(code, error) {
     if (typeof code !== 'number') {
         error = code;
@@ -38,11 +39,10 @@ express.response.error = function(code, error) {
 
     var message = typeof error !== 'string' ? (error.message || error.msg || error.error) : error;
 
-
     return this.status(code).json({
         message,
         code,
-        stack: error.stack
+        stack: (error.stack || '').split('\n')
     });
 };
 
@@ -99,7 +99,7 @@ app.use('/admin/logout', function (req, res) {
     res.redirect('/');
 });
 
-app.use('/api', AUTHENTICATE, require('./Server/Api'));
+app.use('/api', require('./Server/Api'));
 
 // login/register pages
 app.get(['/admin/login', '/admin/register'], function (req, res) {

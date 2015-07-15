@@ -1,28 +1,43 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var PROD = process.env.NODE_ENV == "production";
+var StatsPlugin = require('stats-webpack-plugin');
+var ISPROD = process.env.NODE_ENV == "production";
+var ISDEV = !ISPROD;
 
 var plugins = [
     new webpack.DefinePlugin({
         __CLIENT__: true,
         __SERVER__: false,
-        __DEV__: !PROD
+        __DEV__: ISDEV,
+        "process.env.IS_BROWSER": true
     }),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin("[name].css")
+    //new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.js")
 ];
-if (PROD) {
-    plugins.concat([
+if (ISPROD) {
+    plugins.push(
         new webpack.optimize.UglifyJsPlugin({ output: { comments: false } })
-    ]);
+    );
 }
+//if (ISDEV) {
+//    plugins.push(
+//        new StatsPlugin('webpack.stats.json', {
+//            chunkModules: true,
+//            timings: true,
+//            modules: true,
+//            chunksSort: 'size',
+//            modulesSort: 'size'
+//        })
+//    );
+//}
 
 module.exports = {
-    cache: !PROD,
-    debug: !PROD,
-    profile: !PROD,
-    bail: PROD,
+    cache: ISDEV,
+    debug: ISDEV,
+    profile: ISDEV,
+    bail: ISPROD,
     target: "web",
     devtool: 'source-map',
     entry: {
@@ -34,7 +49,7 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'build', 'client'),
-        publicPath: 'build',
+        publicPath: 'http://localhost:9090/assets/',
         filename: '[name].js',
         chunkFilename: '[chunkhash].js',
         sourceMapFilename: 'debugging/[file].map'
@@ -55,7 +70,8 @@ module.exports = {
                         'es7.functionBind',
                         'utility.inlineEnvironmentVariables',
                         'minification.propertyLiterals'
-                    ]
+                    ],
+                    loose: 'all'
                 }
             },
             {
@@ -74,6 +90,7 @@ module.exports = {
         extensions: ['', '.js', '.jsx', '.json']
     },
     plugins: plugins,
+
     externals: {
         "react": "React",
         //"codemirror": "CodeMirror",

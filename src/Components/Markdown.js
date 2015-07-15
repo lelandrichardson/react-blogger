@@ -1,19 +1,12 @@
 var React = require('react');
-//var md2react = require('md2react');
-var hl = require('highlight.js');
-
+var escape = require('lodash/string/escape');
+var AsyncHighlighter = require('../Lib/AsyncHighlighter');
 
 var marked = require('marked');
 var renderer = new marked.Renderer();
 
-//renderer.heading = function (text, level) {
-//    var escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-//
-//    return `<h${level} id="${escapedText}">${text}</h${level}`;
-//};
-
 renderer.code = function (code, lang) {
-    return `<pre class="hljs"><code>${hl.highlightAuto(code).value}</code></pre>`;
+    return `<pre class="hljs"><code>${AsyncHighlighter.highlight(code)}</code></pre>`;
 };
 
 marked.setOptions({
@@ -22,13 +15,12 @@ marked.setOptions({
     tables: true,
     breaks: false,
     pedantic: false,
-    sanitize: true,
+    sanitize: false,
     smartLists: true,
     smartypants: false
 });
 
 if (__CLIENT__) require('../Styles/Markdown.less');
-//if (__CLIENT__) require('highlight.js/styles/default.css');
 if (__CLIENT__) require('highlight.js/styles/darkula.css');
 class Markdown extends React.Component {
 
@@ -36,14 +28,31 @@ class Markdown extends React.Component {
         text: React.PropTypes.string.isRequired
     }
 
+    constructor() {
+        super();
+        this.update = this.update.bind(this);
+    }
+
     shouldComponentUpdate(next) {
         return this.props.text !== next.text;
+    }
+
+    componentDidMount() {
+        AsyncHighlighter.on(this.update);
+    }
+
+    componentWillUnmount() {
+        AsyncHighlighter.off(this.update);
+    }
+
+    update() {
+        this.forceUpdate();
     }
 
     render () {
         const __html = marked(this.props.text);
         return (
-            <div className="markdown-body" dangerouslySetInnerHTML={{ __html }} />
+            <div ref="container" className="markdown-body" dangerouslySetInnerHTML={{ __html }} />
         );
     }
 }

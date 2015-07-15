@@ -16,6 +16,21 @@ if (__CLIENT__) {
     require('codemirror/mode/htmlmixed/htmlmixed');
 }
 
+function keymapFor(instance) {
+    if (__SERVER__) {
+        return {};
+    } else {
+        return CodeMirror.normalizeKeyMap({
+            Enter: 'newlineAndIndentContinueMarkdownList',
+            'Cmd-S': (cm) => {
+                instance.props.onSave && instance.props.onSave();
+            },
+            'Ctrl-S': (cm) => {
+                instance.props.onSave && instance.props.onSave();
+            }
+        });
+    }
+}
 
 if (__CLIENT__) {
     // Styles
@@ -38,15 +53,7 @@ class MarkdownEditor extends React.Component {
                             matchBrackets: true,
                             lineWrapping: true,
                             theme: 'base16-light',
-                            extraKeys: CodeMirror.normalizeKeyMap({
-                                Enter: 'newlineAndIndentContinueMarkdownList',
-                                'Cmd-S': (cm) => {
-                                    this.props.onSave && this.props.onSave();
-                                },
-                                'Ctrl-S': (cm) => {
-                                    this.props.onSave && this.props.onSave();
-                                }
-                            })
+                            extraKeys: keymapFor(this)
                         }}
                     />
                 </div>

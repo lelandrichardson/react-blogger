@@ -12,9 +12,10 @@
     "start": "set NODE_ENV=production && npm run start-server",
     "build": "node_modules/.bin/webpack --config webpack.config.js",
     "build-prod": "set NODE_ENV=production && node_modules/.bin/webpack --config webpack.config.js",
-    "watch": "node_modules/.bin/webpack --config webpack.config.js --watch",
+    "watch": "node_modules/.bin/webpack-dev-server --devtool eval --progress --colors --content-base build/client --port 9090 --inline",
     "start-server": "node build/server/server.js",
     "start-server-dev": "nodemon build/server/Server.js  --watch build/server",
+    "debug": "node-debug build/server/Server.js --hidden node_modules/ -p 3030 --debug-brk",
     "create-migration": "node_modules/.bin/sequelize migration:create --config config.sequelize.json --models-path src/Models",
     "run-migration": "node_modules/.bin/sequelize db:migrate --config config.sequelize.json --models-path src/Models",
     "undo-migration": "node_modules/.bin/sequelize db:migrate:undo --config config.sequelize.json --models-path src/Models"
@@ -84,11 +85,12 @@
     "serve-favicon": "^2.3.0",
     "shortid": "^2.2.2",
     "source-map-support": "^0.3.2",
+    "stats-webpack-plugin": "^0.2.1",
     "style-loader": "^0.12.2",
     "superagent": "^1.2.0",
     "url-append": "^0.1.0",
     "url-parse": "^1.0.2",
-    "webpack": "^1.9.11"
+    "webpack": "^1.10.1"
   },
   "devDependencies": {
     "jasmine": "^2.3.1",
@@ -100,6 +102,6 @@
     "karma-webpack": "^1.5.1",
     "sequelize-cli": "^1.7.0",
     "sinon": "^1.14.1",
-    "webpack-dev-server": "^1.9.0"
+    "webpack-dev-server": "^1.10.1"
   }
 }
