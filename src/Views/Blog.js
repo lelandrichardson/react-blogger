@@ -3,6 +3,7 @@ var Helmet = require('react-helmet');
 var Container = require('../Mixins/Container');
 var { Link } = require('react-router');
 var { timeAgo, utc } = require('../Lib/formatDate');
+var { List } = require('immutable');
 var config = require('../../config');
 
 var Markdown = require('../Components/Markdown');
@@ -30,7 +31,7 @@ class Blog extends React.Component {
                         { property: "og:article:author", content: "Leland Richardson" },
                         { property: "og:article:section", content: "Blog" },
                         { property: "og:article:published_time", content: utc(blog.get('datePublished')) },
-                        { property: "og:article:tag", content: "" }, // TODO:
+                        { property: "og:article:tag", content: "" }, // TODO: blog tags
                     ]}
                     link={[
                         { rel: "canonical", href: canonical },
@@ -38,7 +39,9 @@ class Blog extends React.Component {
                     />
                 <Header
                     title={blog.get('title')}
-                    subtitle={blog.get('subtitle')} />
+                    subtitle={blog.get('subtitle')}
+                    pages={this.props.pages.items}
+                    />
                 <div className="container">
                     <div className="blog-date">
                         {timeAgo(blog.get('datePublished'))}
@@ -53,10 +56,11 @@ class Blog extends React.Component {
     }
 }
 
-module.exports = Container.create(Blog, ['BlogStore'], {
-    getComponentProps([ BlogStore ], { params }) {
+module.exports = Container.create(Blog, ['BlogStore', 'SummaryStore'], {
+    getComponentProps([ BlogStore, SummaryStore ], { params }) {
         return {
-            blog: BlogStore.getFromSlug(params.slug)
+            blog: BlogStore.getFromSlug(params.slug),
+            pages: SummaryStore.listAll({ scope: "pages" }, 0) || { items: List(), total: 0 }
         }
     }
 });
