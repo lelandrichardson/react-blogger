@@ -21,7 +21,7 @@ class Blog extends React.Component {
                 <Helmet
                     title={blog.get('title')}
                     meta={[
-                        { "name": "description", "content": blog.get('summary') },
+                        { "name": "description", "content": blog.get('summary') || blog.get('title') || ' ' },
                         { "property": "og:type", "content": "article" }
                     ]}
                     />

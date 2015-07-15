@@ -42,15 +42,24 @@ export default class Flux extends Alt {
                 Router.run(routes, location, ( error, initialState ) => {
                     if (error) { return reject(error); }
 
-                    // NOTE: this render pass is effectively wasted :(
-                    var _html = React.renderToString(<App location={location} flux={this} {...initialState} />);
-                    this.Http.stop();
+                    try {
+                        // NOTE: this render pass is effectively wasted :(
+                        var _html = React.renderToString(<App location={location} flux={this} {...initialState} />);
+                        this.Http.stop();
+                    } catch (e) {
+                        return reject(e);
+                    }
+
                     Promise.all(this.Http.promises).then(() => {
-                        Helmet.rewind();
-                        const html = React.renderToString(<App location={location} flux={this} {...initialState} />);
-                        const head = Helmet.rewind();
-                        const data = this.takeSnapshot();
-                        resolve({ html, data, head, SCRIPT_BASE_URL });
+                        try {
+                            //Helmet.rewind();
+                            const html = React.renderToString(<App location={location} flux={this} {...initialState} />);
+                            const head = Helmet.rewind();
+                            const data = this.takeSnapshot();
+                            resolve({ html, data, head, SCRIPT_BASE_URL });
+                        } catch (e) {
+                            return reject(e);
+                        }
                     }, reject);
                 });
             });

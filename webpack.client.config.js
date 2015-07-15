@@ -1,3 +1,4 @@
+require('dotenv').config({ silent: true });
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -5,12 +6,13 @@ var StatsPlugin = require('stats-webpack-plugin');
 var ISPROD = process.env.NODE_ENV == "production";
 var ISDEV = !ISPROD;
 
+
 var plugins = [
     new webpack.DefinePlugin({
         __CLIENT__: true,
         __SERVER__: false,
         __DEV__: ISDEV,
-        "process.env.IS_BROWSER": true
+        "process.env.GA_TRACKING_ID": process.env.GA_TRACKING_ID
     }),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin("[name].css")
