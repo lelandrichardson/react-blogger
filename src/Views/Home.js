@@ -3,13 +3,11 @@ var Container = require('../Mixins/Container');
 var { Link } = require('react-router');
 var { List } = require('immutable');
 var config = require('../../config');
-
 var BlogSummary = require('../Components/BlogSummary');
 var Header = require('../Components/Header');
 var Footer = require('../Components/Footer');
 var InfiniteScroll = require('../Components/InfiniteScroll');
 var Helmet = require('react-helmet');
-
 var { autobind } = require('../Mixins/decorators');
 
 class Home extends React.Component {
@@ -44,7 +42,7 @@ class Home extends React.Component {
                     ]}
                     />
                 <Header
-                    title={config.name}
+                    title={config.title}
                     subtitle={config.tagline}
                     pages={this.props.pages.items}
                     />
