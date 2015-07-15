@@ -1,4 +1,5 @@
 var React = require('react');
+var config = require('../../config');
 
 const year = (new Date()).getFullYear();
 
@@ -7,9 +8,9 @@ class Footer extends React.Component {
     render() {
         return (
             <div className="footer">
-                &copy; {year} Leland Richardson
+                &copy; {year} {config.primaryAuthor}
             </div>
-        )
+        );
     }
 }
 

@@ -28,7 +28,7 @@ class Blog extends React.Component {
                         { name: "description", content: description },
                         { property: "og:description", content: description },
                         { property: "og:type", content: "article" },
-                        { property: "og:article:author", content: "Leland Richardson" },
+                        { property: "og:article:author", content: blog.getIn(['author','name']) },
                         { property: "og:article:section", content: "Blog" },
                         { property: "og:article:published_time", content: utc(blog.get('datePublished')) },
                         { property: "og:article:tag", content: "" }, // TODO: blog tags
