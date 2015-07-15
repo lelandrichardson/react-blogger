@@ -24,9 +24,10 @@ var favicon = require('serve-favicon');
 import { security, AUTHENTICATE, attemptLogin, attemptRegister } from './Server/security.js';
 import { db } from './Server/database.js';
 import Flux from './Flux.js';
+import App from './App';
 const ClientRoutes = require('./ClientRoutes');
 const AdminRoutes = require('./AdminRoutes');
-import App from './App';
+const SCRIPT_BASE_URL = __DEV__ ? '//localhost:9090' : '';
 
 db.sync();
 
@@ -105,7 +106,7 @@ app.use('/api', require('./Server/Api'));
 app.get(['/admin/login', '/admin/register'], function (req, res) {
     const flux = new Flux({ req });
     flux.render(AdminRoutes, App).then(
-        ({ html, data }) => res.render('Admin', { html, data }),
+        ({ html, data }) => res.render('Admin', { html, data, SCRIPT_BASE_URL }),
         error => res.error(error)
     );
 });
@@ -114,7 +115,7 @@ app.get(['/admin/login', '/admin/register'], function (req, res) {
 app.use(['/admin','/admin/*'], AUTHENTICATE, function (req, res) {
     const flux = new Flux({ req });
     flux.render(AdminRoutes, App).then(
-        ({ html, data }) => res.render('Admin', { html, data }),
+        ({ html, data }) => res.render('Admin', { html, data, SCRIPT_BASE_URL }),
         error => res.error(error)
     );
 });
@@ -123,7 +124,7 @@ app.use(['/admin','/admin/*'], AUTHENTICATE, function (req, res) {
 app.use('/*', function (req, res) {
     const flux = new Flux({ req });
     flux.render(ClientRoutes, App).then(
-        ({ html, data }) => res.render('Client', { html, data }),
+        ({ html, data }) => res.render('Client', { html, data, SCRIPT_BASE_URL }),
         error => res.error(error)
     );
 });

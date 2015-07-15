@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Intelligible Babble</title>
-    <link rel="stylesheet" href="//localhost:9090/assets/Client.css" />
+    <link rel="stylesheet" href="<%- SCRIPT_BASE_URL %>/assets/Client.css" />
 </head>
 <body>
     <div id="mount"><%- html || '' %></div>
@@ -11,6 +11,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/immutable/3.7.4/immutable.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
-    <script src="//localhost:9090/assets/Client.js"></script>
+    <script src="<%- SCRIPT_BASE_URL %>/assets/Client.js"></script>
 </body>
 </html>

@@ -5,5 +5,7 @@ build/**/*.js
 build/**/*.js.map
 build/**/*.css
 build/**/*.css.map
+build/**/*.json
+!build/client/HighlightWorker.js
 config.sequelize.json
 .env
