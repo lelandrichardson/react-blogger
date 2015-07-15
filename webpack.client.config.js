@@ -14,10 +14,10 @@ var plugins = [
     }),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin("[name].css")
-    //new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.js")
 ];
 if (ISPROD) {
     plugins.push(
+        new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({ output: { comments: false } })
     );
 }
