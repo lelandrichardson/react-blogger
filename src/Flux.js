@@ -3,10 +3,12 @@ import Http from './Lib/Http';
 import Api from './Lib/Api.js'
 import Router from 'react-router';
 import React from 'react';
+import Helmet from 'react-helmet';
 
 if (__SERVER__) {
     var Location = require('react-router/lib/Location');
     var URL = require('url-parse');
+    var SCRIPT_BASE_URL = __DEV__ ? '//localhost:9090' : '';
 }
 
 
@@ -44,9 +46,11 @@ export default class Flux extends Alt {
                     var _html = React.renderToString(<App location={location} flux={this} {...initialState} />);
                     this.Http.stop();
                     Promise.all(this.Http.promises).then(() => {
+                        Helmet.rewind();
                         const html = React.renderToString(<App location={location} flux={this} {...initialState} />);
+                        const head = Helmet.rewind();
                         const data = this.takeSnapshot();
-                        resolve({ html, data });
+                        resolve({ html, data, head, SCRIPT_BASE_URL });
                     }, reject);
                 });
             });

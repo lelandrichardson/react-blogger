@@ -8,7 +8,7 @@ var BlogStore = require('../Stores/BlogStore');
 var Markdown = require('../Components/Markdown');
 var BlogHeader = require('../Components/BlogHeader');
 var Footer = require('../Components/Footer');
-var DocumentTitle = require('react-document-title');
+var Helmet = require('react-helmet');
 var Loading = require('../Components/Loading');
 
 if(__CLIENT__) require('../Styles/Blog.less');
@@ -17,20 +17,25 @@ class Blog extends React.Component {
         const blog = this.props.blog;
         const body = blog.getIn(['publishedVersion', 'body']);
         return (
-            <DocumentTitle title={blog.get('title')}>
-                <div>
-                    <BlogHeader title={blog.get('title')} subtitle={blog.get('subtitle')} />
-                    <div className="container">
-                        <div className="blog-date">
-                            {timeAgo(blog.get('datePublished'))}
-                        </div>
-                        <div className="blog">
-                            <Markdown text={body} />
-                        </div>
+            <div>
+                <Helmet
+                    title={blog.get('title')}
+                    meta={[
+                        { "name": "description", "content": blog.get('summary') },
+                        { "property": "og:type", "content": "article" }
+                    ]}
+                    />
+                <BlogHeader title={blog.get('title')} subtitle={blog.get('subtitle')} />
+                <div className="container">
+                    <div className="blog-date">
+                        {timeAgo(blog.get('datePublished'))}
                     </div>
-                    <Footer />
+                    <div className="blog">
+                        <Markdown text={body} />
+                    </div>
                 </div>
-            </DocumentTitle>
+                <Footer />
+            </div>
         );
     }
 }

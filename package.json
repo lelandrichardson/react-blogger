@@ -75,6 +75,7 @@
     "react-document-title": "^1.0.2",
     "react-flux": "0.0.22",
     "react-fontawesome": "^0.2.5",
+    "react-helmet": "^1.1.0",
     "react-highlight": "^0.4.1",
     "react-hotkeys": "^0.3.3",
     "react-infinite-scroll": "^0.1.5",

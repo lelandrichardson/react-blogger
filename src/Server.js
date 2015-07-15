@@ -27,7 +27,6 @@ import Flux from './Flux.js';
 import App from './App';
 const ClientRoutes = require('./ClientRoutes');
 const AdminRoutes = require('./AdminRoutes');
-const SCRIPT_BASE_URL = __DEV__ ? '//localhost:9090' : '';
 
 db.sync();
 
@@ -106,7 +105,7 @@ app.use('/api', require('./Server/Api'));
 app.get(['/admin/login', '/admin/register'], function (req, res) {
     const flux = new Flux({ req });
     flux.render(AdminRoutes, App).then(
-        ({ html, data }) => res.render('Admin', { html, data, SCRIPT_BASE_URL }),
+        data => res.render('Admin', data),
         error => res.error(error)
     );
 });
@@ -115,7 +114,7 @@ app.get(['/admin/login', '/admin/register'], function (req, res) {
 app.use(['/admin','/admin/*'], AUTHENTICATE, function (req, res) {
     const flux = new Flux({ req });
     flux.render(AdminRoutes, App).then(
-        ({ html, data }) => res.render('Admin', { html, data, SCRIPT_BASE_URL }),
+        data => res.render('Admin', data),
         error => res.error(error)
     );
 });
@@ -124,7 +123,7 @@ app.use(['/admin','/admin/*'], AUTHENTICATE, function (req, res) {
 app.use('/*', function (req, res) {
     const flux = new Flux({ req });
     flux.render(ClientRoutes, App).then(
-        ({ html, data }) => res.render('Client', { html, data, SCRIPT_BASE_URL }),
+        data => res.render('Client', data),
         error => res.error(error)
     );
 });

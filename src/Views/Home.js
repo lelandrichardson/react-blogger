@@ -3,11 +3,10 @@ var Container = require('../Mixins/Container');
 var { Link } = require('react-router');
 var { List } = require('immutable');
 
-//var SummaryStore = require('../Stores/SummaryStore');
-
 var BlogSummary = require('../Components/BlogSummary');
 var Loading = require('../Components/Loading');
 var InfiniteScroll = require('../Components/InfiniteScroll');
+var Helmet = require('react-helmet');
 
 var { autobind } = require('../Mixins/decorators');
 
@@ -19,9 +18,6 @@ class Home extends React.Component {
         };
     }
 
-    //static loadProps(params, setProps, onTeardown) {
-    //    cb(null, { newProp: "foo" });
-    //}
     @autobind
     onLoadMore() {
         this.props.SummaryStore.listAll(this.props.filter, this.state.page + 1);
@@ -36,6 +32,13 @@ class Home extends React.Component {
         const isLoading = this.state.page * 10 > blogs.items.size;
         return (
             <div>
+                <Helmet
+                    title={'Intelligible Babble'}
+                    meta={[
+                        { name: "description", content: "Intelligible Babble" },
+                        { property: "og:type", content: "article" }
+                    ]}
+                    />
                 <InfiniteScroll
                     hasMore={hasMore}
                     isLoading={isLoading}
