@@ -2,7 +2,7 @@ var React = require('react');
 var { Link } = require('react-router');
 var { timeAgo } = require('../Lib/formatDate');
 
-if (__CLIENT__) require('../Styles/BlogListItem.less');
+require('../Styles/BlogListItem.less');
 class BlogListItem extends React.Component {
     render() {
         const blog = this.props.blog;

@@ -5,6 +5,7 @@ var {
     Seq
     } = require('immutable');
 import fromJSSpecial from '../Lib/fromJSSpecial.js';
+var { autobind } = require('../Mixins/decorators');
 
 class ImmutableStore {
     static config = {
@@ -30,6 +31,7 @@ class ImmutableStore {
             return data;
         }
     }
+
     constructor() {
         this.exportPublicMethods({
             get: this.get,
@@ -38,19 +40,19 @@ class ImmutableStore {
             hasIn: this.hasIn
         });
         this.dirty = false;
-        //this.changeTick = this.changeTick.bind(this);
         if (__CLIENT__) {
-            requestAnimationFrame(this.changeTick.bind(this));
+            requestAnimationFrame(this.changeTick);
         }
     }
 
+    @autobind
     changeTick() {
         if (this.dirty) {
             this.emitChange();
             this.dirty = false;
         }
         if(__CLIENT__) {
-            requestAnimationFrame(this.changeTick.bind(this));
+            requestAnimationFrame(this.changeTick);
         }
     }
 

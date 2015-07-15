@@ -2,7 +2,7 @@ var React = require('react');
 var { Link } = require('react-router');
 var cx = require('classnames');
 
-if (__CLIENT__) require('../Styles/Toolbar.less');
+require('../Styles/Toolbar.less');
 export class Toolbar extends React.Component {
     render() {
         return (

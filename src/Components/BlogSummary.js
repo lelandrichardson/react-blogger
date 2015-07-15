@@ -2,7 +2,7 @@ var React = require('react');
 var { Link } = require('react-router');
 var { short } = require('../Lib/formatDate');
 
-if (__CLIENT__) require('../Styles/BlogSummary.less');
+require('../Styles/BlogSummary.less');
 class BlogSummary extends React.Component {
     render() {
         const blog = this.props.blog;

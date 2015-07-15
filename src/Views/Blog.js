@@ -1,31 +1,44 @@
 var React = require('react');
+var Helmet = require('react-helmet');
 var Container = require('../Mixins/Container');
 var { Link } = require('react-router');
-var { timeAgo } = require('../Lib/formatDate');
-
-var BlogStore = require('../Stores/BlogStore');
+var { timeAgo, utc } = require('../Lib/formatDate');
+var config = require('../../config');
 
 var Markdown = require('../Components/Markdown');
-var BlogHeader = require('../Components/BlogHeader');
+var Header = require('../Components/Header');
 var Footer = require('../Components/Footer');
-var Helmet = require('react-helmet');
-var Loading = require('../Components/Loading');
 
-if(__CLIENT__) require('../Styles/Blog.less');
+require('../Styles/Blog.less');
 class Blog extends React.Component {
     render() {
         const blog = this.props.blog;
         const body = blog.getIn(['publishedVersion', 'body']);
+        const canonical = `/${blog.get('slug')}`;
+
+        //TODO: construct from body instead of using title
+        const description = blog.get('summary') || blog.get('title') || '';
         return (
             <div>
                 <Helmet
                     title={blog.get('title')}
                     meta={[
-                        { "name": "description", "content": blog.get('summary') || blog.get('title') || ' ' },
-                        { "property": "og:type", "content": "article" }
+                        { property: "keywords", content: config.keywords },
+                        { name: "description", content: description },
+                        { property: "og:description", content: description },
+                        { property: "og:type", content: "article" },
+                        { property: "og:article:author", content: "Leland Richardson" },
+                        { property: "og:article:section", content: "Blog" },
+                        { property: "og:article:published_time", content: utc(blog.get('datePublished')) },
+                        { property: "og:article:tag", content: "" }, // TODO:
+                    ]}
+                    link={[
+                        { rel: "canonical", href: canonical },
                     ]}
                     />
-                <BlogHeader title={blog.get('title')} subtitle={blog.get('subtitle')} />
+                <Header
+                    title={blog.get('title')}
+                    subtitle={blog.get('subtitle')} />
                 <div className="container">
                     <div className="blog-date">
                         {timeAgo(blog.get('datePublished'))}
@@ -45,6 +58,5 @@ module.exports = Container.create(Blog, ['BlogStore'], {
         return {
             blog: BlogStore.getFromSlug(params.slug)
         }
-    },
-    loadingComponent: <Loading />
+    }
 });

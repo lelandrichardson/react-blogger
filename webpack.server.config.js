@@ -59,7 +59,8 @@ module.exports = {
             __SERVER__: true,
             __DEV__: !PROD
         }),
-        new webpack.IgnorePlugin(/\.(css|less)$/),
+        //new webpack.IgnorePlugin(/\.(css|less)$/),
+        new webpack.NormalModuleReplacementPlugin(/\.(css|less)$/, 'empty-module'),
         new webpack.BannerPlugin('require("source-map-support").install();',
             { raw: true, entryOnly: false })
     ]

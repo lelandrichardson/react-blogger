@@ -1,21 +1,19 @@
 var React = require('react');
-var DocumentTitle = require('react-document-title');
+var Helmet = require('react-helmet');
 
-
-if(__CLIENT__) require('../Styles/Login.less');
+require('../Styles/Login.less');
 class Register extends React.Component {
     render() {
         return (
-            <DocumentTitle title="Register - Intelligible Babble">
-                <div className="login">
-                    <form className="login-form" method="POST">
-                        <input className="login-input" type="text" name="name" placeholder="Display Name" /><br/>
-                        <input className="login-input" type="text" name="username" placeholder="Username" /><br/>
-                        <input className="login-input" type="password" name="password" placeholder="Password" /><br/>
-                        <button className="login-button" type="submit">Register</button>
-                    </form>
-                </div>
-            </DocumentTitle>
+            <div className="login">
+                <Helmet title={`Login - ${config.title}`} />
+                <form className="login-form" method="POST">
+                    <input className="login-input" type="text" name="name" placeholder="Display Name" /><br/>
+                    <input className="login-input" type="text" name="username" placeholder="Username" /><br/>
+                    <input className="login-input" type="password" name="password" placeholder="Password" /><br/>
+                    <button className="login-button" type="submit">Register</button>
+                </form>
+            </div>
         );
     }
 }

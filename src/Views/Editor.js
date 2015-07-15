@@ -4,7 +4,7 @@ var Container = require('../Mixins/Container');
 var { Toolbar, ToolbarButton, ToolbarLink, ToolbarText } = require('../Components/Toolbar');
 var MarkdownEditor = require('../Components/MarkdownEditor');
 var Modal = require('../Components/Modal');
-var DocumentTitle = require('react-document-title');
+var Helmet = require('react-helmet');
 var Loading = require('../Components/Loading');
 var Icon = require('react-fontawesome');
 var Datepicker = require('react-datepicker/dist/react-datepicker');
@@ -17,8 +17,8 @@ import toSlug from '../Lib/toSlug.js';
 
 const BODY = ['editingVersion','body'];
 
-if (__CLIENT__) require('react-datepicker/dist/react-datepicker.css');
-if (__CLIENT__) require('../Styles/Editor.less');
+require('react-datepicker/dist/react-datepicker.css');
+require('../Styles/Editor.less');
 class Editor extends React.Component {
     constructor(props) {
         super(props);
@@ -145,124 +145,123 @@ class Editor extends React.Component {
         const unpublishedChanges = published && blog.get('editingVersionId') !== blog.get('publishedVersionId');
         const body = blog.getIn(BODY);
         return (
-            <DocumentTitle title={blog.get('title') || '(Untitled)'}>
-                <div>
-                    <Toolbar>
-                        <ToolbarLink to="/admin/blogs/drafts">
-                            <Icon name="arrow-left" /> Blogs
-                        </ToolbarLink>
-                        {hasChanges &&
-                        <ToolbarButton onClick={this.onSaveClick}>
-                            <Icon name="floppy-o" /> Save
-                        </ToolbarButton>}
-                        {!published && !hasChanges &&
-                        <ToolbarButton onClick={this.onPublishClick}>
-                            <Icon name="bullhorn" /> Publish
-                        </ToolbarButton>}
-                        {published &&
-                        <ToolbarButton onClick={this.onUnpublishClick}>
-                            Unpublish
-                        </ToolbarButton>}
-                        {published &&
-                        <ToolbarText>
-                            Published {timeAgo(blog.get('datePublished'))}
-                        </ToolbarText>}
-                        {unpublishedChanges &&
-                        <ToolbarButton onClick={this.onPublishClick}>
-                            <Icon name="floppy-o" size="lg"/> Update
-                        </ToolbarButton>}
-                        <ToolbarButton onClick={this.onDeleteClick}>
-                            <Icon name="trash-o" /> Delete
-                        </ToolbarButton>
-                        <ToolbarButton className="right" onClick={() => this.setState({ showModal: true })}>
-                            <Icon name="cog" size="lg"/>
-                        </ToolbarButton>
-                    </Toolbar>
-                    <div className="editor">
-                        <div className="editor-title-box">
-                            <input
-                                className="editor-title-input"
-                                type="text"
-                                placeholder="Blog Title"
-                                value={blog.get('title')}
-                                onChange={this.onTitleChange} />
-                        </div>
-                        <MarkdownEditor
-                            onChange={this.onBodyChange}
-                            onSave={this.onSaveClick}
-                            value={body}
-                            hasChanges={hasChanges}
-                            />
+            <div>
+                <Helmet title={blog.get('title') || '(Untitled)'} />
+                <Toolbar>
+                    <ToolbarLink to="/admin/blogs/drafts">
+                        <Icon name="arrow-left" /> Blogs
+                    </ToolbarLink>
+                    {hasChanges &&
+                    <ToolbarButton onClick={this.onSaveClick}>
+                        <Icon name="floppy-o" /> Save
+                    </ToolbarButton>}
+                    {!published && !hasChanges &&
+                    <ToolbarButton onClick={this.onPublishClick}>
+                        <Icon name="bullhorn" /> Publish
+                    </ToolbarButton>}
+                    {published &&
+                    <ToolbarButton onClick={this.onUnpublishClick}>
+                        Unpublish
+                    </ToolbarButton>}
+                    {published &&
+                    <ToolbarText>
+                        Published {timeAgo(blog.get('datePublished'))}
+                    </ToolbarText>}
+                    {unpublishedChanges &&
+                    <ToolbarButton onClick={this.onPublishClick}>
+                        <Icon name="floppy-o" size="lg"/> Update
+                    </ToolbarButton>}
+                    <ToolbarButton onClick={this.onDeleteClick}>
+                        <Icon name="trash-o" /> Delete
+                    </ToolbarButton>
+                    <ToolbarButton className="right" onClick={() => this.setState({ showModal: true })}>
+                        <Icon name="cog" size="lg"/>
+                    </ToolbarButton>
+                </Toolbar>
+                <div className="editor">
+                    <div className="editor-title-box">
+                        <input
+                            className="editor-title-input"
+                            type="text"
+                            placeholder="Blog Title"
+                            value={blog.get('title')}
+                            onChange={this.onTitleChange} />
                     </div>
-                    <Modal visible={this.state.showModal} onClose={() => this.setState({ showModal: false })}>
-                        <div>
-
-                            <label className="modal-input-label">Page Type</label>
-                            <label className="modal-radio-label">
-                                <input
-                                    type="radio"
-                                    value="blog"
-                                    checked={blog.get('type') === 'blog'}
-                                    onChange={this.inputChangeFor('type')}
-                                    />
-                                Blog
-                            </label>
-                            <label className="modal-radio-label">
-                                <input
-                                    type="radio"
-                                    value="page"
-                                    checked={blog.get('type') === 'page'}
-                                    onChange={this.inputChangeFor('type')}
-                                    />
-                                Page
-                            </label>
-
-                            <label className="modal-input-label">Title</label>
-                            <input
-                                type="text"
-                                className="modal-input"
-                                placeholder="Summary"
-                                value={blog.get('title')}
-                                onChange={this.onTitleChange} />
-
-                            <label className="modal-input-label">Subtitle</label>
-                            <input
-                                type="text"
-                                className="modal-input"
-                                placeholder="Subtitle"
-                                value={blog.get('subtitle')}
-                                onChange={this.inputChangeFor('subtitle')} />
-
-                            <label className="modal-input-label">Blog Url Slug</label>
-                            <UrlSlugInput
-                                className="modal-input"
-                                placeholder="Url Slug"
-                                locked={blog.get('slugIsControlled')}
-                                onLockChange={this.onSlugIsControlledChange}
-                                value={blog.get('slug')}
-                                onChange={this.onSlugChange} />
-
-                            {published && <label className="modal-input-label">Publish Date</label>}
-                            {published && <Datepicker
-                                className="modal-input"
-                                placeholderText="Publish Date"
-                                dateFormat="YYYY/MM/DD"
-                                selected={moment(blog.get('datePublished'))}
-                                onChange={this.onPublishDateChange} />}
-
-                            <label className="modal-input-label">Blog Summary</label>
-                            <textarea
-                                className="modal-textarea"
-                                placeholder="Summary"
-                                value={blog.get('summary')}
-                                onChange={this.inputChangeFor('summary')}
-                                maxLength={255} />
-
-                            <button className="modal-button right" onClick={this.onSaveClick}>Save</button>
-                        </div>
-                    </Modal>
+                    <MarkdownEditor
+                        onChange={this.onBodyChange}
+                        onSave={this.onSaveClick}
+                        value={body}
+                        hasChanges={hasChanges}
+                        />
                 </div>
-            </DocumentTitle>
+                <Modal visible={this.state.showModal} onClose={() => this.setState({ showModal: false })}>
+                    <div>
+
+                        <label className="modal-input-label">Page Type</label>
+                        <label className="modal-radio-label">
+                            <input
+                                type="radio"
+                                value="blog"
+                                checked={blog.get('type') === 'blog'}
+                                onChange={this.inputChangeFor('type')}
+                                />
+                            Blog
+                        </label>
+                        <label className="modal-radio-label">
+                            <input
+                                type="radio"
+                                value="page"
+                                checked={blog.get('type') === 'page'}
+                                onChange={this.inputChangeFor('type')}
+                                />
+                            Page
+                        </label>
+
+                        <label className="modal-input-label">Title</label>
+                        <input
+                            type="text"
+                            className="modal-input"
+                            placeholder="Summary"
+                            value={blog.get('title')}
+                            onChange={this.onTitleChange} />
+
+                        <label className="modal-input-label">Subtitle</label>
+                        <input
+                            type="text"
+                            className="modal-input"
+                            placeholder="Subtitle"
+                            value={blog.get('subtitle')}
+                            onChange={this.inputChangeFor('subtitle')} />
+
+                        <label className="modal-input-label">Blog Url Slug</label>
+                        <UrlSlugInput
+                            className="modal-input"
+                            placeholder="Url Slug"
+                            locked={blog.get('slugIsControlled')}
+                            onLockChange={this.onSlugIsControlledChange}
+                            value={blog.get('slug')}
+                            onChange={this.onSlugChange} />
+
+                        {published && <label className="modal-input-label">Publish Date</label>}
+                        {published && <Datepicker
+                            className="modal-input"
+                            placeholderText="Publish Date"
+                            dateFormat="YYYY/MM/DD"
+                            selected={moment(blog.get('datePublished'))}
+                            onChange={this.onPublishDateChange} />}
+
+                        <label className="modal-input-label">Blog Summary</label>
+                        <textarea
+                            className="modal-textarea"
+                            placeholder="Summary"
+                            value={blog.get('summary')}
+                            onChange={this.inputChangeFor('summary')}
+                            maxLength={255} />
+
+                        <button className="modal-button right" onClick={this.onSaveClick}>Save</button>
+                    </div>
+                </Modal>
+            </div>
         );
     }
 }
@@ -273,6 +272,5 @@ module.exports = Container.create(Editor, ['BlogStore'], {
             BlogActions: flux.getActions('BlogActions'),
             blog: BlogStore.getFromId(+params.id)
         }
-    },
-    loadingComponent: <Loading />
+    }
 });

@@ -65,6 +65,7 @@ var FluxyTransition = React.createClass({
             previousProps: this.props
         },() => {
             flux.Http.start();
+            // NOTE: if there is nested data loading, this will only pre-render one level...
             components.forEach(Component => Component.loadProps(params, flux));
             flux.Http.stop();
             Promise.all(flux.Http.promises).then(() => this.setState({ loading: false, previousProps: null }));

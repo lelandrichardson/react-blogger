@@ -20,8 +20,8 @@ marked.setOptions({
     smartypants: false
 });
 
-if (__CLIENT__) require('../Styles/Markdown.less');
-if (__CLIENT__) require('highlight.js/styles/darkula.css');
+require('../Styles/Markdown.less');
+require('highlight.js/styles/darkula.css');
 class Markdown extends React.Component {
 
     static propTypes = {

@@ -44,3 +44,10 @@ export function short(date) {
     date = ensure(date);
     return `${MONTHS[date.getMonth()]} ${date.getDate()} ${date.getFullYear()}`;
 }
+
+export function utc(date) {
+    if (date === null || date === undefined) {
+        return null;
+    }
+    return ensure(date).toUTCString();
+}

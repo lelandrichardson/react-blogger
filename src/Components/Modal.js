@@ -2,7 +2,7 @@ var React = require('react');
 var Portal = require('./Portal');
 var cx = require('classnames');
 
-if (__CLIENT__) require('../Styles/Modal.less');
+require('../Styles/Modal.less');
 class Modal extends React.Component {
     render() {
         const { visible, children, onClose } = this.props;

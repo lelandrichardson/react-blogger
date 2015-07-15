@@ -8,7 +8,7 @@ var { Tabs, Tab } = require('../Components/Tabs');
 var Pager = require('react-pager');
 var { autobind } = require('../Mixins/decorators');
 
-if(__CLIENT__) require('../Styles/BlogList.less');
+require('../Styles/BlogList.less');
 class BlogList extends React.Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired

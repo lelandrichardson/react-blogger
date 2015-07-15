@@ -32,12 +32,10 @@ function keymapFor(instance) {
     }
 }
 
-if (__CLIENT__) {
-    // Styles
-    require('../Styles/base16-light.less');
-    require('codemirror/lib/codemirror.css');
-    require('../Styles/MarkdownEditor.less');
-}
+// Styles
+require('../Styles/base16-light.less');
+require('codemirror/lib/codemirror.css');
+require('../Styles/MarkdownEditor.less');
 class MarkdownEditor extends React.Component {
     render() {
         return (
